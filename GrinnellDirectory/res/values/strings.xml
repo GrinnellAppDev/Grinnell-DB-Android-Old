@@ -4,5 +4,17 @@
     <string name="app_name">Grinnell Directory</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_profile_detail">Profile Detail</string>
+    <string name="title_profile_list">Profiles</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_requesttask">requestatsk</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="submit">Submit</string>
+    <string name="title_activity_search_form">SearchFormActivity</string>
+    <string name="username">Username</string>
+    <string name="campus_phone">Campus Phone</string>
+    <string name="campus_address">Campus Address / PO Box</string>
+    <string name="home_address">Home Address</string>
 
 </resources>
