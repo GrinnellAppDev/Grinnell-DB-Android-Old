@@ -22,31 +22,24 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 
-public class RequestTask extends AsyncTask<String, String, String>{
+public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 
 	String responseString;
 	ArrayList<Profile> profileList;
-	String uberString;
 	String currentUri;
 	
-    protected String doInBackground(String... uri) {
-    	responseString = "";
+    protected ArrayList<Profile> doInBackground(String... uri) {
     	profileList = new ArrayList<Profile>();
     	currentUri = uri[0];
     	
-    	recursivelyScrapePages();
-        return uberString;
-    }
-
-    protected void onPostExecute(String result) {
-        //Do anything with response..
+    	iterativelyScrapePages();
+    	return profileList;
     }
     
-    private void recursivelyScrapePages(){
+    private void iterativelyScrapePages(){
     	//make the request
     		//if that reutrns 0, then parseResponse
     			//if that returns not "", go again
-    	uberString = "";
     	do{
     		makeRequest();
     	} while(parseResponse());
@@ -128,8 +121,8 @@ public class RequestTask extends AsyncTask<String, String, String>{
 		    		for(int i=0; i<13; i++) strTok.nextToken();
 		        	curTok = strTok.nextToken();
 		    	}
-		    	//profileList.add(new Profile(firstName, lastName, username));
-		    	uberString += firstName + "," + lastName + "," + username + ",";
+		    	profileList.add(new Profile(firstName, lastName, username));
+		    	
 	    	} while (curTok.contains("&nbsp"));
 	    	
 	    	return anotherPage;

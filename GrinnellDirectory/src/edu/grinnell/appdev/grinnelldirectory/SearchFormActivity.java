@@ -41,7 +41,7 @@ public class SearchFormActivity extends Activity {
         setContentView(R.layout.activity_search_form);
         
         initializeViews(this);
-		addListenerOnSubmitButton();
+	addListenerOnSubmitButton();
     }
     
     public void initializeViews(Context c){
@@ -58,7 +58,7 @@ public class SearchFormActivity extends Activity {
         haitusSpinner = (Spinner) findViewById(R.id.hiatus_spinner);
         studentClassSpinner = (Spinner) findViewById(R.id.student_class_spinner);
         submitButton = (Button) findViewById(R.id.submit_button);
-		listIntent = new Intent(this, ProfileListActivity.class);
+	listIntent = new Intent(this, ProfileListActivity.class);
     }
     
 	public void addListenerOnSubmitButton() {
@@ -69,29 +69,56 @@ public class SearchFormActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				
-				String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName=" + lastNameText.getText() +"&LNameSearch=startswith&FirstName=" + firstNameText.getText() + "&FNameSearch=startswith&email=" + usernameText.getText() + "&campusphonenumber=" + phoneText.getText() + "&campusquery=" + campusAddressText.getText() + "&Homequery=" + homeAddressText.getText() + "&Department=&Major=&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
-			    
+		String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
+			+ lastNameText.getText()
+			+ "&LNameSearch=startswith&FirstName="
+			+ firstNameText.getText()
+			+ "&FNameSearch=startswith&email="
+			+ usernameText.getText()
+			+ "&campusphonenumber="
+			+ phoneText.getText()
+			+ "&campusquery="
+			+ campusAddressText.getText()
+			+ "&Homequery="
+			+ homeAddressText.getText()
+			+ "&Department=&Major=&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
+
 			 	//TODO: Get rid of the fucking uberstring
 		        Log.d("test", "Test 1");
-		        String result = "";
-		        try {
-					result = new RequestTask().execute(theURL).get();
-					Log.d("test", result);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		        
+		        ArrayList<Profile> profileList;
+			try {
+			    profileList = new RequestTask().execute(theURL).get();
+			    ProfileListActivity.setData(profileList);
+			} catch (InterruptedException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			} catch (ExecutionException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			}
+		        
+		        
+//		        ArrayList<Profile> theData = new ArrayList<Profile>();
+//		        String result = "";
+//		        try {
+//					theData = new RequestTask().execute(theURL).get();
+//					Log.d("test", result);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (ExecutionException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 		        
 		        //parse the uberstring, add profiles, reset the list adapter
-		        StringTokenizer strTok = new StringTokenizer(result, ",");
-		        ArrayList<Profile> theData = new ArrayList<Profile>();
-		        while(strTok.hasMoreTokens()){
-		        	theData.add(new Profile(strTok.nextToken(), strTok.nextToken(), strTok.nextToken()));
-		        }
-		        ProfileListActivity.setData(theData);
+//		        StringTokenizer strTok = new StringTokenizer(result, ",");
+//		        
+//		        while(strTok.hasMoreTokens()){
+//		        	theData.add(new Profile(strTok.nextToken(), strTok.nextToken(), strTok.nextToken()));
+//		        }
+		        //ProfileListActivity.setData(theData);
 		        startActivity(listIntent);
                             
 			}

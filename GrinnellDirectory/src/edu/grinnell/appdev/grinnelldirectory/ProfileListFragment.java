@@ -43,7 +43,7 @@ public class ProfileListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         profileAdapter = new ProfileAdapter(Profile.ITEMS, getActivity());
-        setListAdapter(profileAdapter);
+        this.setListAdapter(profileAdapter);
     }
 
     @Override
