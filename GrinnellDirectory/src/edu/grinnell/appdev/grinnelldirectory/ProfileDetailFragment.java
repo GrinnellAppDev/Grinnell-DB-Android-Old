@@ -32,8 +32,7 @@ public class ProfileDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_profile_detail, container, false);
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.textUsername)).setText(mItem.username);
-            ((TextView) rootView.findViewById(R.id.textFirstName)).setText(mItem.firstname);
-            ((TextView) rootView.findViewById(R.id.textLastName)).setText(mItem.lastname);
+            ((TextView) rootView.findViewById(R.id.textFirstName)).setText(mItem.toString());
         }
         return rootView;
     }

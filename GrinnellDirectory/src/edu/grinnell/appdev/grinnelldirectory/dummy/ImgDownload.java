@@ -33,6 +33,5 @@ class ImgDownload extends AsyncTask {
 
     @Override
     protected void onPostExecute(Object o) {
-        theUser.pic = pic;
     }
 }

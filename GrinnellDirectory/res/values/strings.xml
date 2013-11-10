@@ -17,4 +17,8 @@
     <string name="campus_address">Campus Address / PO Box</string>
     <string name="home_address">Home Address</string>
 
+    <string-array name="country_arrays">
+    <item></item>
+    </string-array>
+    
 </resources>
