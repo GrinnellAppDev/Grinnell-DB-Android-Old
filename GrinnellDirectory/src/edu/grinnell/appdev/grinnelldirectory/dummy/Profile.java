@@ -16,6 +16,11 @@ public class Profile {
 	public String firstname;
 	public String lastname;
 	public String username;
+	public String dept;
+	public String phone;
+	public String address;
+	public String sgapos;
+	public String picurl;
 	public Bitmap pic;
 	
 	public Profile(String f, String l, String u){
