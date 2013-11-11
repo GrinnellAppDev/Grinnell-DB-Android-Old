@@ -73,11 +73,26 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
     private boolean parseResponse(){
     	StringTokenizer strTok = new StringTokenizer(responseString, "\n");
     	String curTok, picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos;
-    	boolean anotherPage = false;
+    	boolean anotherPage = false, onCampus = false;
     	
-    	for(int i=0; i<87; i++) strTok.nextToken();
-    	if (strTok.nextToken().contains("<strong>no")){
+    	for(int i=0; i<85; i++) strTok.nextToken();
+    	curTok = strTok.nextToken();
+    	if (curTok.contains("off campus")){
+    		onCampus = false;
+    	}
+    	else
+    	{
+    		onCampus = true;
+    		strTok.nextToken();
+    		curTok = strTok.nextToken();
+    	}
+    	
+    	if (curTok.contains("<strong>no")){
     		//no entries found
+    		return false;
+    	}
+    	else if (curTok.contains("<i>very</i>")){
+    		//too many entries
     		return false;
     	}
     	else
@@ -109,7 +124,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		    	curTok = strTok.nextToken();
 		    	dept = curTok.substring(35, curTok.indexOf("</td>"));
 		    	String smallerdeptString = curTok.substring(curTok.indexOf("tny")+6);
-		    	if (!(dept.endsWith(")"))) dept+=smallerdeptString.substring(0, smallerdeptString.indexOf("<"));
+		    	if (!(dept.contains("(20"))) dept+=smallerdeptString.substring(0, smallerdeptString.indexOf("<"));
 		    	curTok = strTok.nextToken();
 		    	phonenum = curTok.substring(37, 41);
 		    	curTok = strTok.nextToken();

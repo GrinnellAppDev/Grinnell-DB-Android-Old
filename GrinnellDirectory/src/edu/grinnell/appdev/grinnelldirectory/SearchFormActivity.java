@@ -81,7 +81,11 @@ public class SearchFormActivity extends Activity {
 			+ campusAddressText.getText()
 			+ "&Homequery="
 			+ homeAddressText.getText()
-			+ "&Department=&Major=&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
+			+ "&Department=" 
+			+ facDeptSpinner.getSelectedItem().toString()
+			+ "&Major=" 
+			+ studentMajorSpinner.getSelectedItem().toString()
+			+ "&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
 
 			 	//TODO: Get rid of the fucking uberstring
 		        Log.d("test", "Test 1");

@@ -17,8 +17,116 @@
     <string name="campus_address">Campus Address / PO Box</string>
     <string name="home_address">Home Address</string>
 
-    <string-array name="country_arrays">
-    <item></item>
+    <string-array name="facultydeptarray">
+    <item>Any</item>
+    <item>Accounting</item>
+    <item>Admission</item>
+    <item>Analytic Supp. &amp; Inst.Research</item>
+    <item>Anthropology</item>
+    <item>Art</item>
+    <item>Athletics</item>
+    <item>Biology</item>
+    <item>Bookstore</item>
+    <item>Campus Safety &amp; Security</item>
+    <item>Careers, Life, and Service</item>
+    <item>Center International Studies</item>
+    <item>Chemistry</item>
+    <item>Chinese &amp; Japanese</item>
+    <item>Classics (Greek &amp; Latin)</item>
+    <item>College Contacs</item>
+    <item>College Services</item>
+    <item>Comm. Enhancement &amp; Engagement</item>
+    <item>Communications</item>
+    <item>Computer Science</item>
+    <item>Conference Operations &amp; Events</item>
+    <item>Corp. Found &amp; Gov\'t Rel.</item>
+    <item>CRSSJ</item>
+    <item>Dean of the College</item>
+    <item>Development &amp; Alumni Relations</item>
+    <item>Dining Services</item>
+    <item>Economics</item>
+    <item>Education</item>
+    <item>English</item>
+    <item>Facilites Management</item>
+    <item>Faulconer Gallery</item>
+    <item>Financial Aid</item>
+    <item>Forensics</item>
+    <item>French and Arabic</item>
+    <item>Gender, Womens, &amp; Sexuality Studies</item>
+    <item>German</item>
+    <item>Grinnell-In-London</item>
+    <item>History</item>
+    <item>Human Resources</item>
+    <item>Information Technology Services</item>
+    <item>Instructional Technologies</item>
+    <item>Intercultural Engmt &amp; Ldshp</item>
+    <item>Library</item>
+    <item>Mail Services</item>
+    <item>Math Lab</item>
+    <item>Mathematics &amp; Statistics</item>
+    <item>Music</item>
+    <item>Off-Campus Study</item>
+    <item>Office of Investments</item>
+    <item>Office of the Ombuds</item>
+    <item>Office of the Treasurer</item>
+    <item>Philosophy</item>
+    <item>Physical Education</item>
+    <item>Physics</item>
+    <item>Politcal Science</item>
+    <item>President</item>
+    <item>Psychology</item>
+    <item>Reading Lab</item>
+    <item>Registrar</item>
+    <item>Religious Studies</item>
+    <item>Russian</item>
+    <item>Science Dept</item>
+    <item>Sociology</item>
+    <item>Spanish</item>
+    <item>Student Affairs</item>
+    <item>Student Helath &amp; Counseling</item>
+    <item>Theatre and Dance</item>
+    <item>Wilson Program</item>
+    <item>Writing Lab</item>
+    </string-array>
+    
+    <string-array name="studentmajorarray">
+    <item>Any</item>
+    <item>American Studies</item>
+    <item>Anthropology</item>
+    <item>Art</item>
+    <item>Biological Chemistry</item>
+    <item>Biology</item>
+    <item>Certificate</item>
+    <item>Chemistry</item>
+    <item>Chinese</item>
+    <item>Classics</item>
+    <item>Computer Science</item>
+    <item>Economics</item>
+    <item>English</item>
+    <item>Exchange Student</item>
+    <item>French</item>
+    <item>Gender, Womens, &amp; Sexuality Studies</item>
+    <item>General Sciene-Biology</item>
+    <item>General Science-Chemistry</item>
+    <item>General Science-Computer Science</item>
+    <item>General Science-Math</item>
+    <item>General Science-Physics</item>
+    <item>General Sceince-Psychology</item>
+    <item>German</item>
+    <item>History</item>
+    <item>Independent</item>
+    <item>Mathematics</item>
+    <item>Music</item>
+    <item>Philosophy</item>
+    <item>Physics</item>
+    <item>Politcal Science</item>
+    <item>Psychology</item>
+    <item>Religious Studies</item>
+    <item>Russian</item>
+    <item>Sociology</item>
+    <item>Spanish</item>
+    <item>Theatre</item>
+    <item>Undeclared</item>
     </string-array>
     
 </resources>
