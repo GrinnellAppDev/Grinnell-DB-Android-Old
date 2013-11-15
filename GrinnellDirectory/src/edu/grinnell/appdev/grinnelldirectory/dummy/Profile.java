@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-
-import android.graphics.Bitmap;
-import android.util.Log;
 
 public class Profile {
 
@@ -16,7 +12,6 @@ public class Profile {
 	
 
 	public String picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos;
-	public Bitmap pic;
 
 	
 	@SuppressWarnings("unchecked")
@@ -34,7 +29,6 @@ public class Profile {
 		this.boxno = boxno;
 		this.stufacstatus = stufacstatus;
 		this.sgapos = sgapos;
-		this.pic = null;
 	}
 
 	public static void setList(ArrayList<Profile> profileList){
@@ -55,18 +49,6 @@ public class Profile {
 		for(Profile i: profileList){
 			ITEMS.add(i);
 			ITEM_MAP.put(i.username, i);
-		}
-	}
-	
-	public void downloadImage(){
-		try {
-			this.pic = (Bitmap) new ImgDownload().execute(picurl).get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

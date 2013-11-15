@@ -7,7 +7,7 @@
     <string name="title_profile_detail">Profile Detail</string>
     <string name="title_profile_list">Profiles</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_requesttask">requestatsk</string>
+    <string name="title_activity_requesttask">requestTask</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="submit">Submit</string>

@@ -1,21 +1,11 @@
 package edu.grinnell.appdev.grinnelldirectory;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
-
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
+import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 public class ProfileListFragment extends ListFragment {
 
@@ -108,34 +98,6 @@ public class ProfileListFragment extends ListFragment {
     }
     
     
-    public class ProfileAdapter extends ArrayAdapter<Profile> {
-
-    	private List<Profile> profileList;
-    	private Context context;
-    	 
-    	public ProfileAdapter(List<Profile> profileList, Context ctx) {
-    	    super(ctx, R.layout.fragment_result_list_entry, profileList);
-    	    this.profileList = profileList;
-    	    this.context = ctx;
-    	}
-    	 
-    	public View getView(int position, View convertView, ViewGroup parent) {
-    	     
-    	    // First let's verify the convertView is not null
-    	    if (convertView == null) {
-    	        // This a new view we inflate the new layout
-    	        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    	        convertView = inflater.inflate(R.layout.fragment_result_list_entry, parent, false);
-    	    }
-    	        // Now we can fill the layout with the right values
-	        	Profile p = profileList.get(position);
-    	        ((TextView) convertView.findViewById(R.id.textUsername)).setText(p.username);
-    	        //p.downloadImage();
-    	        ((ImageView) convertView.findViewById(R.id.imageImg)).setImageBitmap(p.pic);
-    	        
-    	 
-    	    return convertView;
-    	}
-    }
+    
 
 }
