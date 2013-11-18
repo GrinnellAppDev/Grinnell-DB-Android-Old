@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.graphics.Bitmap;
+import android.util.Log;
+
 public class Profile {
 
     public static List<Profile> ITEMS = new ArrayList<Profile>();
@@ -12,9 +15,9 @@ public class Profile {
 	
 
 	public String picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos;
+	
 
 	
-	@SuppressWarnings("unchecked")
 	public Profile(String picurl, String firstName, String lastName,
 			String username, String dept, String phonenum,
 			String campusaddress, String boxno, String stufacstatus,

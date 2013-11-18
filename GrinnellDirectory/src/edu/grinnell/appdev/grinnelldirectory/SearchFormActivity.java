@@ -2,12 +2,12 @@ package edu.grinnell.appdev.grinnelldirectory;
 
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,17 +16,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
-import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
-import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
-
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 public class SearchFormActivity extends Activity {
@@ -45,7 +34,6 @@ public class SearchFormActivity extends Activity {
 	Spinner studentClassSpinner;
 	Button submitButton;
 	Intent listIntent;
-	public static ImageLoader imageLoader = ImageLoader.getInstance();
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,7 +59,6 @@ public class SearchFormActivity extends Activity {
         studentClassSpinner = (Spinner) findViewById(R.id.student_class_spinner);
         submitButton = (Button) findViewById(R.id.submit_button);
 	listIntent = new Intent(this, ProfileListActivity.class);
-	
     }
     
 	public void addListenerOnSubmitButton() {
@@ -94,11 +81,7 @@ public class SearchFormActivity extends Activity {
 			+ campusAddressText.getText()
 			+ "&Homequery="
 			+ homeAddressText.getText()
-			+ "&Department=" 
-			+ facDeptSpinner.getSelectedItem().toString()
-			+ "&Major=" 
-			+ studentMajorSpinner.getSelectedItem().toString()
-			+ "&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
+			+ "&Department=&Major=&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
 
 			 	//TODO: Get rid of the fucking uberstring
 		        Log.d("test", "Test 1");
@@ -115,6 +98,27 @@ public class SearchFormActivity extends Activity {
 			    e.printStackTrace();
 			}
 		        
+		        
+//		        ArrayList<Profile> theData = new ArrayList<Profile>();
+//		        String result = "";
+//		        try {
+//					theData = new RequestTask().execute(theURL).get();
+//					Log.d("test", result);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (ExecutionException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+		        
+		        //parse the uberstring, add profiles, reset the list adapter
+//		        StringTokenizer strTok = new StringTokenizer(result, ",");
+//		        
+//		        while(strTok.hasMoreTokens()){
+//		        	theData.add(new Profile(strTok.nextToken(), strTok.nextToken(), strTok.nextToken()));
+//		        }
+		        //ProfileListActivity.setData(theData);
 		        startActivity(listIntent);
                             
 			}
