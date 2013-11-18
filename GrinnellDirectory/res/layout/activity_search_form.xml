@@ -67,12 +67,16 @@
         android:id="@+id/fac_dept_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint= "@string/campus_address" />
+        android:hint= "@string/campus_address"
+        android:entries= "@array/facultydeptarray" />
+
 
     <Spinner
         android:id="@+id/student_major_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:entries= "@array/studentmajorarray"  />
+
 
     <Spinner
         android:id="@+id/concentration_spinner"

@@ -81,7 +81,11 @@ public class SearchFormActivity extends Activity {
 			+ campusAddressText.getText()
 			+ "&Homequery="
 			+ homeAddressText.getText()
-			+ "&Department=&Major=&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
+			+ "&Department=" 
+			+ cleanString(facDeptSpinner.getSelectedItem().toString())
+			+ "&Major=" 
+			+ cleanString(studentMajorSpinner.getSelectedItem().toString())
+			+ "&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
 
 			 	//TODO: Get rid of the fucking uberstring
 		        Log.d("test", "Test 1");
@@ -125,6 +129,16 @@ public class SearchFormActivity extends Activity {
  
 		});
  
+	}
+	
+	private String cleanString(String str) {
+	   str = str.replace(" ", "+");
+	   str = str.replace(",", "%2C");
+	   str =str.replace("&", "%26");
+	   if (str.length() > 36) {
+	       str = str.substring(0, 35);
+	   }
+	    return str;
 	}
 
     @Override

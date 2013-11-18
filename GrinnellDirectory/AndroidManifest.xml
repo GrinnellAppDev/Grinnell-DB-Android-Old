@@ -17,8 +17,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="edu.grinnell.appdev.grinnelldirectory.MainActivity"
-            android:label="@string/app_name" >
+            android:name=".SearchFormActivity"
+            android:label="@string/title_activity_search_form" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,11 +28,6 @@
         <activity
             android:name=".ProfileListActivity"
             android:label="@string/title_profile_list" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ProfileDetailActivity"
@@ -44,21 +39,8 @@
         <activity
             android:name=".RequesttaskActivity"
             android:label="@string/title_activity_requesttask" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity
-            android:name=".SearchFormActivity"
-            android:label="@string/title_activity_search_form" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        
     </application>
 
 </manifest>
