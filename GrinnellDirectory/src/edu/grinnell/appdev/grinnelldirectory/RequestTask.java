@@ -124,7 +124,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		    	strTok.nextToken();
 		    	curTok = strTok.nextToken();
 		    	sgapos = "";
-		    	if (curTok.equals("<tr>")){
+		    	if (curTok.equals("<tr>\r")){
 		    		//senator
 		    		for(int i=0; i<3; i++) curTok = strTok.nextToken();
 		        	sgapos = curTok.substring(19, curTok.indexOf("</span>"));
