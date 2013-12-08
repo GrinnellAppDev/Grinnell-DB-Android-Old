@@ -1,18 +1,25 @@
 package edu.grinnell.appdev.grinnelldirectory;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -42,7 +49,10 @@ public class ProfileListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        profileAdapter = new ProfileAdapter(Profile.ITEMS, getActivity());
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getActivity()).build();
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.init(config);
+        profileAdapter = new ProfileAdapter(Profile.ITEMS, getActivity(), imageLoader);
         this.setListAdapter(profileAdapter);
     }
 
@@ -111,11 +121,13 @@ public class ProfileListFragment extends ListFragment {
 
     	private List<Profile> profileList;
     	private Context context;
+    	private ImageLoader imageLoader;
     	 
-    	public ProfileAdapter(List<Profile> profileList, Context ctx) {
+    	public ProfileAdapter(List<Profile> profileList, Context ctx, ImageLoader imageLoader) {
     	    super(ctx, R.layout.fragment_result_list_entry, profileList);
     	    this.profileList = profileList;
     	    this.context = ctx;
+    	    this.imageLoader = imageLoader;
     	}
     	 
     	public View getView(int position, View convertView, ViewGroup parent) {
@@ -127,11 +139,21 @@ public class ProfileListFragment extends ListFragment {
     	        convertView = inflater.inflate(R.layout.fragment_result_list_entry, parent, false);
     	    }
     	        // Now we can fill the layout with the right values
-	        	Profile p = profileList.get(position);
-    	        ((TextView) convertView.findViewById(R.id.textUsername)).setText(p.username);
-    	 
-    	    return convertView;
-    	}
+	    Profile p = profileList.get(position);
+	    if (p.picurl != "") {
+		((TextView) convertView.findViewById(R.id.textUsername))
+			.setText(p.username);
+		final ImageView imgview = ((ImageView) convertView
+			.findViewById(R.id.imageImg));
+		imageLoader.loadImage(p.picurl, new SimpleImageLoadingListener() {
+		    @Override
+		    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+		        imgview.setImageBitmap(loadedImage);
+		    }
+		});
+	    }
+	    return convertView;
+	}
     }
 
 }

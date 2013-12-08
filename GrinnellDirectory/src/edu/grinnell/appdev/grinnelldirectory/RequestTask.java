@@ -100,8 +100,8 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	    	}
 	    	
 	    	do{
-	    		if(curTok.contains("image1")) picurl = curTok.substring(curTok.indexOf("https"), curTok.indexOf("\" alt=\""));
-	    		else picurl = " ";
+	    		if(curTok.contains("image1")) picurl = curTok.substring(curTok.indexOf("img src=\"")+9, curTok.indexOf("\" alt=\""));
+	    		else picurl = "";
 		    	curTok = strTok.nextToken();
 		    	String fullName = curTok.substring(curTok.substring(40).indexOf('>')+41, curTok.substring(40).indexOf('<')+40);
 		    	firstName = fullName.substring(0, fullName.indexOf(','));

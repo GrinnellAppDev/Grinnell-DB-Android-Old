@@ -67,7 +67,7 @@
         android:id="@+id/fac_dept_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:prompt= "@string/campus_address"
+        android:text= "@string/hello_world"
         android:entries= "@array/facultydeptarray" />
 
 
