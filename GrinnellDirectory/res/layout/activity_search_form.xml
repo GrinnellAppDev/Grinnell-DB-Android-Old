@@ -67,7 +67,7 @@
         android:id="@+id/fac_dept_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint= "@string/campus_address"
+        android:prompt= "@string/campus_address"
         android:entries= "@array/facultydeptarray" />
 
 
@@ -75,6 +75,7 @@
         android:id="@+id/student_major_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:prompt= "@string/app_name"
         android:entries= "@array/studentmajorarray"  />
 
 
