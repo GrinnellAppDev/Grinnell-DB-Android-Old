@@ -1,3 +1,12 @@
+/**********************************************
+ * ProfileListFragment
+ * A single row in the profile list in ProfileListActivity
+ * Heavily based off of the Master Flow template
+ * Changes include:
+ * 	-Now works with Profile instead of DummyClass
+ * 	-Includes custom profile adapter, ProfileAdapter, as nested class
+ * ********************************************/
+
 package edu.grinnell.appdev.grinnelldirectory;
 
 import java.net.URL;
@@ -116,20 +125,22 @@ public class ProfileListFragment extends ListFragment {
     		profileAdapter.notifyDataSetChanged();
     }
     
-    
+    //The custom list adapter as a nested class
     public class ProfileAdapter extends ArrayAdapter<Profile> {
 
-    	private List<Profile> profileList;
-    	private Context context;
-    	private ImageLoader imageLoader;
-    	 
+    	private List<Profile> profileList; //The list of profiles we're dealing with.
+    	private Context context; //The context of the list row
+    	private ImageLoader imageLoader; //Universal imageLoader, for loading images from URLs
+    	
+    	//Constructor
     	public ProfileAdapter(List<Profile> profileList, Context ctx, ImageLoader imageLoader) {
     	    super(ctx, R.layout.fragment_result_list_entry, profileList);
     	    this.profileList = profileList;
     	    this.context = ctx;
     	    this.imageLoader = imageLoader;
     	}
-    	 
+    	
+    	//Construts the view
     	public View getView(int position, View convertView, ViewGroup parent) {
     	     
     	    // First let's verify the convertView is not null
@@ -138,13 +149,17 @@ public class ProfileListFragment extends ListFragment {
     	        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	        convertView = inflater.inflate(R.layout.fragment_result_list_entry, parent, false);
     	    }
+    	    
     	        // Now we can fill the layout with the right values
 	    Profile p = profileList.get(position);
 	    if (p.picurl != "") {
+	    	//Fills the textview with username
 		((TextView) convertView.findViewById(R.id.textUsername))
 			.setText(p.username);
+		//Initializes an imageView
 		final ImageView imgview = ((ImageView) convertView
 			.findViewById(R.id.imageImg));
+		//Fills the imageView with universalImageLoader
 		imageLoader.loadImage(p.picurl, new SimpleImageLoadingListener() {
 		    @Override
 		    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
