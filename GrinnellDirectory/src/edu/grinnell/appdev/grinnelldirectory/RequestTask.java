@@ -1,3 +1,10 @@
+/*****************************************************
+ * RequestTask
+ * This method accepts a string of a valid URL request to DB.
+ * It gathers the HTML request, and parses it.
+ * It returns an ArrayList of Profiles of the entries.
+ * ***************************************************/
+
 package edu.grinnell.appdev.grinnelldirectory;
 
 import java.io.ByteArrayOutputStream;
@@ -24,10 +31,11 @@ import android.view.Menu;
 
 public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 
-	String responseString;
-	ArrayList<Profile> profileList;
-	String currentUri;
+	String responseString; //makeRequest() stores its response here
+	ArrayList<Profile> profileList; //The final product, a list of downloaded Profile objects
+	String currentUri; //The current page content is being downloaded from
 	
+	//In AsyncTasks, doInBackground is called first, analogous to a main method.
     protected ArrayList<Profile> doInBackground(String... uri) {
     	profileList = new ArrayList<Profile>();
     	currentUri = uri[0];
@@ -36,15 +44,14 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
     	return profileList;
     }
     
+    	//Adds the queried entries to profileList
     private void iterativelyScrapePages(){
-    	//make the request
-    		//if that reutrns 0, then parseResponse
-    			//if that returns not "", go again
     	do{
-    		makeRequest();
-    	} while(parseResponse());
+    		makeRequest(); //download the next page of content
+    	} while(parseResponse()); //Parse the content. If parseResponse() returns true, a next page exists.
     }
     
+    //This method is a basic HTTP request. It saves the HTML response to responseString.
     private int makeRequest(String... uri){
         HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response;
@@ -70,22 +77,34 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
        return -1;
     }
     
+    //This method parses out entry information an HTML response, and adds Profile objects to profileList.
+    //responseString must be a valid grinnell College db page
+    //This method does not know how to handle the "too many entries" response and the off-campus response.
     private boolean parseResponse(){
+    	
+    	//Set up the tokenizer, seperating by token '\n'. You should find out what a tokenizer is.
     	StringTokenizer strTok = new StringTokenizer(responseString, "\n");
     	String curTok, picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos;
+    	//boolean indicating if there exists a next page.
     	boolean anotherPage = false;
     	
+    	//skip useless information
     	for(int i=0; i<87; i++) strTok.nextToken();
+    	
+    	//If line 88 contains this string, there were 0 results.
     	if (strTok.nextToken().contains("<strong>no")){
     		//no entries found
     		return false;
     	}
     	else
     	{
-	    	
+    		
+	    	//skip useless information
 	    	for(int i=0; i<9; i++) strTok.nextToken();
 	    	curTok = strTok.nextToken();
 	    	
+	    	//If a next page button exsts, then there is a next page.
+	    	//Grab URL of next pageand set return value of method to true.
 	    	if (curTok.contains("Next Page")){
 	    		anotherPage = true;
 	    		currentUri = "https://itwebapps.grinnell.edu" + curTok.substring(53, curTok.length()-38);
@@ -99,18 +118,28 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	    		curTok = strTok.nextToken();
 	    	}
 	    	
+	    	//loop, keeps adding entries to profileList until there are none.
 	    	do{
+	    		//parse entries
+	    		//parse image URL. If no image, save " ".
 	    		if(curTok.contains("image1")) picurl = curTok.substring(curTok.indexOf("img src=\"")+9, curTok.indexOf("\" alt=\""));
 	    		else picurl = "";
 		    	curTok = strTok.nextToken();
+		    	
+		    	//parse full name
 		    	String fullName = curTok.substring(curTok.substring(40).indexOf('>')+41, curTok.substring(40).indexOf('<')+40);
 		    	firstName = fullName.substring(0, fullName.indexOf(','));
 		    	lastName = fullName.substring(fullName.indexOf(',')+2);
 		    	curTok = strTok.nextToken();
+		    	
+		    	//parse student major or faculty department
 		    	dept = curTok.substring(35, curTok.indexOf("</td>"));
 		    	String smallerdeptString = curTok.substring(curTok.indexOf("tny")+6);
+		    	//some faculty/staff have multiple titles
 		    	if (!(dept.endsWith(")"))) dept+=smallerdeptString.substring(0, smallerdeptString.indexOf("<"));
 		    	curTok = strTok.nextToken();
+		    	
+		    	//parse phone number, username, campus address, box #, student/faculty status
 		    	phonenum = curTok.substring(37, 41);
 		    	curTok = strTok.nextToken();
 		    	username = curTok.substring(53, curTok.indexOf('@'));
@@ -123,6 +152,8 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		    	stufacstatus = curTok.substring(37, curTok.indexOf(" </TD>"));
 		    	strTok.nextToken();
 		    	curTok = strTok.nextToken();
+		    	
+		    	//parse SGA status
 		    	sgapos = "";
 		    	if (curTok.equals("<tr>\r")){
 		    		//senator
@@ -131,11 +162,13 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		        	for(int i=0; i<10; i++) strTok.nextToken();
 		        	curTok = strTok.nextToken();
 		    	}
+		    	
+		    	//Adds a new Profile to profileList containing all the newly parsed information
 		    	profileList.add(new Profile(picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos));
 		    	
-	    	} while (curTok.contains("&nbsp"));
+	    	} while (curTok.contains("&nbsp")); //determine if there is another entry to be parsed
 	    	
-	    	return anotherPage;
+	    	return anotherPage;//returns boolean indicating if there exists a next page.
 	    	
 	    	/*
 	    	if(anotherPage){
