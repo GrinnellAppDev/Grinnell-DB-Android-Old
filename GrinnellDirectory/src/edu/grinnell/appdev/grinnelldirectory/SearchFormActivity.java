@@ -1,3 +1,12 @@
+/****************************************
+ * SearchFormActivity
+ * The inital activity.
+ * This activity runs the search form.
+ * Upon hitting the submit button, it uses RequestTask
+ * 	to create an ArrayList of Profiles.
+ * 	It then launches a ListActivityIntent to display them.
+ * **************************************/
+
 package edu.grinnell.appdev.grinnelldirectory;
 
 
@@ -20,6 +29,7 @@ import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 public class SearchFormActivity extends Activity {
 
+	//Fields in the layout
 	TextView firstNameText;
 	TextView lastNameText;
 	TextView usernameText;
@@ -33,6 +43,8 @@ public class SearchFormActivity extends Activity {
 	Spinner haitusSpinner;
 	Spinner studentClassSpinner;
 	Button submitButton;
+	
+	//An intent for ProfileListActivity
 	Intent listIntent;
 	
     @Override
@@ -40,8 +52,8 @@ public class SearchFormActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_form);
         
-        initializeViews(this);
-	addListenerOnSubmitButton();
+        initializeViews(this); //Initialize all of the variables.
+	addListenerOnSubmitButton(); //Add a listener to the submit button.
     }
     
     public void initializeViews(Context c){
@@ -61,6 +73,11 @@ public class SearchFormActivity extends Activity {
 	listIntent = new Intent(this, ProfileListActivity.class);
     }
     
+    	//Adds a listener to the submit button.
+    	//The responding method gets the information from the fields,
+    	//	and pieces together a valid DB request URL.
+    	//	This is passed to RequestTask.
+    	//	The ProfileListActivity intent is started.
 	public void addListenerOnSubmitButton() {
 		 
 		final Context context = this;
@@ -102,27 +119,6 @@ public class SearchFormActivity extends Activity {
 			    e.printStackTrace();
 			}
 		        
-		        
-//		        ArrayList<Profile> theData = new ArrayList<Profile>();
-//		        String result = "";
-//		        try {
-//					theData = new RequestTask().execute(theURL).get();
-//					Log.d("test", result);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (ExecutionException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-		        
-		        //parse the uberstring, add profiles, reset the list adapter
-//		        StringTokenizer strTok = new StringTokenizer(result, ",");
-//		        
-//		        while(strTok.hasMoreTokens()){
-//		        	theData.add(new Profile(strTok.nextToken(), strTok.nextToken(), strTok.nextToken()));
-//		        }
-		        //ProfileListActivity.setData(theData);
 		        startActivity(listIntent);
                             
 			}
@@ -131,10 +127,11 @@ public class SearchFormActivity extends Activity {
  
 	}
 	
+	//Converts plain-text strings into HTTP-friendly strings.
 	private String cleanString(String str) {
 	   str = str.replace(" ", "+");
 	   str = str.replace(",", "%2C");
-	   str =str.replace("&", "%26");
+	   str = str.replace("&", "%26");
 	   if (str.length() > 36) {
 	       str = str.substring(0, 35);
 	   }
