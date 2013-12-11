@@ -1,3 +1,13 @@
+/**************************************
+ * ProfileDetailFragment
+ * When an item in the profile list is selected,
+ *      a ProfileDetailFragment is displayed,
+ *      containing more details of that entry
+ * Heavily based on the Master Flow template
+ * The only changes were to incorporate Profiles,
+ *      and to have a custom view with an image.
+ * ************************************/
+
 package edu.grinnell.appdev.grinnelldirectory;
 
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
