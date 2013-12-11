@@ -1,3 +1,10 @@
+/**************************************
+ * Profile
+ * Profile object, which stores the information from a single DB entry.
+ * This class also stores all downloaded data staticly.
+ * 	This is totes unprofessional. Don't do as I do.
+ * ************************************/
+
 package edu.grinnell.appdev.grinnelldirectory.dummy;
 
 import java.util.ArrayList;
@@ -10,6 +17,7 @@ import android.util.Log;
 
 public class Profile {
 
+//ITEMS stores the downloaded data. ITEM_MAP is a hash function for storing the data.
     public static List<Profile> ITEMS = new ArrayList<Profile>();
     public static Map<String, Profile> ITEM_MAP = new HashMap<String, Profile>();
 	
@@ -17,7 +25,7 @@ public class Profile {
 	public String picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos;
 	
 
-	
+	//Constructor
 	public Profile(String picurl, String firstName, String lastName,
 			String username, String dept, String phonenum,
 			String campusaddress, String boxno, String stufacstatus,
@@ -33,7 +41,8 @@ public class Profile {
 		this.stufacstatus = stufacstatus;
 		this.sgapos = sgapos;
 	}
-
+	
+	//Clear the downloaded data, and saves all information in profileList
 	public static void setList(ArrayList<Profile> profileList){
 		ITEMS.clear();
 		ITEM_MAP.clear();
@@ -43,11 +52,13 @@ public class Profile {
 		}
 	}
 	
+	//clears the downloaded data
 	public static void resetList(){
 		ITEMS.clear();
 		ITEM_MAP.clear();		
 	}
 	
+	//Adds the Profiles in profileList to the downloaded data
 	public static void addToList(ArrayList<Profile> profileList){
 		for(Profile i: profileList){
 			ITEMS.add(i);
