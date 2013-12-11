@@ -1,3 +1,15 @@
+/*****************************************
+ * ProfileListActivity
+ * This activity runs the results list.
+ * This is very much based off of the Master Flow template.
+ * Changes from the template include:
+ *      -Incorporating Profile objects
+ *      -setData(), resetData(), addToData()
+ * The data is dowloaded outside of this method,
+ *      so public data manipulating methods are required.
+ * The list data is stored staticly in the Profile class.
+ * ***************************************/
+
 package edu.grinnell.appdev.grinnelldirectory;
 
 import java.util.ArrayList;
@@ -20,6 +32,7 @@ public class ProfileListActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_list);
         
+        //Tablet 2-pane support
         if (findViewById(R.id.profile_detail_container) != null) {
             mTwoPane = true;
             ((ProfileListFragment) getSupportFragmentManager()
@@ -28,6 +41,7 @@ public class ProfileListActivity extends FragmentActivity
         }
     }
 
+//Launches an intent, to display the selected item's Profile in a ProfileDetailFragment activity
     @Override
     public void onItemSelected(String id) {
         if (mTwoPane) {
@@ -46,8 +60,11 @@ public class ProfileListActivity extends FragmentActivity
         }
     }
     
+    //the data is dowloaded outside of this method, so public data manipulating methods are required.
     public static void setData(ArrayList<Profile> profileList){
+        //Manipulate the data. The data is stored in the Profile class.
     	Profile.setList(profileList);
+    	//Tell the ListFragment that the data has beeen changed.
     	ProfileListFragment.refresh();
     }
     
