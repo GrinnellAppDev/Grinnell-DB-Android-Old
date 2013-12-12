@@ -140,12 +140,24 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		    	curTok = strTok.nextToken();
 		    	
 		    	//parse phone number, username, campus address, box #, student/faculty status
-		    	phonenum = curTok.substring(37, 41);
+		    	if (curTok.charAt(37) != '<') {
+		    	    phonenum = curTok.substring(37, 41);
+		    	}  else {
+		    	    phonenum = "";  
+		    	}
 		    	curTok = strTok.nextToken();
-		    	username = curTok.substring(53, curTok.indexOf('@'));
+		    	if (!curTok.contains("&nbsp")) {
+		    	    username = curTok.substring(53, curTok.indexOf('@'));
+		    	} else {
+		    	    username = "";
+		    	}
 		    	strTok.nextToken();
 		    	curTok = strTok.nextToken(); 
-		    	campusaddress = curTok.substring(0, curTok.indexOf("</TD>"));
+		    	if (curTok.charAt(0) == ' ') {
+		    	    campusaddress = curTok.substring(0, curTok.indexOf("</TD>"));
+		    	} else {
+		    	    campusaddress = "";
+		    	}
 		    	boxno = strTok.nextToken().substring(36,40);
 		    	if(boxno.equals("&nbs")) boxno = "";
 		    	curTok = strTok.nextToken();

@@ -22,7 +22,16 @@ public class Profile {
     public static Map<String, Profile> ITEM_MAP = new HashMap<String, Profile>();
 	
 
-	public String picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos;
+	public String picurl;
+	public String firstName = "";
+	public String lastName = "";
+	public String username = "";
+	public String dept = "";
+	public String phonenum = "";
+	public String campusaddress = "";
+	public String boxno = "";
+	public String stufacstatus = "";
+	public String sgapos = "";
 	
 
 	//Constructor
