@@ -34,6 +34,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	String responseString; //makeRequest() stores its response here
 	ArrayList<Profile> profileList; //The final product, a list of downloaded Profile objects
 	String currentUri; //The current page content is being downloaded from
+	final String UNAVAILABLE = "This data is unavailable off-campus.";
 	
 	//In AsyncTasks, doInBackground is called first, analogous to a main method.
     protected ArrayList<Profile> doInBackground(String... uri) {
@@ -87,9 +88,18 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
     	String curTok, picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos;
     	//boolean indicating if there exists a next page.
     	boolean anotherPage = false;
+    	boolean onCampus = false;
     	
     	//skip useless information
-    	for(int i=0; i<87; i++) strTok.nextToken();
+    	for(int i=0; i<85; i++) strTok.nextToken();
+    	curTok = strTok.nextToken();
+    	
+    	if(curTok.contains("<td")){
+    	    onCampus = true;
+    	    strTok.nextToken();
+    	    curTok = strTok.nextToken();
+    	}
+    	
     	
     	//If line 88 contains this string, there were 0 results.
     	if (strTok.nextToken().contains("<strong>no")){
@@ -118,70 +128,111 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	    		curTok = strTok.nextToken();
 	    	}
 	    	
-	    	//loop, keeps adding entries to profileList until there are none.
-	    	do{
-	    		//parse entries
-	    		//parse image URL. If no image, save " ".
-	    		if(curTok.contains("image1")) picurl = curTok.substring(curTok.indexOf("img src=\"")+9, curTok.indexOf("\" alt=\""));
-	    		else picurl = "";
-		    	curTok = strTok.nextToken();
-		    	
-		    	//parse full name
-		    	String fullName = curTok.substring(curTok.substring(40).indexOf('>')+41, curTok.substring(40).indexOf('<')+40);
-		    	firstName = fullName.substring(0, fullName.indexOf(','));
-		    	lastName = fullName.substring(fullName.indexOf(',')+2);
-		    	curTok = strTok.nextToken();
-		    	
-		    	//parse student major or faculty department
-		    	dept = curTok.substring(35, curTok.indexOf("</td>"));
-		    	String smallerdeptString = curTok.substring(curTok.indexOf("tny")+6);
-		    	//some faculty/staff have multiple titles
-		    	if (!(dept.endsWith(")"))) dept+=smallerdeptString.substring(0, smallerdeptString.indexOf("<"));
-		    	curTok = strTok.nextToken();
-		    	
-		    	//parse phone number, username, campus address, box #, student/faculty status
-		    	if (curTok.charAt(37) != '<') {
-		    	    phonenum = curTok.substring(37, 41);
-		    	}  else {
-		    	    phonenum = "";  
-		    	}
-		    	curTok = strTok.nextToken();
-		    	if (!curTok.contains("&nbsp")) {
-		    	    username = curTok.substring(53, curTok.indexOf('@'));
-		    	} else {
-		    	    username = "";
-		    	}
-		    	strTok.nextToken();
-		    	curTok = strTok.nextToken(); 
-		    	if (curTok.charAt(0) == ' ') {
-		    	    campusaddress = curTok.substring(0, curTok.indexOf("</TD>"));
-		    	} else {
-		    	    campusaddress = "";
-		    	}
-		    	boxno = strTok.nextToken().substring(36,40);
-		    	if(boxno.equals("&nbs")) boxno = "";
-		    	curTok = strTok.nextToken();
-		    	stufacstatus = curTok.substring(37, curTok.indexOf(" </TD>"));
-		    	strTok.nextToken();
-		    	curTok = strTok.nextToken();
-		    	
-		    	//parse SGA status
-		    	sgapos = "";
-		    	if (curTok.equals("<tr>\r")){
-		    		//senator
-		    		for(int i=0; i<3; i++) curTok = strTok.nextToken();
-		        	sgapos = curTok.substring(19, curTok.indexOf("</span>"));
-		        	for(int i=0; i<10; i++) strTok.nextToken();
-		        	curTok = strTok.nextToken();
-		    	}
-		    	
-		    	//Adds a new Profile to profileList containing all the newly parsed information
-		    	profileList.add(new Profile(picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos));
-		    	
-	    	} while (curTok.contains("&nbsp")); //determine if there is another entry to be parsed
-	    	
-	    	return anotherPage;//returns boolean indicating if there exists a next page.
-	    	
+	    // loop, keeps adding entries to profileList until there are none.
+	    do {
+		if (onCampus) {
+		    // parse entries
+		    // parse image URL. If no image, save " ".
+		    if (curTok.contains("image1"))
+			picurl = curTok.substring(
+				curTok.indexOf("img src=\"") + 9,
+				curTok.indexOf("\" alt=\""));
+		    else
+			picurl = "";
+		    curTok = strTok.nextToken();
+		} else {
+		    picurl = "";
+		    curTok = strTok.nextToken();
+		}
+		curTok = strTok.nextToken();
+		// parse full name
+		String fullName = curTok.substring(curTok.substring(40)
+			.indexOf('>') + 41,
+			curTok.substring(40).indexOf('<') + 40);
+		firstName = fullName.substring(0, fullName.indexOf(','));
+		lastName = fullName.substring(fullName.indexOf(',') + 2);
+		curTok = strTok.nextToken();
+
+		if (onCampus) {
+		    // parse student major or faculty department
+		    dept = curTok.substring(35, curTok.indexOf("</td>"));
+		    String smallerdeptString = curTok.substring(curTok
+			    .indexOf("tny") + 6);
+		    // some faculty/staff have multiple titles
+		    if (!(dept.endsWith(")")))
+			dept += smallerdeptString.substring(0,
+				smallerdeptString.indexOf("<"));
+		    curTok = strTok.nextToken();
+
+		    // parse phone number, username, campus address, box #,
+		    // student/faculty status
+		    if (curTok.charAt(37) != '<') {
+			phonenum = curTok.substring(37, 41);
+		    } else {
+			phonenum = "";
+		    }
+		} else {
+		    dept = UNAVAILABLE;
+		    phonenum = UNAVAILABLE;
+		    curTok = strTok.nextToken();
+		}
+		curTok = strTok.nextToken();
+		
+		if (!curTok.contains("&nbsp")) {
+		    username = curTok.substring(53, curTok.indexOf('@'));
+		} else {
+		    username = "";
+		}
+		strTok.nextToken();
+		curTok = strTok.nextToken();
+		
+		if (onCampus) {
+		if (curTok.charAt(0) == ' ') {
+		    campusaddress = curTok
+			    .substring(0, curTok.indexOf("</TD>"));
+		} else {
+		    campusaddress = "";
+		}
+		boxno = strTok.nextToken().substring(36, 40);
+		if (boxno.equals("&nbs"))
+		    boxno = "";
+		curTok = strTok.nextToken();
+		stufacstatus = curTok.substring(37, curTok.indexOf(" </TD>"));
+		strTok.nextToken();
+		}
+		else {
+		    campusaddress = UNAVAILABLE;
+		    boxno = UNAVAILABLE;
+		    stufacstatus = UNAVAILABLE;
+			curTok = strTok.nextToken();
+			curTok = strTok.nextToken();		    
+		}
+		curTok = strTok.nextToken();
+
+		// parse SGA status
+		sgapos = "";
+		if (curTok.equals("<tr>\r")) {
+		    // senator
+		    for (int i = 0; i < 3; i++)
+			curTok = strTok.nextToken();
+		    sgapos = curTok.substring(19, curTok.indexOf("</span>"));
+		    for (int i = 0; i < 10; i++)
+			strTok.nextToken();
+		    curTok = strTok.nextToken();
+		}
+
+		// Adds a new Profile to profileList containing all the newly
+		// parsed information
+		profileList.add(new Profile(picurl, firstName, lastName,
+			username, dept, phonenum, campusaddress, boxno,
+			stufacstatus, sgapos));
+
+	    } while (curTok.contains("&nbsp")); // determine if there is another
+						// entry to be parsed
+
+	    return anotherPage;// returns boolean indicating if there exists a
+			       // next page.
+
 	    	/*
 	    	if(anotherPage){
 	    		for(int i=0; i<6; i++) strTok.nextToken();

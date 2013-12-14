@@ -130,64 +130,66 @@ public class ProfileListFragment extends ListFragment {
 			profileAdapter.notifyDataSetChanged();
 	}
 
-	// The custom list adapter as a nested class
-	public class ProfileAdapter extends ArrayAdapter<Profile> {
+    // The custom list adapter as a nested class
+    public class ProfileAdapter extends ArrayAdapter<Profile> {
 
-		private List<Profile> profileList; // The list of profiles we're dealing
-											// with.
-		private Context context; // The context of the list row
-		private ImageLoader imageLoader; // Universal imageLoader, for loading
-											// images from URLs
+	private List<Profile> profileList; // The list of profiles we're dealing
+					   // with.
+	private Context context; // The context of the list row
+	private ImageLoader imageLoader; // Universal imageLoader, for loading
+					 // images from URLs
 
-		// Constructor
-		public ProfileAdapter(List<Profile> profileList, Context ctx,
-				ImageLoader imageLoader) {
-			super(ctx, R.layout.fragment_result_list_entry, profileList);
-			this.profileList = profileList;
-			this.context = ctx;
-			this.imageLoader = imageLoader;
-		}
-
-		// Construts the view
-		public View getView(int position, View convertView, ViewGroup parent) {
-
-			// First let's verify the convertView is not null
-			if (convertView == null) {
-				// This a new view we inflate the new layout
-				LayoutInflater inflater = (LayoutInflater) context
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				convertView = inflater.inflate(
-						R.layout.fragment_result_list_entry, parent, false);
-			}
-
-			// Now we can fill the layout with the right values
-			Profile p = profileList.get(position);
-
-			// Fills the textview with username
-			((TextView) convertView.findViewById(R.id.textUsername))
-					.setText(p.username);
-
-			// Initializes an imageView
-			final ImageView imgview = ((ImageView) convertView
-					.findViewById(R.id.imageImg));
-
-			if (p.picurl != "") {
-
-				// Fills the imageView with universalImageLoader
-				imageLoader.loadImage(p.picurl,
-						new SimpleImageLoadingListener() {
-							@Override
-							public void onLoadingComplete(String imageUri,
-									View view, Bitmap loadedImage) {
-								imgview.setImageBitmap(loadedImage);
-							}
-						});
-			}
-			else
-			imgview.setImageResource(R.drawable.nopic);
-
-			return convertView;
-		}
+	// Constructor
+	public ProfileAdapter(List<Profile> profileList, Context ctx,
+		ImageLoader imageLoader) {
+	    super(ctx, R.layout.fragment_result_list_entry, profileList);
+	    this.profileList = profileList;
+	    this.context = ctx;
+	    this.imageLoader = imageLoader;
 	}
+
+	// Construts the view
+	public View getView(int position, View convertView, ViewGroup parent) {
+
+	    // First let's verify the convertView is not null
+	    if (convertView == null) {
+		// This a new view we inflate the new layout
+		LayoutInflater inflater = (LayoutInflater) context
+			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		convertView = inflater.inflate(
+			R.layout.fragment_result_list_entry, parent, false);
+	    }
+
+	    // Now we can fill the layout with the right values
+	    Profile p = profileList.get(position);
+
+	    // Fills the textview with username
+	    ((TextView) convertView.findViewById(R.id.textName))
+		    .setText(p.lastName + " " + p.firstName);
+
+	    ((TextView) convertView.findViewById(R.id.textClass))
+		    .setText(p.dept);
+
+	    // Initializes an imageView
+	    final ImageView imgview = ((ImageView) convertView
+		    .findViewById(R.id.imageImg));
+
+	    if (p.picurl != "") {
+
+		// Fills the imageView with universalImageLoader
+		imageLoader.loadImage(p.picurl,
+			new SimpleImageLoadingListener() {
+			    @Override
+			    public void onLoadingComplete(String imageUri,
+				    View view, Bitmap loadedImage) {
+				imgview.setImageBitmap(loadedImage);
+			    }
+			});
+	    } else
+		imgview.setImageResource(R.drawable.nopic);
+
+	    return convertView;
+	}
+    }
 
 }
