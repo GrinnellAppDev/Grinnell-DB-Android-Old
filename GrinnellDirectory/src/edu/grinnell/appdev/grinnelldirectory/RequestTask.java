@@ -110,7 +110,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
     	{
     		
 	    	//skip useless information
-	    	for(int i=0; i<9; i++) strTok.nextToken();
+	    	for(int i=0; i<8; i++) strTok.nextToken();
 	    	curTok = strTok.nextToken();
 	    	
 	    	//If a next page button exsts, then there is a next page.
@@ -124,7 +124,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	    	else
 	    	{
 	    		anotherPage = false;
-	    		for(int i=0; i<21; i++) strTok.nextToken();
+	    		for(int i=0; i<20; i++) strTok.nextToken();
 	    		curTok = strTok.nextToken();
 	    	}
 	    	
