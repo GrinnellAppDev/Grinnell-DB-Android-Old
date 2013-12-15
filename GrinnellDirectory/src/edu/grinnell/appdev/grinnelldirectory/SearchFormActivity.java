@@ -87,17 +87,17 @@ public class SearchFormActivity extends Activity {
 			public void onClick(View arg0) {
 				
 		String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
-			+ lastNameText.getText()
+			+ cleanString(lastNameText.getText().toString())
 			+ "&LNameSearch=startswith&FirstName="
-			+ firstNameText.getText()
+			+ cleanString(firstNameText.getText().toString())
 			+ "&FNameSearch=startswith&email="
-			+ usernameText.getText()
+			+ cleanString(usernameText.getText().toString())
 			+ "&campusphonenumber="
-			+ phoneText.getText()
+			+ cleanString(phoneText.getText().toString())
 			+ "&campusquery="
-			+ campusAddressText.getText()
+			+ cleanString(campusAddressText.getText().toString())
 			+ "&Homequery="
-			+ homeAddressText.getText()
+			+ cleanString(homeAddressText.getText().toString())
 			+ "&Department=" 
 			+ cleanString(facDeptSpinner.getSelectedItem().toString())
 			+ "&Major=" 
