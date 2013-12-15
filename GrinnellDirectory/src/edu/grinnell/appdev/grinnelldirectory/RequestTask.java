@@ -124,7 +124,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	    	else
 	    	{
 	    		anotherPage = false;
-	    		for(int i=0; i<20; i++) strTok.nextToken();
+	    		for(int i=0; i<21; i++) strTok.nextToken();
 	    		curTok = strTok.nextToken();
 	    	}
 	    	
@@ -144,11 +144,15 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		    picurl = "";
 		    curTok = strTok.nextToken();
 		}
-		curTok = strTok.nextToken();
+		String fullName;
 		// parse full name
-		String fullName = curTok.substring(curTok.substring(40)
+		if (onCampus) {
+		    fullName = curTok.substring(curTok.substring(40)
 			.indexOf('>') + 41,
 			curTok.substring(40).indexOf('<') + 40);
+		} else {
+		    fullName = curTok.substring(35, curTok.indexOf("</TD>"));
+		}
 		firstName = fullName.substring(0, fullName.indexOf(','));
 		lastName = fullName.substring(fullName.indexOf(',') + 2);
 		curTok = strTok.nextToken();
@@ -187,25 +191,26 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		curTok = strTok.nextToken();
 		
 		if (onCampus) {
-		if (curTok.charAt(0) == ' ') {
-		    campusaddress = curTok
-			    .substring(0, curTok.indexOf("</TD>"));
+		    if (curTok.charAt(0) == ' ') {
+			campusaddress = curTok.substring(0,
+				curTok.indexOf("</TD>"));
+		    } else {
+			campusaddress = "";
+		    }
+		    boxno = strTok.nextToken().substring(36, 40);
+		    if (boxno.equals("&nbs"))
+			boxno = "";
+		    curTok = strTok.nextToken();
+		    stufacstatus = curTok.substring(37,
+			    curTok.indexOf(" </TD>"));
+		    strTok.nextToken();
 		} else {
-		    campusaddress = "";
-		}
-		boxno = strTok.nextToken().substring(36, 40);
-		if (boxno.equals("&nbs"))
-		    boxno = "";
-		curTok = strTok.nextToken();
-		stufacstatus = curTok.substring(37, curTok.indexOf(" </TD>"));
-		strTok.nextToken();
-		}
-		else {
 		    campusaddress = UNAVAILABLE;
 		    boxno = UNAVAILABLE;
 		    stufacstatus = UNAVAILABLE;
-			curTok = strTok.nextToken();
-			curTok = strTok.nextToken();		    
+		    curTok = strTok.nextToken();
+		    curTok = strTok.nextToken();
+		    curTok = strTok.nextToken();
 		}
 		curTok = strTok.nextToken();
 
