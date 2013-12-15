@@ -83,6 +83,7 @@ public class SearchFormActivity extends Activity {
 		haitusSpinner = (Spinner) findViewById(R.id.hiatus_spinner);
 		studentClassSpinner = (Spinner) findViewById(R.id.student_class_spinner);
 		submitButton = (Button) findViewById(R.id.submit_button);
+		
 		listIntent = new Intent(this, ProfileListActivity.class);
 	}
 

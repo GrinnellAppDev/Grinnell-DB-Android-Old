@@ -11,7 +11,7 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="submit">Submit</string>
-    <string name="title_activity_search_form">SearchFormActivity</string>
+    <string name="title_activity_search_form">Grinnell DB</string>
     <string name="username">Username</string>
     <string name="campus_phone">Campus Phone</string>
     <string name="campus_address">Campus Address / PO Box</string>
