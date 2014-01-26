@@ -121,7 +121,6 @@ public class SearchFormActivity extends Activity {
 						+ "&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
 
 				// TODO: Get rid of the fucking uberstring
-				Log.d("test", "Test 1");
 
 				ArrayList<Profile> profileList;
 				try {
@@ -134,13 +133,9 @@ public class SearchFormActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 				startActivity(listIntent);
-
 			}
-
 		});
-
 	}
 
 	// Converts plain-text strings into HTTP-friendly strings.
