@@ -10,6 +10,11 @@
     android:layout_height="wrap_content"
     android:text="@string/submit" />
 
+    <Button
+    android:id="@+id/detailed_switch_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/detailed_search" />
     
     <EditText
         android:id="@+id/first_text"

@@ -34,6 +34,7 @@ public class DetailedSearchFragment extends Fragment{
 	Spinner haitusSpinner;
 	Spinner studentClassSpinner;
 	Button submitButton;
+	Button switchButton;
 
 	// An intent for ProfileListActivity
 	Intent listIntent;
@@ -64,6 +65,16 @@ public class DetailedSearchFragment extends Fragment{
 		haitusSpinner = (Spinner) mView.findViewById(R.id.hiatus_spinner);
 		studentClassSpinner = (Spinner) mView.findViewById(R.id.student_class_spinner);
 		submitButton = (Button) mView.findViewById(R.id.submit_button);
+		switchButton = (Button) mView.findViewById(R.id.simple_switch_button);
+	
+		switchButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				BasicSearchFragment simpleSearch = new BasicSearchFragment();
+				getFragmentManager().beginTransaction()
+						.replace(R.id.fragment_container, simpleSearch).commit();
+			}
+		});
 		
 		listIntent = new Intent(mActivity, ProfileListActivity.class);
 	}

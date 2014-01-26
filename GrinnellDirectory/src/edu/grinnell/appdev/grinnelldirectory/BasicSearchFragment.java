@@ -19,6 +19,7 @@ public class BasicSearchFragment extends Fragment{
 	TextView firstNameText;
 	TextView lastNameText;
 	Button submitButton;
+	Button switchButton;
 
 	SearchFormActivity mActivity;
 	View mView;
@@ -41,6 +42,17 @@ public class BasicSearchFragment extends Fragment{
 		firstNameText = (TextView) mView.findViewById(R.id.first_text);
 		lastNameText = (TextView) mView.findViewById(R.id.last_text);
 		submitButton = (Button) mView.findViewById(R.id.submit_button);
+		switchButton = (Button) mView.findViewById(R.id.detailed_switch_button);
+
+		
+		switchButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				DetailedSearchFragment detailSearch = new DetailedSearchFragment();
+				getFragmentManager().beginTransaction()
+						.replace(R.id.fragment_container, detailSearch).commit();
+			}
+		});
 		
 		listIntent = new Intent(mActivity, ProfileListActivity.class);
 	}

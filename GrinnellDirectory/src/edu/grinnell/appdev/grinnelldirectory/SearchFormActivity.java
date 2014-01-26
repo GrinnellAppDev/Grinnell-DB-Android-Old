@@ -51,6 +51,9 @@ public class SearchFormActivity extends FragmentActivity {
 		//TODO set view to splash screen
 		setContentView(R.layout.activity_search_form);
 
+		BasicSearchFragment simpleSearch = new BasicSearchFragment();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, simpleSearch).commit();
 		
 		ConnectivityManager cm = (ConnectivityManager)
 				this.getSystemService(Context.CONNECTIVITY_SERVICE);
