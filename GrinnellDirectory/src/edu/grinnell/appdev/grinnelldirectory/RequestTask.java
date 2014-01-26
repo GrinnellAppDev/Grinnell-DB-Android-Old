@@ -163,9 +163,11 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		    String smallerdeptString = curTok.substring(curTok
 			    .indexOf("tny") + 6);
 		    // some faculty/staff have multiple titles
-		    if (!(dept.endsWith(")")))
-			dept += smallerdeptString.substring(0,
-				smallerdeptString.indexOf("<"));
+		    if (dept.contains("tny")) {
+			dept = facStaffTitle(dept);
+		    }
+//			dept += smallerdeptString.substring(0,
+//				smallerdeptString.indexOf("<"));
 		    curTok = strTok.nextToken();
 
 		    // parse phone number, username, campus address, box #,
@@ -249,7 +251,32 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	    	}
 	    	*/
     	}
+    	
+    	
 		
     }
+    
+    private String facStaffTitle(String title) {
+	    boolean inBracket = false;
+	    String tmp = "";
+	    boolean lastcharintempissemicolon = false;
+	    
+	    for (int i = 0; i < title.length(); i++) {
+		if (!inBracket && title.charAt(i) != '<') {
+		    tmp += title.charAt(i);
+		    lastcharintempissemicolon = true;
+		}
+		if (title.charAt(i) == '>') {
+		    inBracket = false;
+		    if (!lastcharintempissemicolon) tmp += ";";
+		    lastcharintempissemicolon = false;
+		}
+		if (title.charAt(i) == '<') {
+		    inBracket = true;
+		}
+		
+	    }
+	    return tmp;
+	}
     
 }
