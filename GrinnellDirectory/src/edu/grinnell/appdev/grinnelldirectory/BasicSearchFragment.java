@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
+/* A fragment off the Search Form Activity with a simple search interface */
 public class BasicSearchFragment extends Fragment{
 	TextView firstNameText;
 	TextView lastNameText;
@@ -44,7 +45,7 @@ public class BasicSearchFragment extends Fragment{
 		submitButton = (Button) mView.findViewById(R.id.submit_button);
 		switchButton = (Button) mView.findViewById(R.id.detailed_switch_button);
 
-		
+		//Set the button to switch between fragments
 		switchButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
