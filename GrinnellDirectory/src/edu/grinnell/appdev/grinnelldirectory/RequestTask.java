@@ -29,7 +29,19 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 
+
+
 public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
+    	
+    	final public static int NO_ERROR = 0;
+    	final public static int NO_ENTRIES = 1;
+    	final public static int TOO_MANY_ENTRIES = 2;
+    	final public static int OTHER = 3;
+
+
+	public interface ParserErrorMessage{
+	    public void setErrorMessage(int message);
+	}
 
 	String responseString; //makeRequest() stores its response here
 	ArrayList<Profile> profileList; //The final product, a list of downloaded Profile objects
@@ -280,3 +292,4 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 	}
     
 }
+

@@ -22,8 +22,11 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class SearchFormActivity extends FragmentActivity {
+public class SearchFormActivity extends FragmentActivity implements RequestTask.ParserErrorMessage{
 
+    	
+    	int parserErrorMessage = RequestTask.NO_ERROR;
+    
 	// Fields in the layout
 	TextView firstNameText;
 	TextView lastNameText;
@@ -120,5 +123,10 @@ public class SearchFormActivity extends FragmentActivity {
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		// show it
 		alertDialog.show();
+	}
+
+	@Override
+	public void setErrorMessage(int message) {
+	    parserErrorMessage = message;
 	}
 }
