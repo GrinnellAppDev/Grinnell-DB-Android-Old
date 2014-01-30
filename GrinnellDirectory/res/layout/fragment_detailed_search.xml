@@ -48,13 +48,6 @@
         android:hint="@string/campus_phone" />
 
     <EditText
-        android:id="@+id/phone_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/campus_phone" />
-
-    <EditText
         android:id="@+id/home_address_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
