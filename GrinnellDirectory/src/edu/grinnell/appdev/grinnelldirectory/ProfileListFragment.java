@@ -170,6 +170,9 @@ public class ProfileListFragment extends ListFragment {
 	    ((TextView) convertView.findViewById(R.id.textClass))
 		    .setText(p.dept);
 
+	    ((TextView) convertView.findViewById(R.id.textUsername))
+		    .setText(p.username);
+
 	    // Initializes an imageView
 	    final ImageView imgview = ((ImageView) convertView
 		    .findViewById(R.id.imageImg));
