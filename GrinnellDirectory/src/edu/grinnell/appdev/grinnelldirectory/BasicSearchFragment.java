@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 /* A fragment off the Search Form Activity with a simple search interface */
@@ -21,6 +22,9 @@ public class BasicSearchFragment extends Fragment{
 	TextView lastNameText;
 	Button submitButton;
 	Button switchButton;
+	static boolean noResults;
+	static boolean tooManyResults;
+
 
 	SearchFormActivity mActivity;
 	View mView;
@@ -72,6 +76,9 @@ public class BasicSearchFragment extends Fragment{
 
 				@Override
 				public void onClick(View arg0) {
+				    
+				    	tooManyResults = false;
+				    	noResults = false;
 
 					String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
 							+ mActivity.cleanString(lastNameText.getText().toString())
@@ -83,7 +90,16 @@ public class BasicSearchFragment extends Fragment{
 					ArrayList<Profile> profileList;
 					try {
 						profileList = new RequestTask().execute(theURL).get();
-						ProfileListActivity.setData(profileList);
+						if (tooManyResults) {
+						    Toast toast = Toast.makeText(mActivity, "Too many results. Please refine search", Toast.LENGTH_LONG);
+						    toast.show();						    
+						} else if (noResults) {
+						    Toast toast = Toast.makeText(mActivity, "No results found", Toast.LENGTH_LONG);
+						    toast.show();
+						} else {
+						    ProfileListActivity.setData(profileList);
+						    startActivity(listIntent);
+						}
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -91,7 +107,8 @@ public class BasicSearchFragment extends Fragment{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					startActivity(listIntent);
+					
+					
 				}
 			});
 		}

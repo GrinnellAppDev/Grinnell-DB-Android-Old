@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 /* A fragment off the Search Form Activity with a detailed search interface */
@@ -93,6 +94,9 @@ public class DetailedSearchFragment extends Fragment{
 
 			@Override
 			public void onClick(View arg0) {
+			    
+			    	BasicSearchFragment.tooManyResults = false;
+			    	BasicSearchFragment.noResults = false;
 
 				String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
 						+ mActivity.cleanString(lastNameText.getText().toString())
@@ -119,7 +123,16 @@ public class DetailedSearchFragment extends Fragment{
 				ArrayList<Profile> profileList;
 				try {
 					profileList = new RequestTask().execute(theURL).get();
-					ProfileListActivity.setData(profileList);
+					if (BasicSearchFragment.tooManyResults) {
+					    Toast toast = Toast.makeText(mActivity, "Too many results. Please refine search", Toast.LENGTH_LONG);
+					    toast.show();						    
+					} else if (BasicSearchFragment.noResults) {
+					    Toast toast = Toast.makeText(mActivity, "No results found", Toast.LENGTH_LONG);
+					    toast.show();
+					} else {
+					    ProfileListActivity.setData(profileList);
+					    startActivity(listIntent);
+					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -127,7 +140,7 @@ public class DetailedSearchFragment extends Fragment{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				startActivity(listIntent);
+				
 			}
 		});
 	}

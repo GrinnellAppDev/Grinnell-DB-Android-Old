@@ -113,16 +113,19 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
     	}
     	
     	
-    	//If line 88 contains this string, there were 0 results.
-    	if (strTok.nextToken().contains("<strong>no")){
-    		//no entries found
-    		return false;
+    	//If line 88 contains these strings, there were 0 results or too many results
+    	if (curTok.contains("very")) {
+    	    BasicSearchFragment.tooManyResults = true;
+    	    return false;
+    	} else if (curTok.contains("<strong>no</strong>")) {
+    	    BasicSearchFragment.noResults = true;
+    	    return false;
     	}
     	else
     	{
     		
 	    	//skip useless information
-	    	for(int i=0; i<8; i++) strTok.nextToken();
+	    	for(int i=0; i<9; i++) strTok.nextToken();
 	    	curTok = strTok.nextToken();
 	    	
 	    	//If a next page button exsts, then there is a next page.

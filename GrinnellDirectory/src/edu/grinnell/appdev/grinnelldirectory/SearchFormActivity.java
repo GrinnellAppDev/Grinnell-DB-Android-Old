@@ -73,6 +73,7 @@ public class SearchFormActivity extends FragmentActivity implements RequestTask.
 		str = str.replace(" ", "+");
 		str = str.replace(",", "%2C");
 		str = str.replace("&", "%26");
+		str = str.replace("\n", "");
 		if (str.length() > 36) {
 			str = str.substring(0, 35);
 		}
