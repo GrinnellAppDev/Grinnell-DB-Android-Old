@@ -1,8 +1,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_settings"
-        android:title="@string/menu_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
     <item 
         android:id="@+id/search"
         android:icon="@drawable/ic_action_send_now"
@@ -10,7 +6,7 @@
         android:showAsAction="ifRoom" />
     <item 
         android:id="@+id/reset"
-        android:icon="@drawable/icon_launcher"
+        android:icon="@drawable/ic_action_undo"
         android:title="@string/Reset"
         android:showAsAction="ifRoom" />
         
