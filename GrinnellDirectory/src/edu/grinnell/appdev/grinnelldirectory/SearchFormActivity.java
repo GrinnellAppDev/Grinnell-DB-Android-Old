@@ -16,13 +16,14 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class SearchFormActivity extends FragmentActivity implements RequestTask.ParserErrorMessage{
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
+public class SearchFormActivity extends SherlockFragmentActivity implements RequestTask.ParserErrorMessage{
 
     	
     	int parserErrorMessage = RequestTask.NO_ERROR;
@@ -80,11 +81,11 @@ public class SearchFormActivity extends FragmentActivity implements RequestTask.
 		return str;
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_search_form, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		getMenuInflater().inflate(R.menu.activity_search_form, menu);
+//		return true;
+//	}
 
 	/*
 	 * Return true if the device has a network adapter that is capable of

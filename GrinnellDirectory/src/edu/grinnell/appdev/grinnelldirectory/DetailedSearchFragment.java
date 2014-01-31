@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutionException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,10 +14,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.actionbarsherlock.app.SherlockFragment;
+
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 /* A fragment off the Search Form Activity with a detailed search interface */
-public class DetailedSearchFragment extends Fragment{
+public class DetailedSearchFragment extends SherlockFragment{
 	SearchFormActivity mActivity;
 	View mView;
 	

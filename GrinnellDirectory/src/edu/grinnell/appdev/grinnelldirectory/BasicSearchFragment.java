@@ -3,6 +3,8 @@ package edu.grinnell.appdev.grinnelldirectory;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import com.actionbarsherlock.app.SherlockFragment;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +19,7 @@ import android.widget.Toast;
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 /* A fragment off the Search Form Activity with a simple search interface */
-public class BasicSearchFragment extends Fragment{
+public class BasicSearchFragment extends SherlockFragment{
 	TextView firstNameText;
 	TextView lastNameText;
 	Button submitButton;

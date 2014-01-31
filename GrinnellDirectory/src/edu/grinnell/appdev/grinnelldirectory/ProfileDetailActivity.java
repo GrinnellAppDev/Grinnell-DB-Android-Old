@@ -1,12 +1,14 @@
 package edu.grinnell.appdev.grinnelldirectory;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
-public class ProfileDetailActivity extends FragmentActivity {
+public class ProfileDetailActivity extends SherlockFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +29,13 @@ public class ProfileDetailActivity extends FragmentActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            NavUtils.navigateUpTo(this, new Intent(this, ProfileListActivity.class));
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == android.R.id.home) {
+//            NavUtils.navigateUpTo(this, new Intent(this, ProfileListActivity.class));
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }

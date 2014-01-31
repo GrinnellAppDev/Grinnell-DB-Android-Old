@@ -37,12 +37,21 @@
     android:text="@string/detailed_search" />
 
 <Button
+    android:id="@+id/button1"
+    android:layout_width="150dp"
+    android:layout_height="50dp"
+    android:layout_alignBaseline="@+id/submit_button"
+    android:layout_alignBottom="@+id/submit_button"
+    android:layout_marginLeft="21dp"
+    android:layout_toRightOf="@+id/submit_button"
+    android:text="@string/Reset" />
+
+<Button
     android:id="@+id/submit_button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="150dp"
+    android:layout_height="50dp"
     android:layout_alignParentLeft="true"
     android:layout_below="@+id/last_text"
-    android:layout_marginLeft="53dp"
     android:layout_marginTop="48dp"
     android:text="@string/submit" />
 

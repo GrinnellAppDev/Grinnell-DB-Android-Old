@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.actionbarsherlock.app.SherlockListFragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
@@ -32,7 +33,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ProfileListFragment extends ListFragment {
+public class ProfileListFragment extends SherlockListFragment {
 
 	public static ProfileAdapter profileAdapter;
 

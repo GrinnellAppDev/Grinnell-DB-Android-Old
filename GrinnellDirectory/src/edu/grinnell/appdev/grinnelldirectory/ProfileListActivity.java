@@ -14,15 +14,14 @@ package edu.grinnell.appdev.grinnelldirectory;
 
 import java.util.ArrayList;
 
-import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
 
-public class ProfileListActivity extends FragmentActivity
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
+import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
+
+public class ProfileListActivity extends SherlockFragmentActivity
         implements ProfileListFragment.Callbacks {
 
     private boolean mTwoPane;

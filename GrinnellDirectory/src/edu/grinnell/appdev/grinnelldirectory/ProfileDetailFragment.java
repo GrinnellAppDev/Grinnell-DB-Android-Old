@@ -10,22 +10,22 @@
 
 package edu.grinnell.appdev.grinnelldirectory;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
-
-import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
-
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ProfileDetailFragment extends Fragment {
+import com.actionbarsherlock.app.SherlockFragment;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
+
+import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
+
+public class ProfileDetailFragment extends SherlockFragment {
 
     public static final String ARG_ITEM_ID = "item_id";
 
