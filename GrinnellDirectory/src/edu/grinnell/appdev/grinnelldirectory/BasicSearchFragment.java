@@ -6,12 +6,15 @@ import java.util.concurrent.ExecutionException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -71,6 +74,21 @@ public class BasicSearchFragment extends SherlockFragment {
 		firstNameText = (TextView) mView.findViewById(R.id.first_text);
 		lastNameText = (TextView) mView.findViewById(R.id.last_text);
 		switchButton = (Button) mView.findViewById(R.id.detailed_switch_button);
+		
+		OnEditorActionListener editTextListener = new OnEditorActionListener() {
+		    @Override
+		    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		        boolean handled = false;
+		        if (actionId == EditorInfo.IME_ACTION_SEND) {
+		            sendQuery();
+		            handled = true;
+		        }
+		        return handled;
+		    }
+		};  
+		
+		firstNameText.setOnEditorActionListener(editTextListener);
+		lastNameText.setOnEditorActionListener(editTextListener);
 
 		// Set the button to switch between fragments
 		switchButton.setOnClickListener(new OnClickListener() {

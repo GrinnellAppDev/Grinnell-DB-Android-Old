@@ -6,13 +6,16 @@ import java.util.concurrent.ExecutionException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -46,6 +49,8 @@ public class DetailedSearchFragment extends SherlockFragment{
 	// An intent for ProfileListActivity
 	Intent listIntent;
 	
+	OnEditorActionListener editTextListener;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -56,6 +61,18 @@ public class DetailedSearchFragment extends SherlockFragment{
 		
 		initializeViews(mActivity); // Initialize all of the variables.
 		addListenerOnSubmitButton(); // Add a listener to the submit button.
+		
+		editTextListener = new OnEditorActionListener() {
+		    @Override
+		    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		        boolean handled = false;
+		        if (actionId == EditorInfo.IME_ACTION_SEND) {
+		            sendDetailedQuery();
+		            handled = true;
+		        }
+		        return handled;
+		    }
+		}; 
 		
 		return mView;
 	}
@@ -103,6 +120,8 @@ public class DetailedSearchFragment extends SherlockFragment{
 						.replace(R.id.fragment_container, simpleSearch).commit();
 			}
 		});
+		
+		
 		
 		listIntent = new Intent(mActivity, ProfileListActivity.class);
 	}

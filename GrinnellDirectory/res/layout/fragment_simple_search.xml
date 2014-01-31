@@ -4,38 +4,39 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <EditText
+        android:id="@+id/last_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:gravity="center_vertical|center_horizontal"
+        android:hint="@string/last_name"
+        android:imeOptions="actionSend"
+        android:inputType="text" />
 
-<EditText
-    android:id="@+id/last_text"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_centerVertical="true"
-    android:ems="10"
-    android:gravity="center_vertical|center_horizontal"
-    android:hint="@string/last_name" />
+    <EditText
+        android:id="@+id/first_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/last_text"
+        android:layout_alignParentLeft="true"
+        android:ems="10"
+        android:gravity="center_vertical|center_horizontal"
+        android:hint="@string/first_name"
+        android:imeOptions="actionSend"
+        android:inputType="text" >
 
-<EditText
-    android:id="@+id/first_text"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/last_text"
-    android:layout_alignParentLeft="true"
-    android:ems="10"
-    android:gravity="center_vertical|center_horizontal"
-    android:hint="@string/first_name" >
+        <requestFocus />
+    </EditText>
 
-    <requestFocus />
-</EditText>
-
-<Button
-    android:id="@+id/detailed_switch_button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
-    android:text="@string/detailed_search" />
-
-
+    <Button
+        android:id="@+id/detailed_switch_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/detailed_search" />
 
 </RelativeLayout>

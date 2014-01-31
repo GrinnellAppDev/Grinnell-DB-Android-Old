@@ -1,13 +1,15 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item 
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/reset"
+        android:icon="@drawable/ic_action_cancel"
+        android:showAsAction="ifRoom"
+        android:title="@string/Reset"/>
+    
+    <item
         android:id="@+id/search"
         android:icon="@drawable/ic_action_send_now"
-        android:title="@string/search"
-        android:showAsAction="ifRoom" />
-    <item 
-        android:id="@+id/reset"
-        android:icon="@drawable/ic_action_undo"
-        android:title="@string/Reset"
-        android:showAsAction="ifRoom" />
-        
+        android:showAsAction="ifRoom"
+        android:title="@string/search"/>
+
 </menu>
