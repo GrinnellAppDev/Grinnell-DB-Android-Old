@@ -21,7 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/first_name" >
+        android:hint="@string/first_name"
+        android:imeOptions="actionSend"
+        android:inputType="text" >
 
         <requestFocus />
     </EditText>
@@ -31,35 +33,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/last_name" />
+        android:hint="@string/last_name"
+        android:imeOptions="actionSend"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/username_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/username" />
+        android:hint="@string/username"
+        android:imeOptions="actionSend"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/phone_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/campus_phone" />
+        android:hint="@string/campus_phone"
+        android:imeOptions="actionSend"
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/home_address_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/home_address" />
+        android:hint="@string/home_address"
+        android:imeOptions="actionSend"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/campus_address_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/campus_address" />
+        android:hint="@string/campus_address"
+        android:imeOptions="actionSend"
+        android:inputType="text" />
 
     <Spinner
         android:id="@+id/fac_dept_spinner"
