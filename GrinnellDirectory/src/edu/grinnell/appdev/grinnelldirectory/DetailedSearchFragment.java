@@ -16,6 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
@@ -49,11 +52,31 @@ public class DetailedSearchFragment extends SherlockFragment{
 		mView = inflater.inflate(R.layout.fragment_detailed_search, container, false);
 		mActivity = (SearchFormActivity) getActivity();
 		
+		setHasOptionsMenu(true);
+		
 		initializeViews(mActivity); // Initialize all of the variables.
 		addListenerOnSubmitButton(); // Add a listener to the submit button.
 		
 		return mView;
 	}
+	
+	@Override
+	    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.activity_search_form, menu);
+	    }
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+	switch (item.getItemId()) {
+	case R.id.search:
+	    sendDetailedQuery();
+	    return true;
+	case R.id.reset:
+	    return true;
+	default:
+	    return super.onOptionsItemSelected(item);
+	}
+    }
 
 	public void initializeViews(Context c) {
 		firstNameText = (TextView) mView.findViewById(R.id.first_text);
@@ -97,54 +120,58 @@ public class DetailedSearchFragment extends SherlockFragment{
 			@Override
 			public void onClick(View arg0) {
 			    
-			    	BasicSearchFragment.tooManyResults = false;
-			    	BasicSearchFragment.noResults = false;
-
-				String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
-						+ mActivity.cleanString(lastNameText.getText().toString())
-						+ "&LNameSearch=startswith&FirstName="
-						+ mActivity.cleanString(firstNameText.getText().toString())
-						+ "&FNameSearch=startswith&email="
-						+ mActivity.cleanString(usernameText.getText().toString())
-						+ "&campusphonenumber="
-						+ mActivity.cleanString(phoneText.getText().toString())
-						+ "&campusquery="
-						+ mActivity.cleanString(campusAddressText.getText().toString())
-						+ "&Homequery="
-						+ mActivity.cleanString(homeAddressText.getText().toString())
-						+ "&Department="
-						+ mActivity.cleanString(facDeptSpinner.getSelectedItem()
-								.toString())
-						+ "&Major="
-						+ mActivity.cleanString(studentMajorSpinner.getSelectedItem()
-								.toString())
-						+ "&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
-
-				// TODO: Get rid of the fucking uberstring
-
-				ArrayList<Profile> profileList;
-				try {
-					profileList = new RequestTask().execute(theURL).get();
-					if (BasicSearchFragment.tooManyResults) {
-					    Toast toast = Toast.makeText(mActivity, "Too many results. Please refine search", Toast.LENGTH_LONG);
-					    toast.show();						    
-					} else if (BasicSearchFragment.noResults) {
-					    Toast toast = Toast.makeText(mActivity, "No results found", Toast.LENGTH_LONG);
-					    toast.show();
-					} else {
-					    ProfileListActivity.setData(profileList);
-					    startActivity(listIntent);
-					}
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+			    sendDetailedQuery();
 			}
 		});
+	}
+	
+	public void sendDetailedQuery() {
+	    BasicSearchFragment.tooManyResults = false;
+	    	BasicSearchFragment.noResults = false;
+
+		String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
+				+ mActivity.cleanString(lastNameText.getText().toString())
+				+ "&LNameSearch=startswith&FirstName="
+				+ mActivity.cleanString(firstNameText.getText().toString())
+				+ "&FNameSearch=startswith&email="
+				+ mActivity.cleanString(usernameText.getText().toString())
+				+ "&campusphonenumber="
+				+ mActivity.cleanString(phoneText.getText().toString())
+				+ "&campusquery="
+				+ mActivity.cleanString(campusAddressText.getText().toString())
+				+ "&Homequery="
+				+ mActivity.cleanString(homeAddressText.getText().toString())
+				+ "&Department="
+				+ mActivity.cleanString(facDeptSpinner.getSelectedItem()
+						.toString())
+				+ "&Major="
+				+ mActivity.cleanString(studentMajorSpinner.getSelectedItem()
+						.toString())
+				+ "&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
+
+		// TODO: Get rid of the fucking uberstring
+
+		ArrayList<Profile> profileList;
+		try {
+			profileList = new RequestTask().execute(theURL).get();
+			if (BasicSearchFragment.tooManyResults) {
+			    Toast toast = Toast.makeText(mActivity, "Too many results. Please refine search", Toast.LENGTH_LONG);
+			    toast.show();						    
+			} else if (BasicSearchFragment.noResults) {
+			    Toast toast = Toast.makeText(mActivity, "No results found", Toast.LENGTH_LONG);
+			    toast.show();
+			} else {
+			    ProfileListActivity.setData(profileList);
+			    startActivity(listIntent);
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

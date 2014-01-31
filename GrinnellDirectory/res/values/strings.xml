@@ -132,5 +132,6 @@
         <item>Undeclared</item>
     </string-array>
     <string name="Reset">Reset</string>
+    <string name="search">Search</string>
 
 </resources>
