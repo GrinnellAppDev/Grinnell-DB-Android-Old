@@ -13,33 +13,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
         android:orientation="vertical" >
-        
+
         <TextView
             android:id="@+id/textName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-        
+
         <TextView
             android:id="@+id/textUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/textClass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-        
-        
-        
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="14sp" />
     </LinearLayout>
-    
-    
-    
 
 </LinearLayout>

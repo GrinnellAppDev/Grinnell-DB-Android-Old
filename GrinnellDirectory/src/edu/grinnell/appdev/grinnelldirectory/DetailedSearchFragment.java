@@ -61,7 +61,6 @@ public class DetailedSearchFragment extends SherlockFragment {
 		setHasOptionsMenu(true);
 
 		initializeViews(mActivity); // Initialize all of the variables.
-		addListenerOnSubmitButton(); // Add a listener to the submit button.
 
 		return mView;
 	}
@@ -101,7 +100,6 @@ public class DetailedSearchFragment extends SherlockFragment {
 		haitusSpinner = (Spinner) mView.findViewById(R.id.hiatus_spinner);
 		studentClassSpinner = (Spinner) mView
 				.findViewById(R.id.student_class_spinner);
-		submitButton = (Button) mView.findViewById(R.id.submit_button);
 		switchButton = (Button) mView.findViewById(R.id.simple_switch_button);
 
 		// Set the button to switch between fragments
@@ -136,24 +134,6 @@ public class DetailedSearchFragment extends SherlockFragment {
 		homeAddressText.setOnEditorActionListener(editTextListener);
 
 		listIntent = new Intent(mActivity, ProfileListActivity.class);
-	}
-
-	// Adds a listener to the submit button.
-	// The responding method gets the information from the fields,
-	// and pieces together a valid DB request URL.
-	// This is passed to RequestTask.
-	// The ProfileListActivity intent is started.
-	public void addListenerOnSubmitButton() {
-
-		final Context context = mActivity;
-		submitButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-
-				sendDetailedQuery();
-			}
-		});
 	}
 
 	public void sendDetailedQuery() {
