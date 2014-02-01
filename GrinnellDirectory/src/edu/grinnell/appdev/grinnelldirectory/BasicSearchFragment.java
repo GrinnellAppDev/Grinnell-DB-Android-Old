@@ -79,7 +79,7 @@ public class BasicSearchFragment extends SherlockFragment {
 		    @Override
 		    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 		        boolean handled = false;
-		        if (actionId == EditorInfo.IME_ACTION_SEND) {
+		        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 		            sendQuery();
 		            handled = true;
 		        }

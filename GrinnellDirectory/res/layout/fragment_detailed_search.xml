@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/first_name"
-        android:imeOptions="actionSend"
+        android:imeOptions="actionSearch"
         android:inputType="text" >
 
         <requestFocus />
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/last_name"
-        android:imeOptions="actionSend"
+        android:imeOptions="actionSearch"
         android:inputType="text" />
 
     <EditText
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/username"
-        android:imeOptions="actionSend"
+        android:imeOptions="actionSearch"
         android:inputType="text" />
 
     <EditText
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/campus_phone"
-        android:imeOptions="actionSend"
+        android:imeOptions="actionSearch"
         android:inputType="phone" />
 
     <EditText
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/home_address"
-        android:imeOptions="actionSend"
+        android:imeOptions="actionSearch"
         android:inputType="text" />
 
     <EditText
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/campus_address"
-        android:imeOptions="actionSend"
+        android:imeOptions="actionSearch"
         android:inputType="text" />
 
     <Spinner
