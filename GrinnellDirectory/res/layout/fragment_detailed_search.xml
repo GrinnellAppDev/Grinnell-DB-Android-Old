@@ -21,7 +21,8 @@
             android:ems="10"
             android:hint="@string/first_name"
             android:imeOptions="actionSearch"
-            android:inputType="text" >
+            android:inputType="text" 
+            android:textColorHint="@color/Salmon" >
 
             <requestFocus />
         </EditText>
@@ -33,7 +34,8 @@
             android:ems="10"
             android:hint="@string/last_name"
             android:imeOptions="actionSearch"
-            android:inputType="text" />
+            android:inputType="text" 
+            android:textColorHint="@color/Salmon" />
 
         <EditText
             android:id="@+id/username_text"
@@ -42,7 +44,8 @@
             android:ems="10"
             android:hint="@string/username"
             android:imeOptions="actionSearch"
-            android:inputType="text" />
+            android:inputType="text" 
+            android:textColorHint="@color/Salmon" />
 
         <EditText
             android:id="@+id/phone_text"
@@ -51,7 +54,8 @@
             android:ems="10"
             android:hint="@string/campus_phone"
             android:imeOptions="actionSearch"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:textColorHint="@color/Salmon"  />
 
         <EditText
             android:id="@+id/home_address_text"
@@ -60,7 +64,8 @@
             android:ems="10"
             android:hint="@string/home_address"
             android:imeOptions="actionSearch"
-            android:inputType="text" />
+            android:inputType="text" 
+            android:textColorHint="@color/Salmon" />
 
         <EditText
             android:id="@+id/campus_address_text"
@@ -69,7 +74,8 @@
             android:ems="10"
             android:hint="@string/campus_address"
             android:imeOptions="actionSearch"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColorHint="@color/Salmon"  />
 
         <Spinner
             android:id="@+id/fac_dept_spinner"
