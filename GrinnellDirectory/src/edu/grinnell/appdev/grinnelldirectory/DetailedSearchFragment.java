@@ -57,7 +57,9 @@ public class DetailedSearchFragment extends SherlockFragment {
 		mView = inflater.inflate(R.layout.fragment_detailed_search, container,
 				false);
 		mActivity = (SearchFormActivity) getActivity();
-		
+
+		setHasOptionsMenu(true);
+
 		initializeViews(mActivity); // Initialize all of the variables.
 
 		return mView;

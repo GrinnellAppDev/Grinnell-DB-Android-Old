@@ -32,6 +32,7 @@ public class ProfileListActivity extends SherlockFragmentActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile_list);
+		setTitle("");
 
 		// Tablet 2-pane support
 		if (findViewById(R.id.profile_detail_container) != null) {

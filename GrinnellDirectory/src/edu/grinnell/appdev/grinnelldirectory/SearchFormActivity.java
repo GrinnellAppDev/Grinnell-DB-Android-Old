@@ -55,6 +55,8 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 	// TODO set view to splash screen
 	setContentView(R.layout.activity_search_form);
 
+	setTitle("");
+
 	BasicSearchFragment simpleSearch = new BasicSearchFragment();
 	getSupportFragmentManager().beginTransaction()
 		.replace(R.id.fragment_container, simpleSearch).commit();

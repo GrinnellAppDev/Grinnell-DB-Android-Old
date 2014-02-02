@@ -14,8 +14,9 @@ public class ProfileDetailActivity extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_detail);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		setTitle("");
+        
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
             arguments.putString(ProfileDetailFragment.ARG_ITEM_ID,
