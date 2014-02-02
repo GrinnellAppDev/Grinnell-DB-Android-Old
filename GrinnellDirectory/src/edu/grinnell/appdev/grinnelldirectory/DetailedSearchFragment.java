@@ -44,7 +44,6 @@ public class DetailedSearchFragment extends SherlockFragment {
 	Spinner haitusSpinner;
 	Spinner studentClassSpinner;
 	Button submitButton;
-	Button switchButton;
 
 	// An intent for ProfileListActivity
 	Intent listIntent;
@@ -100,20 +99,6 @@ public class DetailedSearchFragment extends SherlockFragment {
 		haitusSpinner = (Spinner) mView.findViewById(R.id.hiatus_spinner);
 		studentClassSpinner = (Spinner) mView
 				.findViewById(R.id.student_class_spinner);
-		switchButton = (Button) mView.findViewById(R.id.simple_switch_button);
-
-		/*
-		// Set the button to switch between fragments
-		switchButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				BasicSearchFragment simpleSearch = new BasicSearchFragment();
-				getFragmentManager().beginTransaction()
-						.replace(R.id.fragment_container, simpleSearch)
-						.commit();
-			}
-		});
-		*/
 		
 		editTextListener = new OnEditorActionListener() {
 			@Override

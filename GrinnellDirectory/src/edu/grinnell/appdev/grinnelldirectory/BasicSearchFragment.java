@@ -29,7 +29,6 @@ public class BasicSearchFragment extends SherlockFragment {
 	TextView firstNameText;
 	TextView lastNameText;
 	Button submitButton;
-	Button switchButton;
 	static boolean noResults;
 	static boolean tooManyResults;
 
@@ -73,7 +72,6 @@ public class BasicSearchFragment extends SherlockFragment {
 	public void initializeViews(Context c) {
 		firstNameText = (TextView) mView.findViewById(R.id.first_text);
 		lastNameText = (TextView) mView.findViewById(R.id.last_text);
-		switchButton = (Button) mView.findViewById(R.id.detailed_switch_button);
 		
 		OnEditorActionListener editTextListener = new OnEditorActionListener() {
 		    @Override
@@ -89,18 +87,6 @@ public class BasicSearchFragment extends SherlockFragment {
 		
 		firstNameText.setOnEditorActionListener(editTextListener);
 		lastNameText.setOnEditorActionListener(editTextListener);
-
-	/*	// Set the button to switch between fragments
-		switchButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				DetailedSearchFragment detailSearch = new DetailedSearchFragment();
-				getFragmentManager().beginTransaction()
-						.replace(R.id.fragment_container, detailSearch)
-						.commit();
-			}
-		});
-	*/
 
 		listIntent = new Intent(mActivity, ProfileListActivity.class);
 	}
