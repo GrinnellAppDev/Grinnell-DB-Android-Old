@@ -14,7 +14,7 @@
     <string name="title_activity_search_form">Grinnell DB</string>
     <string name="username">Username</string>
     <string name="campus_phone">Campus Phone</string>
-    <string name="campus_address">Campus Address / PO Box</string>
+    <string name="campus_address">Campus Address</string>
     <string name="home_address">Home Address</string>
     <string name="detailed_search">Detailed Search</string>
     <string name="simple_search">Simple Search</string>
@@ -133,5 +133,6 @@
     </string-array>
     <string name="Reset">Reset</string>
     <string name="search">Search</string>
+    <string name="Name">Name</string>
 
 </resources>

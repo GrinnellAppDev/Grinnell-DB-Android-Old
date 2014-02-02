@@ -208,13 +208,9 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		curTok = strTok.nextToken();
 		
 		if (onCampus) {
-		    //if (curTok.charAt(0) == ' ' ) {
 			campusaddress = curTok.substring(0,
 				curTok.indexOf("</TD>"));
 			campusaddress = campusaddress.trim();
-		    //} else {
-//			campusaddress = "";
-//		    }
 			curTok = strTok.nextToken();
 		    boxno = curTok.substring(36, curTok.indexOf("</TD>"));
 		    if (boxno.equals("&nbs"))
