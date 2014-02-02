@@ -16,6 +16,9 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -131,5 +134,27 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 	AlertDialog alertDialog = alertDialogBuilder.create();
 	// show it
 	alertDialog.show();
+    }
+    
+    public static class SearchFragmentAdapter extends FragmentPagerAdapter {
+        public SearchFragmentAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+        	if (position == 0) {
+            return new BasicSearchFragment();
+        	}
+        	else if (position == 1){
+        		return new DetailedSearchFragment();
+        	}
+        	else return null;
+        }
     }
 }

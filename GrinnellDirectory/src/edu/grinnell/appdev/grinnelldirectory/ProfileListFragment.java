@@ -77,8 +77,8 @@ public class ProfileListFragment extends SherlockListFragment {
 		}
 		
 		//pause list on scroll to prevent picture loading lag
-		boolean pauseOnScroll = false; // or true
-		boolean pauseOnFling = true; // or false
+		boolean pauseOnScroll = false;
+		boolean pauseOnFling = false;
 		PauseOnScrollListener listener = new PauseOnScrollListener(imageLoader, pauseOnScroll, pauseOnFling);
 		ListView listview = (ListView) view.findViewById(android.R.id.list);
 		listview.setOnScrollListener(listener);
