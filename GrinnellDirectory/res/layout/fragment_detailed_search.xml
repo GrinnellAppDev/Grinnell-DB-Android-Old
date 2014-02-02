@@ -1,104 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-    <Button
-        android:id="@+id/simple_switch_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/simple_search" />
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/east" />
 
-    <EditText
-        android:id="@+id/first_text"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/first_name"
-        android:imeOptions="actionSearch"
-        android:inputType="text" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <requestFocus />
-    </EditText>
+        <Button
+            android:id="@+id/simple_switch_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/simple_search" />
 
-    <EditText
-        android:id="@+id/last_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/last_name"
-        android:imeOptions="actionSearch"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/first_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/first_name"
+            android:imeOptions="actionSearch"
+            android:inputType="text" >
 
-    <EditText
-        android:id="@+id/username_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/username"
-        android:imeOptions="actionSearch"
-        android:inputType="text" />
+            <requestFocus />
+        </EditText>
 
-    <EditText
-        android:id="@+id/phone_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/campus_phone"
-        android:imeOptions="actionSearch"
-        android:inputType="phone" />
+        <EditText
+            android:id="@+id/last_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/last_name"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/home_address_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/home_address"
-        android:imeOptions="actionSearch"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/username_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/username"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/campus_address_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/campus_address"
-        android:imeOptions="actionSearch"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/phone_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/campus_phone"
+            android:imeOptions="actionSearch"
+            android:inputType="phone" />
 
-    <Spinner
-        android:id="@+id/fac_dept_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/facultydeptarray"
-        android:text="@string/hello_world" />
+        <EditText
+            android:id="@+id/home_address_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/home_address"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
 
-    <Spinner
-        android:id="@+id/student_major_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/studentmajorarray"
-        android:prompt="@string/app_name" />
+        <EditText
+            android:id="@+id/campus_address_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/campus_address"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
 
-    <Spinner
-        android:id="@+id/concentration_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/fac_dept_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/facultydeptarray"
+            android:text="@string/hello_world" />
 
-    <Spinner
-        android:id="@+id/sga_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/student_major_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/studentmajorarray"
+            android:prompt="@string/app_name" />
 
-    <Spinner
-        android:id="@+id/hiatus_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/concentration_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Spinner
-        android:id="@+id/student_class_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/sga_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+        <Spinner
+            android:id="@+id/hiatus_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/student_class_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</FrameLayout>
