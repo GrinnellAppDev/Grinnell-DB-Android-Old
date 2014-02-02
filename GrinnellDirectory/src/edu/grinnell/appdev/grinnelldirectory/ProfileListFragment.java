@@ -64,7 +64,6 @@ public class ProfileListFragment extends SherlockListFragment {
 		imageLoader.init(config);
 		profileAdapter = new ProfileAdapter(Profile.ITEMS, getActivity(),
 				imageLoader);
-
 		this.setListAdapter(profileAdapter);
 	}
 
@@ -76,6 +75,13 @@ public class ProfileListFragment extends SherlockListFragment {
 			setActivatedPosition(savedInstanceState
 					.getInt(STATE_ACTIVATED_POSITION));
 		}
+		
+		//pause list on scroll to prevent picture loading lag
+		boolean pauseOnScroll = false; // or true
+		boolean pauseOnFling = true; // or false
+		PauseOnScrollListener listener = new PauseOnScrollListener(imageLoader, pauseOnScroll, pauseOnFling);
+		ListView listview = (ListView) view.findViewById(android.R.id.list);
+		listview.setOnScrollListener(listener);
 	}
 
 	@Override
