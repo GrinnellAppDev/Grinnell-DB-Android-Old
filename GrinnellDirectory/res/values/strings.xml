@@ -91,6 +91,7 @@
         <item>Wilson Program</item>
         <item>Writing Lab</item>
     </string-array>
+    
     <string-array name="studentmajorarray">
         <item></item>
         <item>Any</item>
@@ -131,6 +132,61 @@
         <item>Theatre</item>
         <item>Undeclared</item>
     </string-array>
+    
+        <string-array name="studentconcentrationarray">
+        <item></item>
+        <item>Any</item>
+        <item>American Studies</item>
+        <item>East Asian Studies</item>
+        <item>Environmental Studies</item>
+        <item>European Studies Concentr</item>
+        <item>Global Development Studie</item>
+        <item>Latin American Studies</item>
+        <item>Linguistics</item>
+        <item>Neuroscience</item>
+        <item>Policy Studies</item>
+        <item>Russian &amp; East European S</item>
+        <item>Technology Studies</item>
+        <item>Western European Studies</item>
+    </string-array>
+    
+	<string-array name="sgaarray">
+    	<item>Administrative Coordinator</item>
+        <item>All Campus Events Coordinator</item>
+        <item>All Campus Events Vice-Coordinator</item>
+        <item>Asst Treasurer</item>
+        <item>Clangrala Senator</item>
+        <item>CND Senator</item>
+        <item>Concerts Chair</item>
+        <item>Diversity and Outreach Coordinator</item>
+        <item>East Senator</item>
+        <item>Films Chair</item>
+        <item>Jamaland Senator</item>
+        <item>Loosehead Senator</item>
+        <item>OC(N)CO Senator</item>
+        <item>President</item>
+        <item>Smounker Senator</item>
+        <item>Student Services Coordinator</item>
+        <item>Treasurer</item>
+        <item>VP for Academic Affairs</item>
+        <item>VP for Student Affairs</item>
+    </string-array>
+    
+	<string-array name="haitusarray">
+	    <item>Off Campus Study</item>
+	    <item>Engineering</item>
+	    <item>Grinnell In London</item>
+	    <item>Grinnell In Washington</item>
+	</string-array>
+	
+	<string-array name="classyeararray">
+	    <item>2014</item>
+	    <item>2015</item>
+	    <item>2016</item>
+	    <item>2017</item>
+	    <item>2018</item>
+	</string-array>
+    
     <string name="Reset">Reset</string>
     <string name="search">Search</string>
     <string name="Name">Name</string>
