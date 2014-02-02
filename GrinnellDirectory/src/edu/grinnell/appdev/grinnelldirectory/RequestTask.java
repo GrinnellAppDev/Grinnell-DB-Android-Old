@@ -208,13 +208,15 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 		curTok = strTok.nextToken();
 		
 		if (onCampus) {
-		    if (curTok.charAt(0) == ' ') {
+		    //if (curTok.charAt(0) == ' ' ) {
 			campusaddress = curTok.substring(0,
 				curTok.indexOf("</TD>"));
-		    } else {
-			campusaddress = "";
-		    }
-		    boxno = strTok.nextToken().substring(36, 40);
+			campusaddress = campusaddress.trim();
+		    //} else {
+//			campusaddress = "";
+//		    }
+			curTok = strTok.nextToken();
+		    boxno = curTok.substring(36, curTok.indexOf("</TD>"));
 		    if (boxno.equals("&nbs"))
 			boxno = "";
 		    curTok = strTok.nextToken();
