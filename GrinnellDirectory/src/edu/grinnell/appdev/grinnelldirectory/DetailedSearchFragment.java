@@ -102,6 +102,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 				.findViewById(R.id.student_class_spinner);
 		switchButton = (Button) mView.findViewById(R.id.simple_switch_button);
 
+		/*
 		// Set the button to switch between fragments
 		switchButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -112,6 +113,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 						.commit();
 			}
 		});
+		*/
 		
 		editTextListener = new OnEditorActionListener() {
 			@Override

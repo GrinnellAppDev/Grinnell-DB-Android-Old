@@ -90,7 +90,7 @@ public class BasicSearchFragment extends SherlockFragment {
 		firstNameText.setOnEditorActionListener(editTextListener);
 		lastNameText.setOnEditorActionListener(editTextListener);
 
-		// Set the button to switch between fragments
+	/*	// Set the button to switch between fragments
 		switchButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -100,6 +100,7 @@ public class BasicSearchFragment extends SherlockFragment {
 						.commit();
 			}
 		});
+	*/
 
 		listIntent = new Intent(mActivity, ProfileListActivity.class);
 	}
