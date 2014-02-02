@@ -213,8 +213,8 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>>{
 			campusaddress = campusaddress.trim();
 			curTok = strTok.nextToken();
 		    boxno = curTok.substring(36, curTok.indexOf("</TD>"));
-		    if (boxno.equals("&nbs"))
-			boxno = "";
+		    if (boxno.equals("&nbsp;"))
+			boxno = "Not Available";
 		    curTok = strTok.nextToken();
 		    stufacstatus = curTok.substring(37,
 			    curTok.indexOf(" </TD>"));

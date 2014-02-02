@@ -13,6 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/image"
+            android:paddingBottom="10dp"
             android:src="@drawable/ic_launcher" />
 
         <TextView
@@ -24,16 +25,56 @@
             android:layout_toRightOf="@+id/imageDetail"
             android:text="@string/Name"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
     </RelativeLayout>
-    
+
+    <TextView
+        android:id="@+id/textMajorField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MajorDepartment"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#808080"
+        android:paddingBottom="10dp" />
+
+    <TextView
+        android:id="@+id/textMajor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="@string/MajorDepartment"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textcampusPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/campus_phone"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#808080" />
+
+    <TextView
+        android:id="@+id/textPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="@string/campus_phone"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
     <TextView
         android:id="@+id/textFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -43,35 +84,37 @@
         android:id="@+id/textUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
         android:text="@string/username"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-    
+
     <TextView
-        android:id="@+id/textMajorField"
+        android:id="@+id/textcampusAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/MajorDepartment"
+        android:text="@string/campus_address"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#808080" />
 
     <TextView
-        android:id="@+id/textMajor"
+        android:id="@+id/textAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/MajorDepartment"
+        android:paddingBottom="20dp"
+        android:text="@string/campus_address"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-    
+
     <TextView
         android:id="@+id/textPOField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/POBox"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -82,44 +125,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/POBox"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-    
-    <TextView
-        android:id="@+id/textcampusAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/campus_address"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#808080" />
-
-    <TextView
-        android:id="@+id/textAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/campus_address"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-    
-    <TextView
-        android:id="@+id/textcampusPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/campus_phone"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#808080" />
-
-    <TextView
-        android:id="@+id/textPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/campus_phone"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>
