@@ -74,6 +74,9 @@ public class ProfileDetailFragment extends SherlockFragment {
 		imgview.setImageResource(R.drawable.nopic);
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.textUsername)).setText(mItem.username);
+            ((TextView) rootView.findViewById(R.id.textMajor)).setText(mItem.dept);
+            ((TextView) rootView.findViewById(R.id.textBoxNum)).setText(mItem.boxno);
+            ((TextView) rootView.findViewById(R.id.textPhone)).setText(mItem.phonenum);
             ((TextView) rootView.findViewById(R.id.textAddress)).setText(mItem.campusaddress);
             ((TextView) rootView.findViewById(R.id.textName)).setText(mItem.lastName + " " + mItem.firstName);
             //((TextView) rootView.findViewById(R.id.textAll)).setText(mItem.toString());

@@ -190,5 +190,8 @@
     <string name="Reset">Reset</string>
     <string name="search">Search</string>
     <string name="Name">Name</string>
+    <string name="MajorDepartment">Major/Department</string>
+    <string name="POBox">Box Number</string>
+    <string name="image">pcard image</string>
 
 </resources>
