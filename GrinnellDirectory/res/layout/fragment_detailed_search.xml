@@ -10,7 +10,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="264dp" >
+            android:layout_height="240dp" >
 
             <EditText
                 android:id="@+id/first_text"
@@ -18,7 +18,7 @@
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/last_text"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_edges"
                 android:ems="10"
                 android:gravity="center_vertical|center_horizontal"
@@ -33,7 +33,7 @@
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/username_text"
                 android:layout_below="@+id/first_text"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_edges"
                 android:ems="10"
                 android:gravity="center_vertical|center_horizontal"
@@ -48,7 +48,7 @@
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/home_address_text"
                 android:layout_below="@+id/username_text"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_edges"
                 android:ems="10"
                 android:gravity="center_vertical|center_horizontal"
@@ -63,7 +63,7 @@
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/phone_text"
                 android:layout_below="@+id/last_text"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_edges"
                 android:ems="10"
                 android:gravity="center_vertical|center_horizontal"
@@ -92,7 +92,7 @@
                 android:layout_height="30dp"
                 android:layout_below="@+id/phone_text"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_edges"
                 android:ems="10"
                 android:gravity="center_vertical|center_horizontal"
@@ -107,7 +107,7 @@
 
         <Spinner
             android:id="@+id/fac_dept_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:entries="@array/facultydeptarray"
             android:text="@string/hello_world" />
