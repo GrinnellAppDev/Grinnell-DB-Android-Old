@@ -3,14 +3,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="240dp" >
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingBottom="8dp" >
 
             <EditText
                 android:id="@+id/first_text"
@@ -18,10 +14,10 @@
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/last_text"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edges"
-                android:ems="10"
                 android:gravity="center_vertical|center_horizontal"
+                android:ems="10"
                 android:hint="@string/first_name"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
@@ -33,10 +29,10 @@
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/username_text"
                 android:layout_below="@+id/first_text"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edges"
-                android:ems="10"
                 android:gravity="center_vertical|center_horizontal"
+                android:ems="10"
                 android:hint="@string/last_name"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
@@ -47,11 +43,11 @@
                 android:layout_width="300dp"
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/home_address_text"
+                android:gravity="center_vertical|center_horizontal"
                 android:layout_below="@+id/username_text"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edges"
                 android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
                 android:hint="@string/campus_phone"
                 android:imeOptions="actionSearch"
                 android:inputType="phone"
@@ -62,12 +58,27 @@
                 android:layout_width="300dp"
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/phone_text"
+                android:gravity="center_vertical|center_horizontal"
                 android:layout_below="@+id/last_text"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edges"
                 android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
                 android:hint="@string/username"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColorHint="@color/SlateGray" />
+            
+            <EditText
+                android:id="@+id/home_address_text"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/phone_text"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edges"
+                android:gravity="center_vertical|center_horizontal"
+                android:ems="10"
+                android:hint="@string/home_address"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:textColorHint="@color/SlateGray" />
@@ -77,71 +88,75 @@
                 android:layout_width="300dp"
                 android:layout_height="30dp"
                 android:layout_alignLeft="@+id/home_address_text"
-                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_below="@+id/home_address_text"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edges"
                 android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
                 android:hint="@string/campus_address"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:textColorHint="@color/SlateGray" />
 
-            <EditText
-                android:id="@+id/home_address_text"
-                android:layout_width="300dp"
-                android:layout_height="30dp"
-                android:layout_below="@+id/phone_text"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/rounded_edges"
-                android:ems="10"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/home_address"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:textColorHint="@color/SlateGray" >
-
-                <requestFocus />
-            </EditText>
-        </RelativeLayout>
-
+           
         <Spinner
             android:id="@+id/fac_dept_spinner"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/campus_address_text"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
             android:entries="@array/facultydeptarray"
             android:text="@string/hello_world" />
 
         <Spinner
             android:id="@+id/student_major_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/fac_dept_spinner"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
             android:entries="@array/studentmajorarray"
             android:prompt="@string/app_name" />
 
         <Spinner
             android:id="@+id/concentration_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/student_major_spinner"
+            android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
             android:entries="@array/studentconcentrationarray" />
 
         <Spinner
             android:id="@+id/sga_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/concentration_spinner"
+            android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
             android:entries="@array/sgaarray" />
 
         <Spinner
             android:id="@+id/hiatus_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/sga_spinner"
+            android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
             android:entries="@array/haitusarray" />
 
         <Spinner
             android:id="@+id/student_class_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/hiatus_spinner"
+            android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
             android:entries="@array/classyeararray" />
-    </LinearLayout>
+         </RelativeLayout>
+
+
 
 </ScrollView>
