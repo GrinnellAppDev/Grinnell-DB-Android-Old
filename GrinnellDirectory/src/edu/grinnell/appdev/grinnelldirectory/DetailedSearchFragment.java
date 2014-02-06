@@ -154,10 +154,10 @@ public class DetailedSearchFragment extends SherlockFragment {
 				+ "&Hiatus="
 				+ mActivity.cleanHiatus(hiatusSpinner.getSelectedItem()
 					.toString())
-				+ "Gyear=&"
+				+ "&Gyear="
 				+ mActivity.cleanString(studentClassSpinner.getSelectedItem()
 						.toString())
-				+ "submit_search=Search";
+				+ "&submit_search=Search";
 
 		// TODO: Get rid of the fucking uberstring
 

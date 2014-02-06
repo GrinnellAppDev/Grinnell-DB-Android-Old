@@ -160,13 +160,13 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 	 * formats it for the http request
 	 */
 	public String cleanHiatus(String str) {
-	    if (str == "Engineering") {
+	    if (str.equals("Engineering")) {
 		str = "ENGR";
-	    } else if (str == "Grinnell in London") {
+	    } else if (str.equals("Grinnell In London")) {
 		str = "GIL";
-	    } else if (str == "Grinnell in Washington") {
+	    } else if (str.equals("Grinnell In Washington")) {
 		str = "GIW";
-	    } else if (str == "Off Campus Study") {
+	    } else if (str.equals("Off Campus Study")) {
 		str = "ACLV";
 	    } 
 	    
