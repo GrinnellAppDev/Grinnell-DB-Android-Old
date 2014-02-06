@@ -3,15 +3,16 @@ package edu.grinnell.appdev.grinnelldirectory;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -29,8 +30,6 @@ public class BasicSearchFragment extends SherlockFragment {
 	TextView firstNameText;
 	TextView lastNameText;
 	Button submitButton;
-	static boolean noResults;
-	static boolean tooManyResults;
 
 	SearchFormActivity mActivity;
 	View mView;
@@ -72,58 +71,35 @@ public class BasicSearchFragment extends SherlockFragment {
 	public void initializeViews(Context c) {
 		firstNameText = (TextView) mView.findViewById(R.id.first_text);
 		lastNameText = (TextView) mView.findViewById(R.id.last_text);
-		
+
 		OnEditorActionListener editTextListener = new OnEditorActionListener() {
-		    @Override
-		    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		        boolean handled = false;
-		        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-		            sendQuery();
-		            handled = true;
-		        }
-		        return handled;
-		    }
-		};  
-		
+			@Override
+			public boolean onEditorAction(TextView v, int actionId,
+					KeyEvent event) {
+				boolean handled = false;
+				if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+					sendQuery();
+					handled = true;
+				}
+				return handled;
+			}
+		};
+
 		firstNameText.setOnEditorActionListener(editTextListener);
 		lastNameText.setOnEditorActionListener(editTextListener);
-
-		listIntent = new Intent(mActivity, ProfileListActivity.class);
 	}
 
 	// send user search query
 	public void sendQuery() {
-
-		tooManyResults = false;
-		noResults = false;
+		InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+		//hide keyboard
+		imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
 		String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
 				+ mActivity.cleanString(lastNameText.getText().toString())
 				+ "&LNameSearch=startswith&FirstName="
 				+ mActivity.cleanString(firstNameText.getText().toString());
 
-		// TODO: Get rid of the fucking uberstring
-
-		ArrayList<Profile> profileList;
-		try {
-			profileList = new RequestTask().execute(theURL).get();
-			if (tooManyResults) {
-				Toast toast = Toast.makeText(mActivity,
-						"Too many results. Please refine search",
-						Toast.LENGTH_LONG);
-				toast.show();
-			} else if (noResults) {
-				Toast toast = Toast.makeText(mActivity, "No results found",
-						Toast.LENGTH_LONG);
-				toast.show();
-			} else {
-				ProfileListActivity.setData(profileList);
-				startActivity(listIntent);
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
+		new RequestTask(mActivity).execute(theURL);
 	}
 }

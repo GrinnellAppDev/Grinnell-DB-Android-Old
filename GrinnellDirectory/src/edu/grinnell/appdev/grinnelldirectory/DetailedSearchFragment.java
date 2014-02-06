@@ -119,13 +119,9 @@ public class DetailedSearchFragment extends SherlockFragment {
 		phoneText.setOnEditorActionListener(editTextListener);
 		campusAddressText.setOnEditorActionListener(editTextListener);
 		homeAddressText.setOnEditorActionListener(editTextListener);
-
-		listIntent = new Intent(mActivity, ProfileListActivity.class);
 	}
 
 	public void sendDetailedQuery() {
-		BasicSearchFragment.tooManyResults = false;
-		BasicSearchFragment.noResults = false;
 
 		String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
 				+ mActivity.cleanString(lastNameText.getText().toString())
@@ -147,32 +143,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 						.toString())
 				+ "&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
 
-		// TODO: Get rid of the fucking uberstring
-
-		ArrayList<Profile> profileList;
-		try {
-			profileList = new RequestTask().execute(theURL).get();
-			if (BasicSearchFragment.tooManyResults) {
-				Toast toast = Toast.makeText(mActivity,
-						"Too many results. Please refine search",
-						Toast.LENGTH_LONG);
-				toast.show();
-			} else if (BasicSearchFragment.noResults) {
-				Toast toast = Toast.makeText(mActivity, "No results found",
-						Toast.LENGTH_LONG);
-				toast.show();
-			} else {
-				ProfileListActivity.setData(profileList);
-				startActivity(listIntent);
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		new RequestTask(mActivity).execute(theURL);
 	}
 
 }
