@@ -53,6 +53,8 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 	ViewPager mPager;
 	ActionBar mActionBar;
 	Tab tab;
+	
+	static Boolean inGrinnell = true;
 
 	// An intent for ProfileListActivity
 	Intent listIntent;
@@ -99,8 +101,8 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 
 			@Override
 			public void onTabSelected(Tab tab, FragmentTransaction ft) {
-				// Pass the position on tab click to ViewPager
-				mPager.setCurrentItem(tab.getPosition());
+					// Pass the position on tab click to ViewPager
+					mPager.setCurrentItem(tab.getPosition());
 			}
 
 			@Override
@@ -115,14 +117,16 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		};
 		
 		// Create first Tab
-        tab = mActionBar.newTab().setText("Simple").setTabListener(tabListener);
+        tab = mActionBar.newTab().setText("Simple Search").setTabListener(tabListener);
         mActionBar.addTab(tab);
  
-        // Create second Tab
-        tab = mActionBar.newTab().setText("Detailed").setTabListener(tabListener);
-        mActionBar.addTab(tab);
+        // Do not create the detailed search tab if user is not in Grinnell
+        if (inGrinnell) {
+        	// Create second Tab
+        	tab = mActionBar.newTab().setText("Detailed Search").setTabListener(tabListener);
+        	mActionBar.addTab(tab);
+        }
         
-
 		ConnectivityManager cm = (ConnectivityManager) this
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
 		// check connections before downloading..
@@ -213,13 +217,17 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 
 	// Fragment pager adapter for the search forms
 	public static class SearchFragmentAdapter extends FragmentPagerAdapter {
+		
 		public SearchFragmentAdapter(FragmentManager fm) {
 			super(fm);
 		}
 
 		@Override
 		public int getCount() {
-			return 2;
+			if (inGrinnell)
+				return 2;
+			else
+				return 1;
 		}
 
 		@Override
@@ -227,7 +235,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 			if (position == 0) {
 				return new BasicSearchFragment();
 			} else if (position == 1) {
-				return new DetailedSearchFragment();
+					return new DetailedSearchFragment();
 			} else
 				return null;
 		}

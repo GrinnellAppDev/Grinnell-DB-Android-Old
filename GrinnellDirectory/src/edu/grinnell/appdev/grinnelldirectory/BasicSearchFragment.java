@@ -1,12 +1,9 @@
 package edu.grinnell.appdev.grinnelldirectory;
 
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +13,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-
-import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 /* A fragment off the Search Form Activity with a simple search interface */
 public class BasicSearchFragment extends SherlockFragment {
@@ -45,7 +39,7 @@ public class BasicSearchFragment extends SherlockFragment {
 		mActivity = (SearchFormActivity) getActivity();
 
 		setHasOptionsMenu(true);
-
+		
 		initializeViews(mActivity); // Initialize all of the variables.
 		return mView;
 	}
