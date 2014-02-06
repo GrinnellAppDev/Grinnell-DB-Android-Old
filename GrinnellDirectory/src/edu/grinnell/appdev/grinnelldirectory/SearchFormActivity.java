@@ -150,6 +150,9 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 
 	// Converts plain-text strings into HTTP-friendly strings.
 	public String cleanString(String str) {
+	    	if (str.length() >= 4 && str.substring(0,3).equals("Any")) {
+	    	    return "";
+	    	}
 		str = str.replace(" ", "+");
 		str = str.replace(",", "%2C");
 		str = str.replace("&", "%26");
@@ -164,7 +167,9 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 	 * formats it for the http request
 	 */
 	public String cleanHiatus(String str) {
-	    if (str.equals("Engineering")) {
+	    if (str.substring(0,3).equals("Any")) {
+		str = "";
+	    } else if (str.equals("Engineering")) {
 		str = "ENGR";
 	    } else if (str.equals("Grinnell In London")) {
 		str = "GIL";
