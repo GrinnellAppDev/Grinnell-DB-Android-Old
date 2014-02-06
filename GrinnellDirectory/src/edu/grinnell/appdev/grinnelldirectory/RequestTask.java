@@ -62,7 +62,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 		// Show a loading dialoge
 		loadingDialog = new ProgressDialog(mActivity);
 		loadingDialog.setCancelable(true);
-		loadingDialog.setMessage("Loading...");
+		loadingDialog.setMessage("Loading Results ...");
 		loadingDialog.show();
 	}
 
