@@ -94,21 +94,25 @@
         <Spinner
             android:id="@+id/concentration_spinner"
             android:layout_width="match_parent"
+            android:entries="@array/studentconcentrationarray"
             android:layout_height="wrap_content" />
 
         <Spinner
             android:id="@+id/sga_spinner"
             android:layout_width="match_parent"
+            android:entries="@array/sgaarray"
             android:layout_height="wrap_content" />
 
         <Spinner
             android:id="@+id/hiatus_spinner"
             android:layout_width="match_parent"
+            android:entries="@array/haitusarray"
             android:layout_height="wrap_content" />
 
         <Spinner
             android:id="@+id/student_class_spinner"
             android:layout_width="match_parent"
+            android:entries="@array/classyeararray"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
