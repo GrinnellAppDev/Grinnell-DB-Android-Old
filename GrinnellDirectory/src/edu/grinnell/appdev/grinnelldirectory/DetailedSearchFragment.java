@@ -41,7 +41,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 	Spinner studentMajorSpinner;
 	Spinner concentrationSpinner;
 	Spinner sgaSpinner;
-	Spinner haitusSpinner;
+	Spinner hiatusSpinner;
 	Spinner studentClassSpinner;
 	Button submitButton;
 
@@ -96,7 +96,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 		concentrationSpinner = (Spinner) mView
 				.findViewById(R.id.concentration_spinner);
 		sgaSpinner = (Spinner) mView.findViewById(R.id.sga_spinner);
-		haitusSpinner = (Spinner) mView.findViewById(R.id.hiatus_spinner);
+		hiatusSpinner = (Spinner) mView.findViewById(R.id.hiatus_spinner);
 		studentClassSpinner = (Spinner) mView
 				.findViewById(R.id.student_class_spinner);
 		
@@ -145,7 +145,19 @@ public class DetailedSearchFragment extends SherlockFragment {
 				+ "&Major="
 				+ mActivity.cleanString(studentMajorSpinner.getSelectedItem()
 						.toString())
-				+ "&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
+				+ "&conc="
+				+ mActivity.cleanString(concentrationSpinner.getSelectedItem()
+						.toString())
+				+ "&SGA="
+				+ mActivity.cleanString(sgaSpinner.getSelectedItem()
+						.toString())
+				+ "&Hiatus="
+				+ mActivity.cleanHiatus(hiatusSpinner.getSelectedItem()
+					.toString())
+				+ "Gyear=&"
+				+ mActivity.cleanString(studentClassSpinner.getSelectedItem()
+						.toString())
+				+ "submit_search=Search";
 
 		// TODO: Get rid of the fucking uberstring
 

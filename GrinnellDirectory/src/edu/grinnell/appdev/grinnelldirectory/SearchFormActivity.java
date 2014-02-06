@@ -155,6 +155,23 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		}
 		return str;
 	}
+	
+	/** Takes the string from the hiatus spinner and 
+	 * formats it for the http request
+	 */
+	public String cleanHiatus(String str) {
+	    if (str == "Engineering") {
+		str = "ENGR";
+	    } else if (str == "Grinnell in London") {
+		str = "GIL";
+	    } else if (str == "Grinnell in Washington") {
+		str = "GIW";
+	    } else if (str == "Off Campus Study") {
+		str = "ACLV";
+	    } 
+	    
+	    return str;
+	}
 
 	/*
 	 * Return true if the device has a network adapter that is capable of
