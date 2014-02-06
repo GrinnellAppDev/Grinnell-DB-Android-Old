@@ -25,13 +25,12 @@
         <item name="dropDownListViewStyle">@style/DropDownListView.Grinnelldb</item>
         <item name="actionBarTabStyle">@style/ActionBarTabStyle.Grinnelldb</item>
         <item name="actionDropDownStyle">@style/DropDownNav.Grinnelldb</item>
-        <item name="actionBarStyle">@style/ActionBar.Transparent.Grinnelldb</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Grinnelldb</item>
         <item name="actionModeBackground">@drawable/cab_background_top_grinnelldb</item>
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_grinnelldb</item>
-        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Grinnelldb</item>     
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Grinnelldb</item>
+
         
-        <!-- Support library compatibility -->
-        <item name="windowActionBarOverlay">true</item>   
     </style>
 
     <style name="ActionBar.Solid.Grinnelldb" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
