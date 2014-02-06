@@ -55,18 +55,19 @@ public class BasicSearchFragment extends SherlockFragment {
 		inflater.inflate(R.menu.activity_search_form, menu);
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.search:
-			sendQuery();
-			return true;
-		case R.id.reset:
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+	switch (item.getItemId()) {
+	case R.id.search:
+	    sendQuery();
+	    return true;
+	case R.id.reset:
+	    clearFields();
+	    return true;
+	default:
+	    return super.onOptionsItemSelected(item);
 	}
+    }
 
 	public void initializeViews(Context c) {
 		firstNameText = (TextView) mView.findViewById(R.id.first_text);
@@ -102,4 +103,9 @@ public class BasicSearchFragment extends SherlockFragment {
 
 		new RequestTask(mActivity).execute(theURL);
 	}
+	
+	public void clearFields() {
+		firstNameText.setText("");
+		lastNameText.setText("");
+	    }
 }

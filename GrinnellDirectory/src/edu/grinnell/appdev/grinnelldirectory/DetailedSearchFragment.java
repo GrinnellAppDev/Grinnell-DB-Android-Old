@@ -41,7 +41,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 	Spinner studentMajorSpinner;
 	Spinner concentrationSpinner;
 	Spinner sgaSpinner;
-	Spinner haitusSpinner;
+	Spinner hiatusSpinner;
 	Spinner studentClassSpinner;
 	Button submitButton;
 
@@ -76,6 +76,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 			sendDetailedQuery();
 			return true;
 		case R.id.reset:
+		    	clearFields();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -96,7 +97,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 		concentrationSpinner = (Spinner) mView
 				.findViewById(R.id.concentration_spinner);
 		sgaSpinner = (Spinner) mView.findViewById(R.id.sga_spinner);
-		haitusSpinner = (Spinner) mView.findViewById(R.id.hiatus_spinner);
+		hiatusSpinner = (Spinner) mView.findViewById(R.id.hiatus_spinner);
 		studentClassSpinner = (Spinner) mView
 				.findViewById(R.id.student_class_spinner);
 		
@@ -141,9 +142,36 @@ public class DetailedSearchFragment extends SherlockFragment {
 				+ "&Major="
 				+ mActivity.cleanString(studentMajorSpinner.getSelectedItem()
 						.toString())
-				+ "&conc=&SGA=&Hiatus=&Gyear=&submit_search=Search";
+				+ "&conc="
+				+ mActivity.cleanString(concentrationSpinner.getSelectedItem()
+						.toString())
+				+ "&SGA="
+				+ mActivity.cleanString(sgaSpinner.getSelectedItem()
+						.toString())
+				+ "&Hiatus="
+				+ mActivity.cleanHiatus(hiatusSpinner.getSelectedItem()
+					.toString())
+				+ "&Gyear="
+				+ mActivity.cleanString(studentClassSpinner.getSelectedItem()
+						.toString())
+				+ "&submit_search=Search";
 
 		new RequestTask(mActivity).execute(theURL);
 	}
+	
+    public void clearFields() {
+	firstNameText.setText("");
+	lastNameText.setText("");
+	usernameText.setText("");
+	phoneText.setText("");
+	campusAddressText.setText("");
+	homeAddressText.setText("");
+	facDeptSpinner.setSelection(0);
+	studentMajorSpinner.setSelection(0);
+	concentrationSpinner.setSelection(0);
+	sgaSpinner.setSelection(0);
+	hiatusSpinner.setSelection(0);
+	studentClassSpinner.setSelection(0);
+    }
 
 }
