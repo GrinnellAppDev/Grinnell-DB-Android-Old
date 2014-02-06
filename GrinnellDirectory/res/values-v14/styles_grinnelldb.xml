@@ -25,7 +25,7 @@
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Grinnelldb</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Grinnelldb</item>
         <item name="android:actionDropDownStyle">@style/DropDownNav.Grinnelldb</item>
-        <item name="android:actionBarStyle">@style/ActionBar.Solid.Grinnelldb</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Transparent.Grinnelldb</item>
         <item name="android:actionModeBackground">@drawable/cab_background_top_grinnelldb</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_grinnelldb</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Grinnelldb</item>
