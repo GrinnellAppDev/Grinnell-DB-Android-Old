@@ -17,7 +17,7 @@
 
         <EditText
             android:id="@+id/first_text"
-            android:layout_width="230dp"
+            android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_alignBottom="@+id/last_text"
             android:layout_centerHorizontal="true"
@@ -32,7 +32,7 @@
 
         <EditText
             android:id="@+id/last_text"
-            android:layout_width="230dp"
+            android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_alignLeft="@+id/first_text"
             android:layout_alignParentTop="true"
@@ -45,6 +45,7 @@
             android:inputType="text"
             android:textColorHint="@color/SlateGray" />
 
-    </RelativeLayout>
+   </RelativeLayout>
+
 
 </FrameLayout>

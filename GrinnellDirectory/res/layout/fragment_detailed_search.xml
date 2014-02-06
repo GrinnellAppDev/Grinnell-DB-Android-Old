@@ -9,68 +9,103 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/first_text"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/first_name"
-            android:imeOptions="actionSearch"
-            android:inputType="text" 
-            android:textColorHint="@color/Salmon" >
+            android:layout_height="264dp" >
 
-            <requestFocus />
-        </EditText>
+            <EditText
+                android:id="@+id/first_text"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@+id/last_text"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/rounded_edges"
+                android:gravity="center_vertical|center_horizontal"
+                android:ems="10"
+                android:hint="@string/first_name"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColorHint="@color/SlateGray" />
 
-        <EditText
-            android:id="@+id/last_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/last_name"
-            android:imeOptions="actionSearch"
-            android:inputType="text" 
-            android:textColorHint="@color/Salmon" />
+            <EditText
+                android:id="@+id/last_text"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@+id/username_text"
+                android:layout_below="@+id/first_text"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/rounded_edges"
+                android:gravity="center_vertical|center_horizontal"
+                android:ems="10"
+                android:hint="@string/last_name"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColorHint="@color/SlateGray" />
 
-        <EditText
-            android:id="@+id/username_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/username"
-            android:imeOptions="actionSearch"
-            android:inputType="text" 
-            android:textColorHint="@color/Salmon" />
+            <EditText
+                android:id="@+id/phone_text"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@+id/home_address_text"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_below="@+id/username_text"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/rounded_edges"
+                android:ems="10"
+                android:hint="@string/campus_phone"
+                android:imeOptions="actionSearch"
+                android:inputType="phone"
+                android:textColorHint="@color/SlateGray" />
 
-        <EditText
-            android:id="@+id/phone_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/campus_phone"
-            android:imeOptions="actionSearch"
-            android:inputType="phone"
-            android:textColorHint="@color/Salmon"  />
+            <EditText
+                android:id="@+id/username_text"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@+id/phone_text"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_below="@+id/last_text"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/rounded_edges"
+                android:ems="10"
+                android:hint="@string/username"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColorHint="@color/SlateGray" />
 
-        <EditText
-            android:id="@+id/home_address_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/home_address"
-            android:imeOptions="actionSearch"
-            android:inputType="text" 
-            android:textColorHint="@color/Salmon" />
+            <EditText
+                android:id="@+id/campus_address_text"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_alignLeft="@+id/home_address_text"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rounded_edges"
+                android:ems="10"
+                android:hint="@string/campus_address"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColorHint="@color/SlateGray" />
 
-        <EditText
-            android:id="@+id/campus_address_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/campus_address"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:textColorHint="@color/Salmon"  />
+            <EditText
+                android:id="@+id/home_address_text"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/phone_text"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/rounded_edges"
+                android:gravity="center_vertical|center_horizontal"
+                android:ems="10"
+                android:hint="@string/home_address"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColorHint="@color/SlateGray" >
+
+                <requestFocus />
+            </EditText>
+
+        </RelativeLayout>
 
         <Spinner
             android:id="@+id/fac_dept_spinner"
@@ -89,26 +124,26 @@
         <Spinner
             android:id="@+id/concentration_spinner"
             android:layout_width="match_parent"
-            android:entries="@array/studentconcentrationarray"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:entries="@array/studentconcentrationarray" />
 
         <Spinner
             android:id="@+id/sga_spinner"
             android:layout_width="match_parent"
-            android:entries="@array/sgaarray"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:entries="@array/sgaarray" />
 
         <Spinner
             android:id="@+id/hiatus_spinner"
             android:layout_width="match_parent"
-            android:entries="@array/haitusarray"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:entries="@array/haitusarray" />
 
         <Spinner
             android:id="@+id/student_class_spinner"
             android:layout_width="match_parent"
-            android:entries="@array/classyeararray"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:entries="@array/classyeararray" />
     </LinearLayout>
 
 </FrameLayout>
