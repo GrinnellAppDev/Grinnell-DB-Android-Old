@@ -76,6 +76,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 			sendDetailedQuery();
 			return true;
 		case R.id.reset:
+		    	clearFields();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -186,5 +187,20 @@ public class DetailedSearchFragment extends SherlockFragment {
 		}
 
 	}
+	
+    public void clearFields() {
+	firstNameText.setText("");
+	lastNameText.setText("");
+	usernameText.setText("");
+	phoneText.setText("");
+	campusAddressText.setText("");
+	homeAddressText.setText("");
+	facDeptSpinner.setSelection(0);
+	studentMajorSpinner.setSelection(0);
+	concentrationSpinner.setSelection(0);
+	sgaSpinner.setSelection(0);
+	hiatusSpinner.setSelection(0);
+	studentClassSpinner.setSelection(0);
+    }
 
 }
