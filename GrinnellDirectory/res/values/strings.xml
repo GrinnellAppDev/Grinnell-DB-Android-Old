@@ -20,8 +20,7 @@
     <string name="simple_search">Simple Search</string>
 
     <string-array name="facultydeptarray">
-        <item></item>
-        <item>Any</item>
+        <item>Any Faculty Department</item>
         <item>Accounting</item>
         <item>Admission</item>
         <item>Analytic Supp. &amp; Inst.Research</item>
@@ -93,8 +92,7 @@
     </string-array>
     
     <string-array name="studentmajorarray">
-        <item></item>
-        <item>Any</item>
+        <item>Any Student Major</item>
         <item>American Studies</item>
         <item>Anthropology</item>
         <item>Art</item>
@@ -134,8 +132,7 @@
     </string-array>
     
         <string-array name="studentconcentrationarray">
-        <item></item>
-        <item>Any</item>
+        <item>Any Student Concentration</item>
         <item>American Studies</item>
         <item>East Asian Studies</item>
         <item>Environmental Studies</item>
@@ -151,7 +148,7 @@
     </string-array>
     
 	<string-array name="sgaarray">
-	    <item></item>
+	    <item>Any SGA Position</item>
     	<item>Administrative Coordinator</item>
         <item>All Campus Events Coordinator</item>
         <item>All Campus Events Vice-Coordinator</item>
@@ -174,7 +171,7 @@
     </string-array>
     
 	<string-array name="haitusarray">
-	    <item></item>
+	    <item>Any Hiatus Status</item>
 	    <item>Off Campus Study</item>
 	    <item>Engineering</item>
 	    <item>Grinnell In London</item>
@@ -182,7 +179,7 @@
 	</string-array>
 	
 	<string-array name="classyeararray">
-	    <item></item>
+	    <item>Any Class Year</item>
 	    <item>2014</item>
 	    <item>2015</item>
 	    <item>2016</item>
