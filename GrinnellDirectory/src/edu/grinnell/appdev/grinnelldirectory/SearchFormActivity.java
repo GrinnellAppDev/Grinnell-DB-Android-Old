@@ -28,7 +28,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -39,8 +38,6 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 
 	int parserErrorMessage = RequestTask.NO_ERROR;
 
-	Context mActivity = this; 
-	
 	// Fields in the layout
 	TextView firstNameText;
 	TextView lastNameText;
@@ -77,29 +74,19 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		// TODO set view to splash screen
 		setContentView(R.layout.activity_search_form);
 
-		ConnectivityManager cm = (ConnectivityManager) this
-        		.getSystemService(Context.CONNECTIVITY_SERVICE);
-		
-    		// check connections before downloading..
-    
-    		if (!networkEnabled(cm)) {
-    			noNetworkError();
-    		}
-    		else
-    		{
-		
 		//Determine whether on campus or not.
-		WifiManager wifiMgr = (WifiManager) mActivity.getSystemService(Context.WIFI_SERVICE);
+		WifiManager wifiMgr = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
 		WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
 		String wirelessNetworkName = wifiInfo.getSSID();
-		if (wirelessNetworkName != null && wirelessNetworkName.equals("GrinnellCollegeStudent")) {
+		if (wirelessNetworkName.equals("GrinnellCollegeStudent")) {
 		    inGrinnell = true;
 		}
 		else {
 		    inGrinnell = false;
 		}
 		
-		
+		ConnectivityManager cm = (ConnectivityManager) this
+			.getSystemService(Context.CONNECTIVITY_SERVICE);
 		
 		// Activate Navigation Mode Tabs
 		mActionBar = getSupportActionBar();
@@ -129,8 +116,6 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		// Set the View Pager Adapter into ViewPager
 		mPager.setAdapter(fragmentAdapter);
 
-		
-		
 		// Capture tab button clicks
 		ActionBar.TabListener tabListener = new ActionBar.TabListener() {
 
@@ -138,7 +123,6 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 			public void onTabSelected(Tab tab, FragmentTransaction ft) {
 					// Pass the position on tab click to ViewPager
 					mPager.setCurrentItem(tab.getPosition());
-					
 			}
 
 			@Override
@@ -151,48 +135,37 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 				// TODO Auto-generated method stub
 			}
 		};
- 
-		// Do not create the detailed search tab if user is not in Grinnell
-		if (inGrinnell) {
-		    // Create second Tab
-		    tab = mActionBar.newTab().setText("Simple Search").setTabListener(tabListener);
-		    mActionBar.addTab(tab);
-                }
-                else {
-                    ActionBar.TabListener noDetailTabListener = new ActionBar.TabListener() {
-        
-        		@Override
-        			public void onTabSelected(Tab tab, FragmentTransaction ft) {
-        		    		// Never leave simple search outside of Grinnell
-        		    		
-            		}
-            
-            		@Override
-            		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-                		    Context context = getApplicationContext();
-                		    CharSequence text = "Detailed Search is unavailable off-campus.";
-                		    int duration = Toast.LENGTH_SHORT;
-                
-                		    Toast toast = Toast.makeText(context, text, duration);
-                		    toast.show();
-                		    mPager.setCurrentItem(0);
-                		    mActionBar.setSelectedNavigationItem(0);
-            		}
-            
-            		@Override
-            		public void onTabReselected(Tab tab, FragmentTransaction ft) {
-            		}
-                    };
-                    tab = mActionBar.newTab().setText("Simple Search").setTabListener(noDetailTabListener);
-                    mActionBar.addTab(tab);
-                }
 		
 		// Create first Tab
-		tab = mActionBar.newTab().setText("Detailed Search").setTabListener(tabListener);
-		mActionBar.addTab(tab);
+        tab = mActionBar.newTab().setText("Simple Search").setTabListener(tabListener);
+        mActionBar.addTab(tab);
+ 
+        // Do not create the detailed search tab if user is not in Grinnell
+        if (inGrinnell) {
+        	// Create second Tab
+        	tab = mActionBar.newTab().setText("Detailed Search").setTabListener(tabListener);
+        	mActionBar.addTab(tab);
+        }
+        
+		
+		// check connections before downloading..
+
+		if (!networkEnabled(cm)) {
+			noNetworkError();
+		}
 
 	}
-}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			NavUtils.navigateUpTo(this, new Intent(this,
+					ProfileListActivity.class));
+			return true;
+		}
+
+		return super.onOptionsItemSelected(item);
+	}
 
 	// Converts plain-text strings into HTTP-friendly strings.
 	public String cleanString(String str) {
@@ -237,7 +210,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
 				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
 			// MESSAGE TO SCREEN FOR TESTING (IF REQ)
-			// Toast.makeText(this, connectionType + ��� connected���,
+			// Toast.makeText(this, connectionType + � connected�,
 			// Toast.LENGTH_SHORT).show();
 			return true;
 		} else if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
@@ -290,86 +263,5 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 			} else
 				return null;
 		}
-	}
-	
-	public void onResume(){
-	    
-	    	super.onResume();
-	    	
-	    	ConnectivityManager cm = (ConnectivityManager) this
-        		.getSystemService(Context.CONNECTIVITY_SERVICE);
-		
-    		// check connections before downloading..
-    
-    		if (!networkEnabled(cm)) {
-    			noNetworkError();
-    		}
-    		else
-    		{
-	    	
-		WifiManager wifiMgr = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
-		WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
-		String wirelessNetworkName = wifiInfo.getSSID();
-		if (wirelessNetworkName != null && wirelessNetworkName.equals("GrinnellCollegeStudent")) {
-		    inGrinnell = true;
-		} else {
-		    inGrinnell = false;
-		}
-		
-		ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-
-			@Override
-			public void onTabSelected(Tab tab, FragmentTransaction ft) {
-					// Pass the position on tab click to ViewPager
-					mPager.setCurrentItem(tab.getPosition());
-					
-			}
-
-			@Override
-			public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void onTabReselected(Tab tab, FragmentTransaction ft) {
-				// TODO Auto-generated method stub
-			}
-		};
-		
-		if (inGrinnell) {		    
-		    mActionBar.getTabAt(0).setTabListener(tabListener);
-                }
-                else {
-                    ActionBar.TabListener noDetailTabListener = new ActionBar.TabListener() {
-        
-        		@Override
-        			public void onTabSelected(Tab tab, FragmentTransaction ft) {
-        		    		// Never leave simple search outside of Grinnell
-        		    		
-            		}
-            
-            		@Override
-            		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-                		    Context context = getApplicationContext();
-                		    CharSequence text = "Detailed Search is unavailable off-campus.";
-                		    int duration = Toast.LENGTH_SHORT;
-                
-                		    Toast toast = Toast.makeText(context, text, duration);
-                		    toast.show();
-                		    mPager.setCurrentItem(0);
-                		    mActionBar.setSelectedNavigationItem(0);
-            		}
-            
-            		@Override
-            		public void onTabReselected(Tab tab, FragmentTransaction ft) {
-            		}
-                    };
-                    mActionBar.getTabAt(0).setTabListener(noDetailTabListener);
-                }
-		
-		// Create first Tab
-                mActionBar.getTabAt(1).setTabListener(tabListener);
-                    
-    		}  
 	}
 }
