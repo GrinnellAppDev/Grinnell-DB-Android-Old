@@ -28,6 +28,7 @@ public class ProfileListActivity extends SherlockFragmentActivity implements
 
 	private boolean mTwoPane;
 
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
