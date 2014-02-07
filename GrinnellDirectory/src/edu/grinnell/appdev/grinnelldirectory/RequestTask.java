@@ -20,6 +20,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -98,6 +99,8 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 			Intent listIntent = new Intent(mActivity, ProfileListActivity.class);
 			ProfileListActivity.setData(profileList);
 			mActivity.startActivity(listIntent);
+			((Activity) mActivity).overridePendingTransition(R.anim.left_slide_in,
+					R.anim.left_slide_out);
 		}
 		
 		super.onPostExecute(result);
