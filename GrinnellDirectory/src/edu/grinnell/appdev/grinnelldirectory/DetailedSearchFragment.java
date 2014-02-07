@@ -76,7 +76,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 			sendDetailedQuery();
 			return true;
 		case R.id.reset:
-		    	clearFields();
+			clearFields();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -100,7 +100,7 @@ public class DetailedSearchFragment extends SherlockFragment {
 		hiatusSpinner = (Spinner) mView.findViewById(R.id.hiatus_spinner);
 		studentClassSpinner = (Spinner) mView
 				.findViewById(R.id.student_class_spinner);
-		
+
 		editTextListener = new OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
@@ -146,32 +146,39 @@ public class DetailedSearchFragment extends SherlockFragment {
 				+ mActivity.cleanString(concentrationSpinner.getSelectedItem()
 						.toString())
 				+ "&SGA="
-				+ mActivity.cleanString(sgaSpinner.getSelectedItem()
-						.toString())
+				+ mActivity
+						.cleanString(sgaSpinner.getSelectedItem().toString())
 				+ "&Hiatus="
 				+ mActivity.cleanHiatus(hiatusSpinner.getSelectedItem()
-					.toString())
+						.toString())
 				+ "&Gyear="
 				+ mActivity.cleanString(studentClassSpinner.getSelectedItem()
-						.toString())
-				+ "&submit_search=Search";
+						.toString()) + "&submit_search=Search";
 
-		new RequestTask(mActivity).execute(theURL);
+		if (mActivity.inGrinnell)
+			new RequestTask(mActivity).execute(theURL);
+		else {
+			Toast toast = Toast
+					.makeText(mActivity,
+							"Connect to Grinnell College Student Network for Detailed Search",
+							Toast.LENGTH_LONG);
+			toast.show();
+		}
 	}
-	
-    public void clearFields() {
-	firstNameText.setText("");
-	lastNameText.setText("");
-	usernameText.setText("");
-	phoneText.setText("");
-	campusAddressText.setText("");
-	homeAddressText.setText("");
-	facDeptSpinner.setSelection(0);
-	studentMajorSpinner.setSelection(0);
-	concentrationSpinner.setSelection(0);
-	sgaSpinner.setSelection(0);
-	hiatusSpinner.setSelection(0);
-	studentClassSpinner.setSelection(0);
-    }
+
+	public void clearFields() {
+		firstNameText.setText("");
+		lastNameText.setText("");
+		usernameText.setText("");
+		phoneText.setText("");
+		campusAddressText.setText("");
+		homeAddressText.setText("");
+		facDeptSpinner.setSelection(0);
+		studentMajorSpinner.setSelection(0);
+		concentrationSpinner.setSelection(0);
+		sgaSpinner.setSelection(0);
+		hiatusSpinner.setSelection(0);
+		studentClassSpinner.setSelection(0);
+	}
 
 }
