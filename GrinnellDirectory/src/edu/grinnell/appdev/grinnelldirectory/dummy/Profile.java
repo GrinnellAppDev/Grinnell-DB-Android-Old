@@ -12,9 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.graphics.Bitmap;
-import android.util.Log;
-
 public class Profile {
 
 //ITEMS stores the downloaded data. ITEM_MAP is a hash function for storing the data.

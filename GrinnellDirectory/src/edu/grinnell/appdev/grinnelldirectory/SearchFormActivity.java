@@ -23,11 +23,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -108,7 +106,6 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 			public void onTabSelected(Tab tab, FragmentTransaction ft) {
 				// Pass the position on tab click to ViewPager
 				mPager.setCurrentItem(tab.getPosition());
-
 			}
 
 			@Override
@@ -132,7 +129,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		mActionBar.addTab(tab);
 
 	}
-	
+
 	public void onResume() {
 		super.onResume();
 
@@ -204,7 +201,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
 				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
 			// MESSAGE TO SCREEN FOR TESTING (IF REQ)
-			// Toast.makeText(this, connectionType + ��� connected���,
+			// Toast.makeText(this, connectionType + � connected�,
 			// Toast.LENGTH_SHORT).show();
 			return true;
 		} else if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
@@ -255,6 +252,4 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 				return null;
 		}
 	}
-
-	
 }
