@@ -34,9 +34,18 @@ public class ProfileDetailActivity extends SherlockFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             NavUtils.navigateUpTo(this, new Intent(this, ProfileListActivity.class));
+    		overridePendingTransition(R.anim.right_slide_in,
+					R.anim.right_slide_out);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+    
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_slide_in,
+				R.anim.right_slide_out);
+	}
 }

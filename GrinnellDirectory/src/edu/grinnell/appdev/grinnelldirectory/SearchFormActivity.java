@@ -26,6 +26,7 @@ import android.support.v4.view.ViewPager;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -99,14 +100,15 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		SearchFragmentAdapter fragmentAdapter = new SearchFragmentAdapter(fm);
 		// Set the View Pager Adapter into ViewPager
 		mPager.setAdapter(fragmentAdapter);
-
+		
+		// Capture tab button clicks
 		tabListener = new ActionBar.TabListener() {
 
 			@Override
 			public void onTabSelected(Tab tab, FragmentTransaction ft) {
-				// Pass the position on tab click to ViewPager
-				mPager.setCurrentItem(tab.getPosition());
-			}
+					// Pass the position on tab click to ViewPager
+					mPager.setCurrentItem(tab.getPosition());
+								}
 
 			@Override
 			public void onTabUnselected(Tab tab, FragmentTransaction ft) {
@@ -119,6 +121,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 			}
 		};
 
+
 		tab = mActionBar.newTab().setText("Simple Search");
 		tab.setTabListener(tabListener);
 		mActionBar.addTab(tab);
@@ -130,6 +133,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 
 	}
 
+	@Override
 	public void onResume() {
 		super.onResume();
 
@@ -155,7 +159,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 				inGrinnell = false;
 			}
 		}
-	}
+}
 
 	// Converts plain-text strings into HTTP-friendly strings.
 	public String cleanString(String str) {
@@ -201,7 +205,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
 				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
 			// MESSAGE TO SCREEN FOR TESTING (IF REQ)
-			// Toast.makeText(this, connectionType + � connected�,
+			// Toast.makeText(this, connectionType + ��� connected���,
 			// Toast.LENGTH_SHORT).show();
 			return true;
 		} else if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
