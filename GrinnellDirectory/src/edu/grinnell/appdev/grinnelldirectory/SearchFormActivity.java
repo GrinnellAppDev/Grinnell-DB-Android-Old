@@ -194,17 +194,6 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 	}
 }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == android.R.id.home) {
-			NavUtils.navigateUpTo(this, new Intent(this,
-					ProfileListActivity.class));
-			return true;
-		}
-
-		return super.onOptionsItemSelected(item);
-	}
-
 	// Converts plain-text strings into HTTP-friendly strings.
 	public String cleanString(String str) {
 	    	if (str.length() >= 4 && str.substring(0,3).equals("Any")) {
@@ -248,7 +237,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
 				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
 			// MESSAGE TO SCREEN FOR TESTING (IF REQ)
-			// Toast.makeText(this, connectionType + � connected�,
+			// Toast.makeText(this, connectionType + ��� connected���,
 			// Toast.LENGTH_SHORT).show();
 			return true;
 		} else if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
