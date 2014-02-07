@@ -152,8 +152,9 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 			String wirelessNetworkName = wifiInfo.getSSID();
 			wirelessNetworkName = wirelessNetworkName.replaceAll("\"", "");
 			if (wirelessNetworkName != null
-					&& wirelessNetworkName
-							.contentEquals("GrinnellCollegeStudent")) {
+					&& (wirelessNetworkName
+							.contentEquals("GrinnellCollegeStudent") || wirelessNetworkName
+							.contentEquals("GrinnellCollegeWireless"))) {
 				inGrinnell = true;
 			} else {
 				inGrinnell = false;
