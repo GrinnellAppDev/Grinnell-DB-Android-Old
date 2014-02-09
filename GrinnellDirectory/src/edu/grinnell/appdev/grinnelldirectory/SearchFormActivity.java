@@ -9,6 +9,7 @@
 
 package edu.grinnell.appdev.grinnelldirectory;
 
+import com.crashlytics.android.Crashlytics;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -70,6 +71,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Crashlytics.start(this);
 		// TODO set view to splash screen
 		setContentView(R.layout.activity_search_form);
 
@@ -206,7 +208,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
 				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
 			// MESSAGE TO SCREEN FOR TESTING (IF REQ)
-			// Toast.makeText(this, connectionType + ��� connected���,
+			// Toast.makeText(this, connectionType + ??? connected???,
 			// Toast.LENGTH_SHORT).show();
 			return true;
 		} else if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
