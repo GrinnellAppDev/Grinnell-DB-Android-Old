@@ -51,7 +51,7 @@ public class ProfileDetailActivity extends SherlockFragmentActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		FlurryAgent.onStartSession(this, "YOUR_API_KEY");
+		FlurryAgent.onStartSession(this, "PRC5TVNX9DP7C9SVQDW3");
 	}
 
 	@Override
