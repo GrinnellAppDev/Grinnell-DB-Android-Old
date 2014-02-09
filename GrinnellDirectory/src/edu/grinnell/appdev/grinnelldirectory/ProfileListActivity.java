@@ -20,6 +20,7 @@ import android.support.v4.app.NavUtils;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.flurry.android.FlurryAgent;
 
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
@@ -28,7 +29,6 @@ public class ProfileListActivity extends SherlockFragmentActivity implements
 
 	private boolean mTwoPane;
 
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,8 +62,7 @@ public class ProfileListActivity extends SherlockFragmentActivity implements
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		overridePendingTransition(R.anim.right_slide_in,
-				R.anim.right_slide_out);
+		overridePendingTransition(R.anim.right_slide_in, R.anim.right_slide_out);
 	}
 
 	// Launches an intent, to display the selected item's Profile in a
@@ -104,6 +103,18 @@ public class ProfileListActivity extends SherlockFragmentActivity implements
 	public static void addToData(ArrayList<Profile> profileList) {
 		Profile.addToList(profileList);
 		ProfileListFragment.refresh();
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		FlurryAgent.onStartSession(this, "YOUR_API_KEY");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		FlurryAgent.onEndSession(this);
 	}
 
 }
