@@ -33,7 +33,8 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 	final public static int NO_ERROR = 0;
 	final public static int NO_ENTRIES = 1;
 	final public static int TOO_MANY_ENTRIES = 2;
-	final public static int OTHER = 3;
+	final public static int NO_RESPONSE_STRING = 3;
+	final public static int OTHER = 4;
 	
 	public int errorCode = NO_ERROR;
 
@@ -94,6 +95,10 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 			Toast toast = Toast.makeText(mActivity, "No results found",
 					Toast.LENGTH_LONG);
 			toast.show();
+		} else if (errorCode == NO_RESPONSE_STRING) {
+		    Toast toast = Toast.makeText(mActivity, "Netowrk Error. Please Try Again.",
+				Toast.LENGTH_LONG);
+		toast.show();
 		} else {
 			Intent listIntent = new Intent(mActivity, ProfileListActivity.class);
 			ProfileListActivity.setData(profileList);
@@ -146,7 +151,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 	// This method does not know how to handle the "too many entries" response
 	// and the off-campus response.
 	private boolean parseResponse() {
-
+	    if (responseString == null){
 		// Set up the tokenizer, seperating by token '\n'. You should find out
 		// what a tokenizer is.
 		StringTokenizer strTok = new StringTokenizer(responseString, "\n");
@@ -318,7 +323,12 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 			 * }
 			 */
 		}
-
+	    }
+	    //if(responseString==null)
+	    else {
+		errorCode = NO_RESPONSE_STRING;
+		return false;
+	    }
 	}
 
 	private String facStaffTitle(String title) {
