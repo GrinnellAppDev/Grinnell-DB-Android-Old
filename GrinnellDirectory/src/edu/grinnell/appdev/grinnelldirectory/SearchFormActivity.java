@@ -26,11 +26,12 @@ import android.support.v4.view.ViewPager;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.crashlytics.android.Crashlytics;
+import com.flurry.android.FlurryAgent;
 
 public class SearchFormActivity extends SherlockFragmentActivity {
 
@@ -70,6 +71,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Crashlytics.start(this);
 		// TODO set view to splash screen
 		setContentView(R.layout.activity_search_form);
 
@@ -100,15 +102,15 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		SearchFragmentAdapter fragmentAdapter = new SearchFragmentAdapter(fm);
 		// Set the View Pager Adapter into ViewPager
 		mPager.setAdapter(fragmentAdapter);
-		
+
 		// Capture tab button clicks
 		tabListener = new ActionBar.TabListener() {
 
 			@Override
 			public void onTabSelected(Tab tab, FragmentTransaction ft) {
-					// Pass the position on tab click to ViewPager
-					mPager.setCurrentItem(tab.getPosition());
-								}
+				// Pass the position on tab click to ViewPager
+				mPager.setCurrentItem(tab.getPosition());
+			}
 
 			@Override
 			public void onTabUnselected(Tab tab, FragmentTransaction ft) {
@@ -120,7 +122,6 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 				// TODO Auto-generated method stub
 			}
 		};
-
 
 		tab = mActionBar.newTab().setText("Simple Search");
 		tab.setTabListener(tabListener);
@@ -152,14 +153,15 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 			String wirelessNetworkName = wifiInfo.getSSID();
 			wirelessNetworkName = wirelessNetworkName.replaceAll("\"", "");
 			if (wirelessNetworkName != null
-					&& wirelessNetworkName
-							.contentEquals("GrinnellCollegeStudent")) {
+					&& (wirelessNetworkName
+							.contentEquals("GrinnellCollegeStudent") || wirelessNetworkName
+							.contentEquals("GrinnellCollegeWireless"))) {
 				inGrinnell = true;
 			} else {
 				inGrinnell = false;
 			}
 		}
-}
+	}
 
 	// Converts plain-text strings into HTTP-friendly strings.
 	public String cleanString(String str) {
@@ -205,7 +207,7 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
 				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
 			// MESSAGE TO SCREEN FOR TESTING (IF REQ)
-			// Toast.makeText(this, connectionType + ��� connected���,
+			// Toast.makeText(this, connectionType + ??? connected???,
 			// Toast.LENGTH_SHORT).show();
 			return true;
 		} else if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
@@ -255,5 +257,17 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 			} else
 				return null;
 		}
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		FlurryAgent.onStartSession(this, "PRC5TVNX9DP7C9SVQDW3");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		FlurryAgent.onEndSession(this);
 	}
 }
