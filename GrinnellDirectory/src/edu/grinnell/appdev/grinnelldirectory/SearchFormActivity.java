@@ -72,7 +72,6 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 
 		Crashlytics.start(this);
-		// TODO set view to splash screen
 		setContentView(R.layout.activity_search_form);
 
 		// Activate Navigation Mode Tabs

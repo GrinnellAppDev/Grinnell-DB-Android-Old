@@ -35,7 +35,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 	final public static int TOO_MANY_ENTRIES = 2;
 	final public static int NO_RESPONSE_STRING = 3;
 	final public static int OTHER = 4;
-	
+
 	public int errorCode = NO_ERROR;
 
 	private Context mActivity;
@@ -85,28 +85,29 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 
 		// dismiss loading..
 		loadingDialog.dismiss();
-		
+
 		if (errorCode == TOO_MANY_ENTRIES) {
-			Toast toast = Toast.makeText(mActivity,
-					"Too many results. Please refine search",
-					Toast.LENGTH_LONG);
+			Toast toast = Toast
+					.makeText(mActivity,
+							"Too many results. Please refine search",
+							Toast.LENGTH_LONG);
 			toast.show();
 		} else if (errorCode == NO_ENTRIES) {
 			Toast toast = Toast.makeText(mActivity, "No results found",
 					Toast.LENGTH_LONG);
 			toast.show();
 		} else if (errorCode == NO_RESPONSE_STRING) {
-		    Toast toast = Toast.makeText(mActivity, "Netowrk Error. Please Try Again.",
-				Toast.LENGTH_LONG);
-		toast.show();
+			Toast toast = Toast.makeText(mActivity,
+					"Netowrk Error. Please Try Again.", Toast.LENGTH_LONG);
+			toast.show();
 		} else {
 			Intent listIntent = new Intent(mActivity, ProfileListActivity.class);
 			ProfileListActivity.setData(profileList);
 			mActivity.startActivity(listIntent);
-			((Activity) mActivity).overridePendingTransition(R.anim.left_slide_in,
-					R.anim.left_slide_out);
+			((Activity) mActivity).overridePendingTransition(
+					R.anim.left_slide_in, R.anim.left_slide_out);
 		}
-		
+
 		super.onPostExecute(result);
 	}
 
@@ -151,7 +152,10 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 	// This method does not know how to handle the "too many entries" response
 	// and the off-campus response.
 	private boolean parseResponse() {
-	    if (responseString == null){
+		if (responseString == null) {
+			errorCode = NO_RESPONSE_STRING;
+			return false;
+		}
 		// Set up the tokenizer, seperating by token '\n'. You should find out
 		// what a tokenizer is.
 		StringTokenizer strTok = new StringTokenizer(responseString, "\n");
@@ -323,12 +327,6 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 			 * }
 			 */
 		}
-	    }
-	    //if(responseString==null)
-	    else {
-		errorCode = NO_RESPONSE_STRING;
-		return false;
-	    }
 	}
 
 	private String facStaffTitle(String title) {
