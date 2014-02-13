@@ -41,8 +41,13 @@ public class BasicSearchFragment extends SherlockFragment {
 
 		setHasOptionsMenu(true);
 
-		initializeViews(mActivity); // Initialize all of the variables.
+		
 		return mView;
+	}
+	
+	public void onResume(){
+	    super.onResume();
+	    initializeViews(mActivity); // Initialize all of the variables.
 	}
 
 	@Override
@@ -117,4 +122,12 @@ public class BasicSearchFragment extends SherlockFragment {
 		firstNameText.setText("");
 		lastNameText.setText("");
 	}
+	
+	@Override
+	public void onPause(){
+	    super.onPause();
+	    if(backgroundImage != null)
+		backgroundImage.setImageDrawable(null);
+	}
+	
 }
