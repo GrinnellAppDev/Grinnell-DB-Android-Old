@@ -19,7 +19,8 @@
         android:theme="@style/Theme.Grinnelldb" >
         <activity
             android:name=".SearchFormActivity"
-            android:label="@string/title_activity_search_form" >
+            android:label="@string/title_activity_search_form"
+            android:windowSoftInputMode="adjustPan|stateVisible" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
