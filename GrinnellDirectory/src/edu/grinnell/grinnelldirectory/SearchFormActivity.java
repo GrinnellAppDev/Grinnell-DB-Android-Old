@@ -7,7 +7,7 @@
  * 	It then launches a ListActivityIntent to display them.
  * **************************************/
 
-package edu.grinnell.appdev.grinnelldirectory;
+package edu.grinnell.grinnelldirectory;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,6 +32,8 @@ import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
+
+import edu.grinnell.appdev.grinnelldirectory.R;
 
 public class SearchFormActivity extends SherlockFragmentActivity {
 

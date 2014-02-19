@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Grinnelldb" >
         <activity
-            android:name=".SearchFormActivity"
+            android:name="edu.grinnell.grinnelldirectory.SearchFormActivity"
             android:label="@string/title_activity_search_form"
             android:windowSoftInputMode="adjustPan|stateVisible" >
             <intent-filter>
@@ -27,21 +27,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProfileListActivity"
+            android:name="edu.grinnell.grinnelldirectory.ProfileListActivity"
             android:label="@string/title_profile_list" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SearchFormActivity" />
         </activity>
         <activity
-            android:name=".ProfileDetailActivity"
+            android:name="edu.grinnell.grinnelldirectory.ProfileDetailActivity"
             android:label="@string/title_profile_detail" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ProfileListActivity" />
         </activity>
         <activity
-            android:name=".RequesttaskActivity"
+            android:name="edu.grinnell.grinnelldirectory.RequesttaskActivity"
             android:label="@string/title_activity_requesttask" >
         </activity>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="45894d9e8a6bc3b8513651d6de36159e2c836e51"/>

@@ -1,4 +1,4 @@
-package edu.grinnell.appdev.grinnelldirectory;
+package edu.grinnell.grinnelldirectory;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+
+import edu.grinnell.appdev.grinnelldirectory.R;
 
 /* A fragment off the Search Form Activity with a detailed search interface */
 public class DetailedSearchFragment extends SherlockFragment {

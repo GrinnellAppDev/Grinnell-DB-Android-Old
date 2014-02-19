@@ -10,7 +10,7 @@
  * The list data is stored staticly in the Profile class.
  * ***************************************/
 
-package edu.grinnell.appdev.grinnelldirectory;
+package edu.grinnell.grinnelldirectory;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,8 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 
-import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
+import edu.grinnell.appdev.grinnelldirectory.R;
+import edu.grinnell.grinnelldirectory.dummy.Profile;
 
 public class ProfileListActivity extends SherlockFragmentActivity implements
 		ProfileListFragment.Callbacks {
