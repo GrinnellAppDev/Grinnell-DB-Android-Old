@@ -148,14 +148,12 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 			noNetworkError();
 		} else {
 			// Determine whether on campus or not.
-			WifiManager wifiMgr = (WifiManager) mActivity
-					.getSystemService(Context.WIFI_SERVICE);
+			WifiManager wifiMgr = (WifiManager) mActivity.getSystemService(Context.WIFI_SERVICE);
 			WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
 			String wirelessNetworkName = wifiInfo.getSSID();
 			wirelessNetworkName = wirelessNetworkName.replaceAll("\"", "");
 			if (wirelessNetworkName != null
-					&& (wirelessNetworkName
-							.contentEquals("GrinnellCollegeStudent") || wirelessNetworkName
+					&& (wirelessNetworkName.contentEquals("GrinnellCollegeStudent") || wirelessNetworkName
 							.contentEquals("GrinnellCollegeWireless"))) {
 				inGrinnell = true;
 			} else {
@@ -205,18 +203,22 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 	 */
 	protected static boolean networkEnabled(ConnectivityManager connec) {
 		// ARE WE CONNECTED TO THE NET
-		if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
-				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
-			// MESSAGE TO SCREEN FOR TESTING (IF REQ)
-			// Toast.makeText(this, connectionType + ??? connected???,
-			// Toast.LENGTH_SHORT).show();
-			return true;
-		} else if (connec.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
-				|| connec.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
+
+		if (connec == null) {
 			return false;
 		}
-
-		return false;
+		try {
+			if (connec.getNetworkInfo(1) != null
+					&& connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED)
+				return true;
+			else if (connec.getNetworkInfo(0) != null
+					&& connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED)
+				return true;
+			else
+				return false;
+		} catch (NullPointerException exception) {
+			return false;
+		}
 	}
 
 	public void noNetworkError() {
@@ -224,13 +226,12 @@ public class SearchFormActivity extends SherlockFragmentActivity {
 		// set title
 		alertDialogBuilder.setTitle("No Internet Connection");
 		// set dialog message
-		alertDialogBuilder.setPositiveButton("Exit",
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						dialog.cancel();
-						finish();
-					}
-				});
+		alertDialogBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				dialog.cancel();
+				finish();
+			}
+		});
 		// create alert dialog
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		// show it
