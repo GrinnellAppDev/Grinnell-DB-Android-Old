@@ -298,10 +298,10 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 					// senator
 					for (int i = 0; i < 3; i++)
 						curTok = strTok.nextToken();
-					sgapos = curTok.substring(19, curTok.indexOf("</span>"));
-					for (int i = 0; i < 10; i++)
-						strTok.nextToken();
-					curTok = strTok.nextToken();
+					sgapos = curTok.substring(18, curTok.indexOf("</span>"));
+					while (!curTok.contains("window.open") && !curTok.contains("New Search") && !curTok.contains("style=\"text-align:center;\"")) {
+					    curTok = strTok.nextToken();
+					}
 				}
 
 				// Adds a new Profile to profileList containing all the newly
