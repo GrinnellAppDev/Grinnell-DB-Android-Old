@@ -252,6 +252,9 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 					// student/faculty status
 					if (curTok.charAt(37) != '<') {
 						phonenum = curTok.substring(37, 41);
+						if (phonenum.contains("-")) {
+						    phonenum = "";
+						}
 					} else {
 						phonenum = "";
 					}
