@@ -26,7 +26,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
-import edu.grinnell.appdev.grinnelldirectory.R;
 import edu.grinnell.grinnelldirectory.dummy.Profile;
 
 public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {

@@ -22,7 +22,6 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 
-import edu.grinnell.appdev.grinnelldirectory.R;
 import edu.grinnell.grinnelldirectory.dummy.Profile;
 
 public class ProfileListActivity extends SherlockFragmentActivity implements

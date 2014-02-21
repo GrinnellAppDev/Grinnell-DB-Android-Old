@@ -33,8 +33,6 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
 
-import edu.grinnell.appdev.grinnelldirectory.R;
-
 public class SearchFormActivity extends SherlockFragmentActivity {
 
 	int parserErrorMessage = RequestTask.NO_ERROR;

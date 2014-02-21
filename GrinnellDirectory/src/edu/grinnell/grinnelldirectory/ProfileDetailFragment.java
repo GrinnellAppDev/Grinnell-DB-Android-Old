@@ -23,7 +23,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
-import edu.grinnell.appdev.grinnelldirectory.R;
 import edu.grinnell.grinnelldirectory.dummy.Profile;
 
 public class ProfileDetailFragment extends SherlockFragment {

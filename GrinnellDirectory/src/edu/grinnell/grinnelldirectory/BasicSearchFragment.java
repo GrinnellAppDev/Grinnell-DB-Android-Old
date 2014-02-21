@@ -19,8 +19,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-import edu.grinnell.appdev.grinnelldirectory.R;
-
 /* A fragment off the Search Form Activity with a simple search interface */
 public class BasicSearchFragment extends SherlockFragment {
 	TextView firstNameText;
