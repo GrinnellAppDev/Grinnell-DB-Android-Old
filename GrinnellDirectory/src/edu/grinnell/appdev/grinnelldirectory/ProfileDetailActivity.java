@@ -1,4 +1,4 @@
-package edu.grinnell.grinnelldirectory;
+package edu.grinnell.appdev.grinnelldirectory;
 
 import android.content.Intent;
 import android.os.Bundle;

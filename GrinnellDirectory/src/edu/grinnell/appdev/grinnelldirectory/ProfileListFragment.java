@@ -7,7 +7,7 @@
  * 	-Includes custom profile adapter, ProfileAdapter, as nested class
  * ********************************************/
 
-package edu.grinnell.grinnelldirectory;
+package edu.grinnell.appdev.grinnelldirectory;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
-import edu.grinnell.grinnelldirectory.dummy.Profile;
+import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 public class ProfileListFragment extends SherlockListFragment {
 

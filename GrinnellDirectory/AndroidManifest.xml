@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.grinnell.grinnelldirectory"
-    android:versionCode="3"
+    package="edu.grinnell.appdev.grinnelldirectory"
+    android:versionCode="4"
     android:versionName="1.2.1" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Grinnelldb" >
         <activity
-            android:name="edu.grinnell.grinnelldirectory.SearchFormActivity"
+            android:name="edu.grinnell.appdev.grinnelldirectory.SearchFormActivity"
             android:label="@string/title_activity_search_form"
             android:windowSoftInputMode="adjustPan|stateVisible" >
             <intent-filter>
@@ -27,21 +27,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.grinnell.grinnelldirectory.ProfileListActivity"
+            android:name="edu.grinnell.appdev.grinnelldirectory.ProfileListActivity"
             android:label="@string/title_profile_list" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".SearchFormActivity" />
         </activity>
         <activity
-            android:name="edu.grinnell.grinnelldirectory.ProfileDetailActivity"
+            android:name="edu.grinnell.appdev.grinnelldirectory.ProfileDetailActivity"
             android:label="@string/title_profile_detail" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ProfileListActivity" />
         </activity>
         <activity
-            android:name="edu.grinnell.grinnelldirectory.RequesttaskActivity"
+            android:name="edu.grinnell.appdev.grinnelldirectory.RequesttaskActivity"
             android:label="@string/title_activity_requesttask" >
         </activity>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="45894d9e8a6bc3b8513651d6de36159e2c836e51"/>

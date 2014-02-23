@@ -5,7 +5,7 @@
  * It returns an ArrayList of Profiles of the entries.
  * ***************************************************/
 
-package edu.grinnell.grinnelldirectory;
+package edu.grinnell.appdev.grinnelldirectory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -26,7 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
-import edu.grinnell.grinnelldirectory.dummy.Profile;
+import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 
