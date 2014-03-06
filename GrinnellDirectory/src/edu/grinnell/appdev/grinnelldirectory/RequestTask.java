@@ -84,7 +84,12 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 	protected void onPostExecute(ArrayList<Profile> result) {
 
 		// dismiss loading..
-		loadingDialog.dismiss();
+	    if (loadingDialog != null) {
+		if (loadingDialog.isShowing()) {
+		    loadingDialog.dismiss();
+		}
+	    }
+		
 
 		if (errorCode == TOO_MANY_ENTRIES) {
 			Toast toast = Toast
