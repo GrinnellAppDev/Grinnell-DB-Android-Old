@@ -35,239 +35,247 @@ import com.flurry.android.FlurryAgent;
 
 public class SearchFormActivity extends SherlockFragmentActivity {
 
-	int parserErrorMessage = RequestTask.NO_ERROR;
+    int parserErrorMessage = RequestTask.NO_ERROR;
 
-	Context mActivity = this;
+    Context mActivity = this;
 
-	// Fields in the layout
-	TextView firstNameText;
-	TextView lastNameText;
-	TextView usernameText;
-	TextView phoneText;
-	TextView campusAddressText;
-	TextView homeAddressText;
-	Spinner facDeptSpinner;
-	Spinner studentMajorSpinner;
-	Spinner concentrationSpinner;
-	Spinner sgaSpinner;
-	Spinner haitusSpinner;
-	Spinner studentClassSpinner;
-	Button submitButton;
+    // Fields in the layout
+    TextView firstNameText;
+    TextView lastNameText;
+    TextView usernameText;
+    TextView phoneText;
+    TextView campusAddressText;
+    TextView homeAddressText;
+    Spinner facDeptSpinner;
+    Spinner studentMajorSpinner;
+    Spinner concentrationSpinner;
+    Spinner sgaSpinner;
+    Spinner haitusSpinner;
+    Spinner studentClassSpinner;
+    Button submitButton;
 
-	ViewPager mPager;
-	ActionBar mActionBar;
-	Tab tab;
+    ViewPager mPager;
+    ActionBar mActionBar;
+    Tab tab;
 
-	ActionBar.TabListener tabListener;
+    ActionBar.TabListener tabListener;
 
-	static Boolean inGrinnell = true;
+    static Boolean inGrinnell = true;
 
-	// An intent for ProfileListActivity
-	Intent listIntent;
+    // An intent for ProfileListActivity
+    Intent listIntent;
 
-	public static final int NETWORK = 3;
+    public static final int NETWORK = 3;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
 
-		Crashlytics.start(this);
-		setContentView(R.layout.activity_search_form);
+	Crashlytics.start(this);
+	setContentView(R.layout.activity_search_form);
 
-		// Activate Navigation Mode Tabs
-		mActionBar = getSupportActionBar();
-		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	// Activate Navigation Mode Tabs
+	mActionBar = getSupportActionBar();
+	mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-		// Locate ViewPager in activity_main.xml
-		mPager = (ViewPager) findViewById(R.id.pager);
+	// Locate ViewPager in activity_main.xml
+	mPager = (ViewPager) findViewById(R.id.pager);
 
-		setTitle("");
+	setTitle("");
 
-		// Activate Fragment Manager
-		FragmentManager fm = getSupportFragmentManager();
+	// Activate Fragment Manager
+	FragmentManager fm = getSupportFragmentManager();
 
-		// Capture ViewPager page swipes
-		ViewPager.SimpleOnPageChangeListener ViewPagerListener = new ViewPager.SimpleOnPageChangeListener() {
-			@Override
-			public void onPageSelected(int position) {
-				super.onPageSelected(position);
-				// Find the ViewPager Position
-				mActionBar.setSelectedNavigationItem(position);
-			}
-		};
+	// Capture ViewPager page swipes
+	ViewPager.SimpleOnPageChangeListener ViewPagerListener = new ViewPager.SimpleOnPageChangeListener() {
+	    @Override
+	    public void onPageSelected(int position) {
+		super.onPageSelected(position);
+		// Find the ViewPager Position
+		mActionBar.setSelectedNavigationItem(position);
+	    }
+	};
 
-		mPager.setOnPageChangeListener(ViewPagerListener);
-		// Locate the adapter class called ViewPagerAdapter.java
-		SearchFragmentAdapter fragmentAdapter = new SearchFragmentAdapter(fm);
-		// Set the View Pager Adapter into ViewPager
-		mPager.setAdapter(fragmentAdapter);
+	mPager.setOnPageChangeListener(ViewPagerListener);
+	// Locate the adapter class called ViewPagerAdapter.java
+	SearchFragmentAdapter fragmentAdapter = new SearchFragmentAdapter(fm);
+	// Set the View Pager Adapter into ViewPager
+	mPager.setAdapter(fragmentAdapter);
 
-		// Capture tab button clicks
-		tabListener = new ActionBar.TabListener() {
+	// Capture tab button clicks
+	tabListener = new ActionBar.TabListener() {
 
-			@Override
-			public void onTabSelected(Tab tab, FragmentTransaction ft) {
-				// Pass the position on tab click to ViewPager
-				mPager.setCurrentItem(tab.getPosition());
-			}
+	    @Override
+	    public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		// Pass the position on tab click to ViewPager
+		mPager.setCurrentItem(tab.getPosition());
+	    }
 
-			@Override
-			public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-				// TODO Auto-generated method stub
-			}
+	    @Override
+	    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+	    }
 
-			@Override
-			public void onTabReselected(Tab tab, FragmentTransaction ft) {
-				// TODO Auto-generated method stub
-			}
-		};
+	    @Override
+	    public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+	    }
+	};
 
-		tab = mActionBar.newTab().setText("Simple Search");
-		tab.setTabListener(tabListener);
-		mActionBar.addTab(tab);
+	tab = mActionBar.newTab().setText("Simple Search");
+	tab.setTabListener(tabListener);
+	mActionBar.addTab(tab);
 
-		// Create first Tab
-		tab = mActionBar.newTab().setText("Detailed Search");
-		tab.setTabListener(tabListener);
-		mActionBar.addTab(tab);
+	// Create first Tab
+	tab = mActionBar.newTab().setText("Detailed Search");
+	tab.setTabListener(tabListener);
+	mActionBar.addTab(tab);
 
-	}
+    }
 
-	@Override
-	public void onResume() {
-		super.onResume();
+    @Override
+    public void onResume() {
+	super.onResume();
 
-		ConnectivityManager cm = (ConnectivityManager) this
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
+	ConnectivityManager cm = (ConnectivityManager) this
+		.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-		// check connections before downloading..
+	// check connections before downloading..
 
-		if (!networkEnabled(cm)) {
-			noNetworkError();
+	if (!networkEnabled(cm)) {
+	    noNetworkError();
+	} else {
+	    // Determine whether on campus or not.
+	    WifiManager wifiMgr = (WifiManager) mActivity
+		    .getSystemService(Context.WIFI_SERVICE);
+	    WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
+	    String wirelessNetworkName = wifiInfo.getSSID();
+	    if (wirelessNetworkName != null) {
+
+		wirelessNetworkName = wirelessNetworkName.replaceAll("\"", "");
+
+		if (wirelessNetworkName.contentEquals("GrinnellCollegeStudent")
+			|| wirelessNetworkName
+				.contentEquals("GrinnellCollegeWireless")) {
+		    inGrinnell = true;
 		} else {
-			// Determine whether on campus or not.
-			WifiManager wifiMgr = (WifiManager) mActivity.getSystemService(Context.WIFI_SERVICE);
-			WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
-			String wirelessNetworkName = wifiInfo.getSSID();
-			wirelessNetworkName = wirelessNetworkName.replaceAll("\"", "");
-			if (wirelessNetworkName != null
-					&& (wirelessNetworkName.contentEquals("GrinnellCollegeStudent") || wirelessNetworkName
-							.contentEquals("GrinnellCollegeWireless"))) {
-				inGrinnell = true;
-			} else {
-				inGrinnell = false;
-			}
+		    inGrinnell = false;
 		}
+	    } else {
+		inGrinnell = false;
+	    }
+	}
+    }
+
+    // Converts plain-text strings into HTTP-friendly strings.
+    public String cleanString(String str) {
+	if (str.length() >= 4 && str.substring(0, 3).equals("Any")) {
+	    return "";
+	}
+	str = str.replace(" ", "+");
+	str = str.replace(",", "%2C");
+	str = str.replace("&", "%26");
+	str = str.replace("\n", "");
+	if (str.length() > 36) {
+	    str = str.substring(0, 35);
+	}
+	return str;
+    }
+
+    /**
+     * Takes the string from the hiatus spinner and formats it for the http
+     * request
+     */
+    public String cleanHiatus(String str) {
+	if (str.substring(0, 3).equals("Any")) {
+	    str = "";
+	} else if (str.equals("Engineering")) {
+	    str = "ENGR";
+	} else if (str.equals("Grinnell In London")) {
+	    str = "GIL";
+	} else if (str.equals("Grinnell In Washington")) {
+	    str = "GIW";
+	} else if (str.equals("Off Campus Study")) {
+	    str = "ACLV";
 	}
 
-	// Converts plain-text strings into HTTP-friendly strings.
-	public String cleanString(String str) {
-		if (str.length() >= 4 && str.substring(0, 3).equals("Any")) {
-			return "";
-		}
-		str = str.replace(" ", "+");
-		str = str.replace(",", "%2C");
-		str = str.replace("&", "%26");
-		str = str.replace("\n", "");
-		if (str.length() > 36) {
-			str = str.substring(0, 35);
-		}
-		return str;
+	return str;
+    }
+
+    /*
+     * Return true if the device has a network adapter that is capable of
+     * accessing the network.
+     */
+    protected static boolean networkEnabled(ConnectivityManager connec) {
+	// ARE WE CONNECTED TO THE NET
+
+	if (connec == null) {
+	    return false;
 	}
-
-	/**
-	 * Takes the string from the hiatus spinner and formats it for the http
-	 * request
-	 */
-	public String cleanHiatus(String str) {
-		if (str.substring(0, 3).equals("Any")) {
-			str = "";
-		} else if (str.equals("Engineering")) {
-			str = "ENGR";
-		} else if (str.equals("Grinnell In London")) {
-			str = "GIL";
-		} else if (str.equals("Grinnell In Washington")) {
-			str = "GIW";
-		} else if (str.equals("Off Campus Study")) {
-			str = "ACLV";
-		}
-
-		return str;
+	try {
+	    if (connec.getNetworkInfo(1) != null
+		    && connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED)
+		return true;
+	    else if (connec.getNetworkInfo(0) != null
+		    && connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED)
+		return true;
+	    else
+		return false;
+	} catch (NullPointerException exception) {
+	    return false;
 	}
+    }
 
-	/*
-	 * Return true if the device has a network adapter that is capable of
-	 * accessing the network.
-	 */
-	protected static boolean networkEnabled(ConnectivityManager connec) {
-		// ARE WE CONNECTED TO THE NET
-
-		if (connec == null) {
-			return false;
-		}
-		try {
-			if (connec.getNetworkInfo(1) != null
-					&& connec.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED)
-				return true;
-			else if (connec.getNetworkInfo(0) != null
-					&& connec.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED)
-				return true;
-			else
-				return false;
-		} catch (NullPointerException exception) {
-			return false;
-		}
-	}
-
-	public void noNetworkError() {
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-		// set title
-		alertDialogBuilder.setTitle("No Internet Connection");
-		// set dialog message
-		alertDialogBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				dialog.cancel();
-				finish();
-			}
+    public void noNetworkError() {
+	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+	// set title
+	alertDialogBuilder.setTitle("No Internet Connection");
+	// set dialog message
+	alertDialogBuilder.setPositiveButton("Exit",
+		new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int id) {
+			dialog.cancel();
+			finish();
+		    }
 		});
-		// create alert dialog
-		AlertDialog alertDialog = alertDialogBuilder.create();
-		// show it
-		alertDialog.show();
-	}
+	// create alert dialog
+	AlertDialog alertDialog = alertDialogBuilder.create();
+	// show it
+	alertDialog.show();
+    }
 
-	// Fragment pager adapter for the search forms
-	public static class SearchFragmentAdapter extends FragmentPagerAdapter {
+    // Fragment pager adapter for the search forms
+    public static class SearchFragmentAdapter extends FragmentPagerAdapter {
 
-		public SearchFragmentAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public int getCount() {
-			return 2;
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			if (position == 0) {
-				return new BasicSearchFragment();
-			} else if (position == 1) {
-				return new DetailedSearchFragment();
-			} else
-				return null;
-		}
+	public SearchFragmentAdapter(FragmentManager fm) {
+	    super(fm);
 	}
 
 	@Override
-	protected void onStart() {
-		super.onStart();
-		FlurryAgent.onStartSession(this, "PRC5TVNX9DP7C9SVQDW3");
+	public int getCount() {
+	    return 2;
 	}
 
 	@Override
-	protected void onStop() {
-		super.onStop();
-		FlurryAgent.onEndSession(this);
+	public Fragment getItem(int position) {
+	    if (position == 0) {
+		return new BasicSearchFragment();
+	    } else if (position == 1) {
+		return new DetailedSearchFragment();
+	    } else
+		return null;
 	}
+    }
+
+    @Override
+    protected void onStart() {
+	super.onStart();
+	FlurryAgent.onStartSession(this, "PRC5TVNX9DP7C9SVQDW3");
+    }
+
+    @Override
+    protected void onStop() {
+	super.onStop();
+	FlurryAgent.onEndSession(this);
+    }
 }
