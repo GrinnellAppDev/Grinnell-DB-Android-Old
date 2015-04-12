@@ -17,14 +17,14 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
-public class ProfileListActivity extends SherlockFragmentActivity implements
+public class ProfileListActivity extends ActionBarActivity implements
 		ProfileListFragment.Callbacks {
 
 	private boolean mTwoPane;

@@ -3,8 +3,12 @@ package edu.grinnell.appdev.grinnelldirectory;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -14,13 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
 /* A fragment off the Search Form Activity with a simple search interface */
-public class BasicSearchFragment extends SherlockFragment {
+public class BasicSearchFragment extends Fragment {
 	TextView firstNameText;
 	TextView lastNameText;
 	Button submitButton;

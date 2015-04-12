@@ -180,6 +180,8 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 			curTok = strTok.nextToken();
 		}
 
+        onCampus = true;
+
 		// If line 88 contains these strings, there were 0 results or too many
 		// results
 		if (curTok.contains("very")) {
@@ -191,11 +193,15 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 		} else {
 
 			// skip useless information
-			for (int i = 0; i < 9; i++)
-				strTok.nextToken();
-			curTok = strTok.nextToken();
+			for (int i = 0; i < 8; i++)
+				curTok = strTok.nextToken();
+            if (onCampus) {
+                curTok = strTok.nextToken();
+                curTok = strTok.nextToken();
+            }
 
-			// If a next page button exsts, then there is a next page.
+
+            // If a next page button exsts, then there is a next page.
 			// Grab URL of next pageand set return value of method to true.
 			if (curTok.contains("Next Page")) {
 				anotherPage = true;

@@ -12,20 +12,20 @@ package edu.grinnell.appdev.grinnelldirectory;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
-public class ProfileDetailFragment extends SherlockFragment {
+public class ProfileDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";
 

@@ -19,7 +19,7 @@
 
 <resources>
 
-    <style name="Theme.Grinnelldb" parent="@style/Theme.Sherlock.Light">
+    <style name="Theme.Grinnelldb" parent="@style/Theme.AppCompat.Light">
         <item name="actionBarItemBackground">@drawable/selectable_background_grinnelldb</item>
         <item name="popupMenuStyle">@style/PopupMenu.Grinnelldb</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Grinnelldb</item>
@@ -33,46 +33,48 @@
         
     </style>
 
-    <style name="ActionBar.Solid.Grinnelldb" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
+    <style name="ActionBar.Solid.Grinnelldb" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="background">@drawable/ab_solid_grinnelldb</item>
         <item name="backgroundStacked">@drawable/ab_stacked_solid_grinnelldb</item>
         <item name="backgroundSplit">@drawable/ab_bottom_solid_grinnelldb</item>
-        <item name="progressBarStyle">@style/ProgressBar.Grinnelldb</item>
+        <!--<item name="progressBarStyle">@style/ProgressBar.Grinnelldb</item>-->
     </style>
 
-    <style name="ActionBar.Transparent.Grinnelldb" parent="@style/Widget.Sherlock.Light.ActionBar">
+    <style name="ActionBar.Transparent.Grinnelldb" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="background">@drawable/ab_transparent_grinnelldb</item>
-        <item name="progressBarStyle">@style/ProgressBar.Grinnelldb</item>
+        <!--<item name="progressBarStyle">@style/ProgressBar.Grinnelldb</item>-->
     </style>
 	
-    <style name="PopupMenu.Grinnelldb" parent="@style/Widget.Sherlock.Light.ListPopupWindow">	
+    <style name="PopupMenu.Grinnelldb" parent="@style/Widget.AppCompat.Light.ListPopupWindow">
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_grinnelldb</item>	
     </style>
 	
-    <style name="DropDownListView.Grinnelldb" parent="@style/Widget.Sherlock.Light.ListView.DropDown">
+    <style name="DropDownListView.Grinnelldb" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
         <item name="android:listSelector">@drawable/selectable_background_grinnelldb</item>
     </style>
 
-    <style name="ActionBarTabStyle.Grinnelldb" parent="@style/Widget.Sherlock.Light.ActionBar.TabView">
+    <style name="ActionBarTabStyle.Grinnelldb" parent="@style/Widget.AppCompat.Light.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_grinnelldb</item>
     </style>
 	
-    <style name="DropDownNav.Grinnelldb" parent="@style/Widget.Sherlock.Light.Spinner.DropDown.ActionBar">
+    <style name="DropDownNav.Grinnelldb" parent="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar">
         <item name="android:background">@drawable/spinner_background_ab_grinnelldb</item>
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_grinnelldb</item>
         <item name="android:dropDownSelector">@drawable/selectable_background_grinnelldb</item>
     </style>
-    
-    <style name="ProgressBar.Grinnelldb" parent="@style/Widget.Sherlock.Light.ProgressBar.Horizontal">
+
+    <!--
+    <style name="ProgressBar.Grinnelldb" parent="@style/Widget.AppCompat.Light.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_grinnelldb</item>
     </style>
+    -->
     
-    <style name="ActionButton.CloseMode.Grinnelldb" parent="@style/Widget.Sherlock.Light.ActionButton.CloseMode">
+    <style name="ActionButton.CloseMode.Grinnelldb" parent="@style/Widget.AppCompat.Light.ActionButton.CloseMode">
         <item name="android:background">@drawable/btn_cab_done_grinnelldb</item>
     </style>
     
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <style name="Theme.Grinnelldb.Widget" parent="@style/Theme.Sherlock">
+    <style name="Theme.Grinnelldb.Widget" parent="@style/Theme.AppCompat">
         <item name="popupMenuStyle">@style/PopupMenu.Grinnelldb</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Grinnelldb</item>
     </style>

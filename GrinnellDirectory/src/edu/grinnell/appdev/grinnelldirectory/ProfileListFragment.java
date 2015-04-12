@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockListFragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
@@ -31,7 +31,7 @@ import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
-public class ProfileListFragment extends SherlockListFragment {
+public class ProfileListFragment extends ListFragment {
 
 	public static ProfileAdapter profileAdapter;
 	private ImageLoader imageLoader;
