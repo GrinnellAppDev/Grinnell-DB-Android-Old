@@ -23,9 +23,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
+import android.support.v7.app.ActionBarActivity;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -76,6 +76,8 @@ public class SearchFormActivity extends ActionBarActivity {
 
 		// Activate Navigation Mode Tabs
 		mActionBar = getSupportActionBar();
+//        mActionBar.setIcon(R.drawable.icon_launcher);
+//        mActionBar.setDisplayShowHomeEnabled(true);
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Locate ViewPager in activity_main.xml

@@ -41,13 +41,27 @@ public class BasicSearchFragment extends Fragment {
 
 		setHasOptionsMenu(true);
 
+        initializeViews(mActivity);
+
+        backgroundImage = (ImageView) mView.findViewById(R.id.background_image);
+
+        int backgroundNum = (int) (Math.random() * 5);
+        if (backgroundNum == 0) {
+            backgroundImage.setImageResource(R.drawable.jrc);
+        } else if (backgroundNum == 1)
+            backgroundImage.setImageResource(R.drawable.arh);
+        else if (backgroundNum == 2)
+            backgroundImage.setImageResource(R.drawable.main);
+        else if (backgroundNum == 3)
+            backgroundImage.setImageResource(R.drawable.gates);
+        else
+            backgroundImage.setImageResource(R.drawable.east);
 		
 		return mView;
 	}
 	
 	public void onResume(){
-	    super.onResume();
-	    initializeViews(mActivity); // Initialize all of the variables.
+	    super.onResume();// Initialize all of the variables.
 	}
 
 	@Override
@@ -72,19 +86,6 @@ public class BasicSearchFragment extends Fragment {
 	public void initializeViews(Context c) {
 		firstNameText = (TextView) mView.findViewById(R.id.first_text);
 		lastNameText = (TextView) mView.findViewById(R.id.last_text);
-		backgroundImage = (ImageView) mView.findViewById(R.id.background_image);
-
-		int backgroundNum = (int) (Math.random() * 5);
-		if (backgroundNum == 0) {
-			backgroundImage.setImageResource(R.drawable.jrc);
-		} else if (backgroundNum == 1)
-			backgroundImage.setImageResource(R.drawable.arh);
-		else if (backgroundNum == 2)
-			backgroundImage.setImageResource(R.drawable.main);
-		else if (backgroundNum == 3)
-			backgroundImage.setImageResource(R.drawable.gates);
-		else
-			backgroundImage.setImageResource(R.drawable.east);
 
 		OnEditorActionListener editTextListener = new OnEditorActionListener() {
 			@Override
@@ -126,8 +127,6 @@ public class BasicSearchFragment extends Fragment {
 	@Override
 	public void onPause(){
 	    super.onPause();
-	    if(backgroundImage != null)
-		backgroundImage.setImageDrawable(null);
 	}
 	
 }

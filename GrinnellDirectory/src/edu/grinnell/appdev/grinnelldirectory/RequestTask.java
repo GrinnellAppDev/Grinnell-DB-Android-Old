@@ -7,10 +7,12 @@
 
 package edu.grinnell.appdev.grinnelldirectory;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -20,12 +22,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.widget.Toast;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
 public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
@@ -168,37 +171,41 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 		// boolean indicating if there exists a next page.
 		boolean anotherPage = false;
 		boolean onCampus = false;
+        curTok = strTok.nextToken();
+        while (!curTok.contains("<p>")) {
+            curTok = strTok.nextToken();
+        }
+
+        if (curTok.contains("pages")) {
+            errorCode = TOO_MANY_ENTRIES;
+            return false;
+        } else if (curTok.contains("<strong>no</strong>")) {
+            errorCode = NO_ENTRIES;
+            return false;
+        }
 
 		// skip useless information
-		for (int i = 0; i < 85; i++)
-			strTok.nextToken();
+		for (int i = 0; i < 9; i++) {
+            strTok.nextToken();
+        }
 		curTok = strTok.nextToken();
 
-		if (curTok.contains("<td")) {
-			onCampus = true;
+		if (!responseString.contains("off campus viewers")) {
+            onCampus = true;
 			strTok.nextToken();
 			curTok = strTok.nextToken();
 		}
 
-        onCampus = true;
-
 		// If line 88 contains these strings, there were 0 results or too many
 		// results
-		if (curTok.contains("very")) {
-			errorCode = TOO_MANY_ENTRIES;
-			return false;
-		} else if (curTok.contains("<strong>no</strong>")) {
-			errorCode = NO_ENTRIES;
-			return false;
-		} else {
 
-			// skip useless information
-			for (int i = 0; i < 8; i++)
-				curTok = strTok.nextToken();
-            if (onCampus) {
-                curTok = strTok.nextToken();
-                curTok = strTok.nextToken();
-            }
+//			// skip useless information
+//			for (int i = 0; i < 8; i++)
+//				curTok = strTok.nextToken();
+//            if (onCampus) {
+//                curTok = strTok.nextToken();
+//                curTok = strTok.nextToken();
+//            }
 
 
             // If a next page button exsts, then there is a next page.
@@ -212,8 +219,9 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 				curTok = strTok.nextToken();
 			} else {
 				anotherPage = false;
-				for (int i = 0; i < 20; i++)
-					strTok.nextToken();
+				for (int i = 0; i < 20; i++) {
+                    strTok.nextToken();
+                }
 				curTok = strTok.nextToken();
 			}
 
@@ -240,7 +248,9 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 							curTok.substring(40).indexOf('>') + 41, curTok
 									.substring(40).indexOf('<') + 40);
 				} else {
-					fullName = curTok.substring(35, curTok.indexOf("</TD>"));
+                    String rawName = dataParser(curTok);
+                    fullName = rawName;
+//					fullName = curTok.substring(35, curTok.indexOf("</TD>"));
 				}
 				firstName = fullName.substring(0, fullName.indexOf(','));
 				lastName = fullName.substring(fullName.indexOf(',') + 2);
@@ -340,9 +350,18 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 			 * 
 			 * }
 			 */
-		}
 	}
 
+    private String dataParser (String str) {
+        String match = ">([A-z].*?)<";
+        Pattern pattern = Pattern.compile(match);
+        Matcher m = pattern.matcher(str);
+        if (m.find()) {
+            return m.group(0).substring(1, m.group(0).length() - 1);
+        } else {
+            return  null;
+        }
+    }
 	private String facStaffTitle(String title) {
 		boolean inBracket = false;
 		String tmp = "";
