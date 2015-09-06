@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 
 /* A fragment off the Search Form Activity with a simple search interface */
@@ -111,12 +112,16 @@ public class BasicSearchFragment extends Fragment {
 		// hide keyboard
 		imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
-		String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
-				+ mActivity.cleanString(lastNameText.getText().toString())
-				+ "&LNameSearch=startswith&FirstName="
-				+ mActivity.cleanString(firstNameText.getText().toString());
-
-		new RequestTask(mActivity).execute(theURL);
+		if (firstNameText.getText().toString().isEmpty() && lastNameText.getText().toString().isEmpty()) {
+			Toast.makeText(getActivity(), "Please enter either a first or last name to proceed.", Toast.LENGTH_SHORT).show();
+		} else {
+			String theURL = "https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName="
+					+ mActivity.cleanString(lastNameText.getText().toString())
+					+ "&LNameSearch=startswith&FirstName="
+					+ mActivity.cleanString(firstNameText.getText().toString());
+			theURL = "http://samee.ninja/db.html";
+			new RequestTask(mActivity).execute(theURL);
+		}
 	}
 
 	public void clearFields() {

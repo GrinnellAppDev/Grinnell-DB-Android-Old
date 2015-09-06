@@ -171,6 +171,13 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 		// boolean indicating if there exists a next page.
 		boolean anotherPage = false;
 		boolean onCampus = false;
+
+		if (!responseString.contains("off campus viewers")) {
+			onCampus = true;
+			strTok.nextToken();
+			curTok = strTok.nextToken();
+		}
+
         curTok = strTok.nextToken();
         while (!curTok.contains("<p>")) {
             curTok = strTok.nextToken();
@@ -190,11 +197,6 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
         }
 		curTok = strTok.nextToken();
 
-		if (!responseString.contains("off campus viewers")) {
-            onCampus = true;
-			strTok.nextToken();
-			curTok = strTok.nextToken();
-		}
 
 		// If line 88 contains these strings, there were 0 results or too many
 		// results
@@ -251,6 +253,10 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
                     String rawName = dataParser(curTok);
                     fullName = rawName;
 //					fullName = curTok.substring(35, curTok.indexOf("</TD>"));
+				}
+				if (fullName == null) {
+					errorCode = NO_ENTRIES;
+					return false;
 				}
 				firstName = fullName.substring(0, fullName.indexOf(','));
 				lastName = fullName.substring(fullName.indexOf(',') + 2);
@@ -352,16 +358,85 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 			 */
 	}
 
-    private String dataParser (String str) {
-        String match = ">([A-z].*?)<";
-        Pattern pattern = Pattern.compile(match);
-        Matcher m = pattern.matcher(str);
-        if (m.find()) {
-            return m.group(0).substring(1, m.group(0).length() - 1);
-        } else {
-            return  null;
-        }
-    }
+	private String onCampusParse(StringTokenizer strTok) {
+		//Skip stuff we don't need
+		String stringBeingParsed;
+		String curTok, picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos;
+
+		for (int i = 0; i < 58; i++) {
+			strTok.nextToken();
+		}
+		int numOfResults = Integer.parseInt(numberParser(strTok.nextToken()));
+
+
+		for (int i = 0; i < 43; i++) {
+			strTok.nextToken();
+		}
+
+		for (int i = 0; i < numOfResults; i++) {
+			stringBeingParsed = strTok.nextToken();
+
+			String[] nameEmailRole = nameEmailRoleParser(stringBeingParsed);
+			String fullName = nameEmailRole[0].trim();
+			firstName = fullName.substring(fullName.indexOf(','), fullName.length());
+			lastName = fullName.substring(0, fullName.indexOf(','));
+			username = nameEmailRole[1];
+			stufacstatus = nameEmailRole[2];
+
+
+		}
+
+
+
+		return null;
+	}
+
+	private String numberParser(String str) {
+		String match = "[0-9]+";
+		Pattern pattern = Pattern.compile("-?\\d+");
+		Matcher m = pattern.matcher(str);
+		while (m.find()) {
+			return m.group(0);
+		}
+		return null;
+	}
+
+	private static String stripBrackets(String str) {
+		return str.substring(1, str.length() - 1);
+	}
+
+	private static String imageParser(String str) {
+		Pattern pattern = Pattern.compile("-?\\d+");
+		Matcher m = pattern.matcher(str);
+		while (m.find()) {
+			return m.group(0);
+		}
+		return null;
+	}
+
+	private static String[] nameEmailRoleParser (String str) {
+		int addIndex = 0;
+		String[] returnArr = new String[3];
+		String match = ">([A-z].*?)<";
+		Pattern pattern = Pattern.compile(match);
+		Matcher m = pattern.matcher(str);
+		while (m.find()) {
+			returnArr[addIndex++] = stripBrackets(m.group());
+		}
+		return returnArr;
+	}
+
+	private String dataParser (String str) {
+		String match = ">([A-z].*?)<";
+		Pattern pattern = Pattern.compile(match);
+		Matcher m = pattern.matcher(str);
+		if (m.find()) {
+			return m.group(0).substring(1, m.group(0).length() - 1);
+		} else {
+			return  null;
+		}
+	}
+
 	private String facStaffTitle(String title) {
 		boolean inBracket = false;
 		String tmp = "";

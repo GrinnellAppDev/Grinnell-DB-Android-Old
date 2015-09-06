@@ -74,10 +74,10 @@ public class SearchFormActivity extends ActionBarActivity {
 		Crashlytics.start(this);
 		setContentView(R.layout.activity_search_form);
 
+//        mToolbar = (Toolbar) findViewById(R.id.toolbar);
 		// Activate Navigation Mode Tabs
-		mActionBar = getSupportActionBar();
-//        mActionBar.setIcon(R.drawable.icon_launcher);
-//        mActionBar.setDisplayShowHomeEnabled(true);
+        mActionBar = getSupportActionBar();
+        mActionBar.setDisplayShowHomeEnabled(true);
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Locate ViewPager in activity_main.xml
