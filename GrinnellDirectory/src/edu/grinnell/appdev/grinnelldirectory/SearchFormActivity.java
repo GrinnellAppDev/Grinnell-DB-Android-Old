@@ -77,8 +77,8 @@ public class SearchFormActivity extends ActionBarActivity {
 //        mToolbar = (Toolbar) findViewById(R.id.toolbar);
 		// Activate Navigation Mode Tabs
         mActionBar = getSupportActionBar();
-        mActionBar.setDisplayShowHomeEnabled(true);
-		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+//        mActionBar.setDisplayShowHomeEnabled(true);
+//		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Locate ViewPager in activity_main.xml
 		mPager = (ViewPager) findViewById(R.id.pager);
