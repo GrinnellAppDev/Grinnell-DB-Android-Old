@@ -77,13 +77,14 @@ public class SearchFormActivity extends ActionBarActivity {
 //        mToolbar = (Toolbar) findViewById(R.id.toolbar);
 		// Activate Navigation Mode Tabs
         mActionBar = getSupportActionBar();
-        mActionBar.setDisplayShowHomeEnabled(true);
+        mActionBar.setLogo(R.drawable.icon_launcher);
+		mActionBar.setDefaultDisplayHomeAsUpEnabled(true);
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Locate ViewPager in activity_main.xml
 		mPager = (ViewPager) findViewById(R.id.pager);
-
-		setTitle("");
+		setTitle("Search");
+//		mActionBar.setIcon(R.drawable.icon_launcher);
 
 		// Activate Fragment Manager
 		FragmentManager fm = getSupportFragmentManager();
