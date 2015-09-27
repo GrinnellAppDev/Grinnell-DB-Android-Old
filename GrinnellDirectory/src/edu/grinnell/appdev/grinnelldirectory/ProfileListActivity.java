@@ -12,8 +12,6 @@
 
 package edu.grinnell.appdev.grinnelldirectory;
 
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -21,6 +19,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import com.flurry.android.FlurryAgent;
+
+import java.util.ArrayList;
 
 import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
 
@@ -34,6 +34,7 @@ public class ProfileListActivity extends ActionBarActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile_list);
 		setTitle("");
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// Tablet 2-pane support
 		if (findViewById(R.id.profile_detail_container) != null) {

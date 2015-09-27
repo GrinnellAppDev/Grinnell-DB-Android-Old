@@ -106,7 +106,7 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 			toast.show();
 		} else if (errorCode == NO_RESPONSE_STRING) {
 			Toast toast = Toast.makeText(mActivity,
-					"Netowrk Error. Please Try Again.", Toast.LENGTH_LONG);
+					"Network Error. Please Try Again.", Toast.LENGTH_LONG);
 			toast.show();
 		} else {
 			Intent listIntent = new Intent(mActivity, ProfileListActivity.class);
@@ -153,7 +153,6 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 		}
 		return -1;
 	}
-
 	// This method parses out entry information an HTML response, and adds
 	// Profile objects to profileList.
 	// responseString must be a valid grinnell College db page
