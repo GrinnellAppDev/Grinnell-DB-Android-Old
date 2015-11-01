@@ -34,15 +34,22 @@
     </style>
 
     <style name="ActionBar.Solid.Grinnelldb" parent="Widget.AppCompat.ActionBar.Solid">
-        <item name="background">@drawable/ab_solid_grinnelldb</item>
+        <!--<item name="background">@drawable/ab_solid_grinnelldb</item>-->
+        <item name="background">@color/MaterialRed</item>
         <item name="backgroundStacked">@drawable/ab_stacked_solid_grinnelldb</item>
         <item name="backgroundSplit">@drawable/ab_bottom_solid_grinnelldb</item>
+        <item name="titleTextStyle">@style/ActionBar.Solid.TextStyle</item>
         <!--<item name="progressBarStyle">@style/ProgressBar.Grinnelldb</item>-->
     </style>
 
     <style name="ActionBar.Transparent.Grinnelldb" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="background">@drawable/ab_transparent_grinnelldb</item>
         <!--<item name="progressBarStyle">@style/ProgressBar.Grinnelldb</item>-->
+    </style>
+
+    <style name="ActionBar.Solid.TextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/White</item>
     </style>
 
     <style name="tabtextcolor" parent="@android:style/Widget.Holo.Light.ActionBar.TabText">

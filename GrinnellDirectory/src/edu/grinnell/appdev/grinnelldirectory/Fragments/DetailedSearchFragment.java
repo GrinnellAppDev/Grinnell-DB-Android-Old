@@ -76,7 +76,7 @@ public class DetailedSearchFragment extends Fragment {
 			clearFields();
 			return true;
 		default:
-			return super.onOptionsItemSelected(item);
+			return super.onOptionsItemSelected(item );
 		}
 	}
 

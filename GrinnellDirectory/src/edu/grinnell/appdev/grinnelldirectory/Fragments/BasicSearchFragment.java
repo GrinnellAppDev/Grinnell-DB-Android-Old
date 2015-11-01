@@ -123,7 +123,6 @@ public class BasicSearchFragment extends Fragment {
 					+ mActivity.cleanString(lastNameText.getText().toString())
 					+ "&LNameSearch=startswith&FirstName="
 					+ mActivity.cleanString(firstNameText.getText().toString());
-			theURL = "http://samee.ninja/db.html";
 			new RequestTask(mActivity).execute(theURL);
 		}
 	}

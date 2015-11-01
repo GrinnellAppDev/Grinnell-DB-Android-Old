@@ -9,9 +9,7 @@
  *      so public data manipulating methods are required.
  * The list data is stored staticly in the Profile class.
  * ***************************************/
-
 package edu.grinnell.appdev.grinnelldirectory.Activities;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -37,6 +35,7 @@ public class ProfileListActivity extends ActionBarActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile_list);
 		setTitle("");
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// Tablet 2-pane support
 		if (findViewById(R.id.profile_detail_container) != null) {

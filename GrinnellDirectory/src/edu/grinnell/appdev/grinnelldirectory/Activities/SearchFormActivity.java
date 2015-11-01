@@ -83,12 +83,13 @@ public class SearchFormActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_search_form);
 
         mActionBar = getSupportActionBar();
-        mActionBar.setDisplayShowHomeEnabled(true);
+        mActionBar.setLogo(R.drawable.icon_launcher);
+		mActionBar.setDefaultDisplayHomeAsUpEnabled(true);
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		mPager = (ViewPager) findViewById(R.id.pager);
-
-		setTitle("");
+		setTitle("Search");
+//		mActionBar.setIcon(R.drawable.icon_launcher);
 
 		FragmentManager fm = getSupportFragmentManager();
 
