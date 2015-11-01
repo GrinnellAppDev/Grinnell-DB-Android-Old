@@ -5,7 +5,7 @@
  * 	This is totes unprofessional. Don't do as I do.
  * ************************************/
 
-package edu.grinnell.appdev.grinnelldirectory.dummy;
+package edu.grinnell.appdev.grinnelldirectory.Models;
 
 import java.util.ArrayList;
 import java.util.HashMap;

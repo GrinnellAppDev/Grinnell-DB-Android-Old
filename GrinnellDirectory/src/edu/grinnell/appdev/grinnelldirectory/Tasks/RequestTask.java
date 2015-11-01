@@ -5,7 +5,7 @@
  * It returns an ArrayList of Profiles of the entries.
  * ***************************************************/
 
-package edu.grinnell.appdev.grinnelldirectory;
+package edu.grinnell.appdev.grinnelldirectory.Tasks;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -29,7 +29,9 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
+import edu.grinnell.appdev.grinnelldirectory.Activities.ProfileListActivity;
+import edu.grinnell.appdev.grinnelldirectory.Models.Profile;
+import edu.grinnell.appdev.grinnelldirectory.R;
 
 public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 
@@ -198,17 +200,6 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 		curTok = strTok.nextToken();
 
 
-		// If line 88 contains these strings, there were 0 results or too many
-		// results
-
-//			// skip useless information
-//			for (int i = 0; i < 8; i++)
-//				curTok = strTok.nextToken();
-//            if (onCampus) {
-//                curTok = strTok.nextToken();
-//                curTok = strTok.nextToken();
-//            }
-
 
             // If a next page button exsts, then there is a next page.
 			// Grab URL of next pageand set return value of method to true.
@@ -252,7 +243,6 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 				} else {
                     String rawName = dataParser(curTok);
                     fullName = rawName;
-//					fullName = curTok.substring(35, curTok.indexOf("</TD>"));
 				}
 				if (fullName == null) {
 					errorCode = NO_ENTRIES;
@@ -271,8 +261,6 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 					if (dept.contains("tny")) {
 						dept = facStaffTitle(dept);
 					}
-					// dept += smallerdeptString.substring(0,
-					// smallerdeptString.indexOf("<"));
 					curTok = strTok.nextToken();
 
 					// parse phone number, username, campus address, box #,
@@ -358,38 +346,14 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 			 */
 	}
 
-	private String onCampusParse(StringTokenizer strTok) {
-		//Skip stuff we don't need
-		String stringBeingParsed;
-		String curTok, picurl, firstName, lastName, username, dept, phonenum, campusaddress, boxno, stufacstatus, sgapos;
 
-		for (int i = 0; i < 58; i++) {
-			strTok.nextToken();
-		}
-		int numOfResults = Integer.parseInt(numberParser(strTok.nextToken()));
-
-
-		for (int i = 0; i < 43; i++) {
-			strTok.nextToken();
-		}
-
-		for (int i = 0; i < numOfResults; i++) {
-			stringBeingParsed = strTok.nextToken();
-
-			String[] nameEmailRole = nameEmailRoleParser(stringBeingParsed);
-			String fullName = nameEmailRole[0].trim();
-			firstName = fullName.substring(fullName.indexOf(','), fullName.length());
-			lastName = fullName.substring(0, fullName.indexOf(','));
-			username = nameEmailRole[1];
-			stufacstatus = nameEmailRole[2];
-
-
-		}
-
-
-
-		return null;
-	}
+	/**
+	 *
+	 * @param str
+	 * @return
+	 *
+	 * A simple Regex parser for stripping out numbers
+	 */
 
 	private String numberParser(String str) {
 		String match = "[0-9]+";
@@ -414,6 +378,14 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 		return null;
 	}
 
+	/**
+	 *
+	 * @param str
+	 * @return
+	 *
+	 * HTML parser when content includes name and email (Regex)
+	 */
+
 	private static String[] nameEmailRoleParser (String str) {
 		int addIndex = 0;
 		String[] returnArr = new String[3];
@@ -426,6 +398,13 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 		return returnArr;
 	}
 
+	/**
+	 *
+	 * @param str
+	 * @return
+	 *
+	 * Generic HTML parser using Regex
+	 */
 	private String dataParser (String str) {
 		String match = ">([A-z].*?)<";
 		Pattern pattern = Pattern.compile(match);
@@ -437,6 +416,13 @@ public class RequestTask extends AsyncTask<String, Void, ArrayList<Profile>> {
 		}
 	}
 
+	/**
+	 *
+	 * @param title
+	 * @return
+	 *
+	 * Get relevantdata regarding Staff and faculty
+	 */
 	private String facStaffTitle(String title) {
 		boolean inBracket = false;
 		String tmp = "";

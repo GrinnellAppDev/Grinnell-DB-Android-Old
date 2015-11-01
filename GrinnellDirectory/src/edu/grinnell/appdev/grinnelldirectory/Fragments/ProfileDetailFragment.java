@@ -8,7 +8,7 @@
  *      and to have a custom view with an image.
  * ************************************/
 
-package edu.grinnell.appdev.grinnelldirectory;
+package edu.grinnell.appdev.grinnelldirectory.Fragments;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -23,7 +23,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
-import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
+import edu.grinnell.appdev.grinnelldirectory.Models.Profile;
+import edu.grinnell.appdev.grinnelldirectory.R;
 
 public class ProfileDetailFragment extends Fragment {
 

@@ -7,7 +7,7 @@
  * 	It then launches a ListActivityIntent to display them.
  * **************************************/
 
-package edu.grinnell.appdev.grinnelldirectory;
+package edu.grinnell.appdev.grinnelldirectory.Activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -33,6 +33,14 @@ import android.widget.TextView;
 import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
 
+import edu.grinnell.appdev.grinnelldirectory.Fragments.BasicSearchFragment;
+import edu.grinnell.appdev.grinnelldirectory.Fragments.DetailedSearchFragment;
+import edu.grinnell.appdev.grinnelldirectory.R;
+import edu.grinnell.appdev.grinnelldirectory.Tasks.RequestTask;
+
+/**
+ * Launch activity used for rendering the input form -- either using basic or advanced search (using tabs)
+ */
 public class SearchFormActivity extends ActionBarActivity {
 
 	int parserErrorMessage = RequestTask.NO_ERROR;
@@ -74,18 +82,14 @@ public class SearchFormActivity extends ActionBarActivity {
 		Crashlytics.start(this);
 		setContentView(R.layout.activity_search_form);
 
-//        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-		// Activate Navigation Mode Tabs
         mActionBar = getSupportActionBar();
         mActionBar.setDisplayShowHomeEnabled(true);
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-		// Locate ViewPager in activity_main.xml
 		mPager = (ViewPager) findViewById(R.id.pager);
 
 		setTitle("");
 
-		// Activate Fragment Manager
 		FragmentManager fm = getSupportFragmentManager();
 
 		// Capture ViewPager page swipes
