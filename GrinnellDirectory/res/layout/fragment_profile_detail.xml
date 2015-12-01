@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="19dp"
                 android:layout_toRightOf="@+id/imageDetail"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="60dp"
                 android:layout_alignTop="@id/imageDetail"
                 android:text="@string/Name"
                 android:textAppearance="?android:attr/textAppearanceLarge" />

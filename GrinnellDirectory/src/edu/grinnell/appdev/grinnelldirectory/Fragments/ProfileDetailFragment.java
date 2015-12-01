@@ -10,12 +10,21 @@
 
 package edu.grinnell.appdev.grinnelldirectory.Fragments;
 
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -80,44 +89,63 @@ public class ProfileDetailFragment extends Fragment {
         imgview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Animation animScale = new ScaleAnimation(
-//                        1f, 2.5f, // Start and end values for the X axis scaling
-//                        1f, 2.5f, // Start and end values for the Y axis scaling
-//                        Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
-//                        Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
-//                animScale.setFillAfter(true);
-//                animScale.setDuration(300);
-//                Animation animTrans = new TranslateAnimation(0, 100, 0, 850);
-//                animTrans.setFillAfter(true);
-//                animTrans.setDuration(300);
-//                AnimationSet animSet = new AnimationSet(true);
-//                animSet.setFillEnabled(true);
-//                animSet.addAnimation(animScale);
-//                animSet.addAnimation(animTrans);
-//                animSet.setFillAfter(true);
-//                animSet.setInterpolator(new AccelerateInterpolator());
-//                Animation animDarken = new AlphaAnimation(0.0f, 1.0f);
-//                animDarken.setFillAfter(true);
-//                animDarken.setDuration(300);
+                Log.v("width", getScreenWidth() +"");
+                Log.v("height", getScreenHeight() +"");
+                //120, 153
+                //
+                float width = getScreenWidth();
+                float height = getScreenHeight();
+                float adjustedWidth;
+                float adjustedHeight;
+                float scaleFactor = 2.5f;
+                Animation animTrans;
+                Animation animScale;
+                if (isOrientationPortrait()) {
+                    adjustedHeight = (float) (height * 1.33);
+                    adjustedWidth = (float)(width/3.6);
+                } else {
+                    scaleFactor = (float) (0.75 * height) / 153;
+                    adjustedWidth = (float) (height * 1.6);
+                    adjustedHeight = (float)(width/1.7);
+
+                }
+                animTrans = new TranslateAnimation(0, adjustedWidth, 0, adjustedHeight);
+                animScale = new ScaleAnimation(
+                        1f, scaleFactor, // Start and end values for the X axis scaling
+                        1f, scaleFactor, // Start and end values for the Y axis scaling
+                        Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
+                        Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
+                animScale.setFillAfter(true);
+                animScale.setDuration(300);
+                animTrans.setFillAfter(true);
+                animTrans.setDuration(300);
+                AnimationSet animSet = new AnimationSet(true);
+                animSet.setFillEnabled(true);
+                animSet.addAnimation(animScale);
+                animSet.addAnimation(animTrans);
+                animSet.setFillAfter(true);
+                animSet.setInterpolator(new AccelerateInterpolator());
+                Animation animDarken = new AlphaAnimation(0.0f, 0.8f);
+                animDarken.setFillAfter(true);
+                animDarken.setDuration(300);
+
+
+                rect.setVisibility(View.VISIBLE);
+                rect.startAnimation(animDarken);
+                rect.bringToFront();
+                imgview.bringToFront();
+                imgview.startAnimation(animSet);
 //
-//
-//                rect.setVisibility(View.VISIBLE);
-//                rect.startAnimation(animDarken);
-//                rect.bringToFront();
-//                imgview.bringToFront();
-//                imgview.startAnimation(animSet);
-//
-                ZoomPicFragment frag = ZoomPicFragment.newInstance();
-                getFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.right_slide_out,
-                                R.anim.right_slide_inS)
-                        .add(R.id.profile_detail_container, frag, "ZOOM")
-                        .addToBackStack(null)
-                        .commit();
+//                ZoomPicFragment frag = ZoomPicFragment.newInstance();
+//                getFragmentManager()
+//                        .beginTransaction()
+//                        .setCustomAnimations(R.anim.right_slide_out,
+//                                R.anim.right_slide_in)
+//                        .add(R.id.profile_detail_container, frag, "ZOOM")
+//                        .addToBackStack(null)
+//                        .commit();
             }
         });
-
 
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.textUsername)).setText('[' + mItem.username + ']');
@@ -131,7 +159,23 @@ public class ProfileDetailFragment extends Fragment {
         return rootView;
     }
     
-    
-    
+
+    public float getScreenWidth() {
+        DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
+        return displayMetrics.widthPixels / displayMetrics.density;
+    }
+
+    public float getScreenHeight() {
+        DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
+        return displayMetrics.heightPixels / displayMetrics.density;
+    }
+
+    public boolean isOrientationPortrait() {
+       if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+           return true;
+       } else {
+           return false;
+       }
+    }
     
 }
