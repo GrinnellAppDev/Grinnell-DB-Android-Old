@@ -23,6 +23,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
+import edu.grinnell.appdev.grinnelldirectory.Activities.ProfileDetailActivity;
 import edu.grinnell.appdev.grinnelldirectory.Models.Profile;
 import edu.grinnell.appdev.grinnelldirectory.R;
 
@@ -32,7 +33,9 @@ public class ProfileDetailFragment extends Fragment {
 
     Profile mItem;
     private ImageLoader imageLoader;
-    ImageView imgview; 
+    ImageView imgview;
+    ImageView rect;
+
 
 
     public ProfileDetailFragment() {
@@ -53,6 +56,7 @@ public class ProfileDetailFragment extends Fragment {
         
         // Initializes an imageView
         imgview = ((ImageView) rootView.findViewById(R.id.imageDetail));
+        rect = ((ImageView) rootView.findViewById(R.id.rect));
 	    if (mItem.picurl != "") {
 
 		// Fills the imageView with universalImageLoader
@@ -66,10 +70,55 @@ public class ProfileDetailFragment extends Fragment {
 			    public void onLoadingComplete(String imageUri,
 				    View view, Bitmap loadedImage) {
 				imgview.setImageBitmap(loadedImage);
+                ((ProfileDetailActivity) getActivity()).mImage = loadedImage;
 			    }
 			});
-	    } else
-		imgview.setImageResource(R.drawable.nopic);
+	    } else {
+            imgview.setImageResource(R.drawable.nopic);
+        }
+
+        imgview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Animation animScale = new ScaleAnimation(
+//                        1f, 2.5f, // Start and end values for the X axis scaling
+//                        1f, 2.5f, // Start and end values for the Y axis scaling
+//                        Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
+//                        Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
+//                animScale.setFillAfter(true);
+//                animScale.setDuration(300);
+//                Animation animTrans = new TranslateAnimation(0, 100, 0, 850);
+//                animTrans.setFillAfter(true);
+//                animTrans.setDuration(300);
+//                AnimationSet animSet = new AnimationSet(true);
+//                animSet.setFillEnabled(true);
+//                animSet.addAnimation(animScale);
+//                animSet.addAnimation(animTrans);
+//                animSet.setFillAfter(true);
+//                animSet.setInterpolator(new AccelerateInterpolator());
+//                Animation animDarken = new AlphaAnimation(0.0f, 1.0f);
+//                animDarken.setFillAfter(true);
+//                animDarken.setDuration(300);
+//
+//
+//                rect.setVisibility(View.VISIBLE);
+//                rect.startAnimation(animDarken);
+//                rect.bringToFront();
+//                imgview.bringToFront();
+//                imgview.startAnimation(animSet);
+//
+                ZoomPicFragment frag = ZoomPicFragment.newInstance();
+                getFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.right_slide_out,
+                                R.anim.right_slide_inS)
+                        .add(R.id.profile_detail_container, frag, "ZOOM")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.textUsername)).setText('[' + mItem.username + ']');
             ((TextView) rootView.findViewById(R.id.textMajor)).setText(mItem.dept);

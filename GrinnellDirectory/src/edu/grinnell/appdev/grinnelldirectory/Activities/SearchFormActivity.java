@@ -68,7 +68,7 @@ public class SearchFormActivity extends ActionBarActivity {
 
 	ActionBar.TabListener tabListener;
 
-	static Boolean inGrinnell = true;
+	static public Boolean inGrinnell = true;
 
 	// An intent for ProfileListActivity
 	Intent listIntent;

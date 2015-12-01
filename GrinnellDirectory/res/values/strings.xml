@@ -90,7 +90,7 @@
         <item>Wilson Program</item>
         <item>Writing Lab</item>
     </string-array>
-    
+
     <string-array name="studentmajorarray">
         <item>Any Student Major</item>
         <item>American Studies</item>
@@ -130,8 +130,8 @@
         <item>Theatre</item>
         <item>Undeclared</item>
     </string-array>
-    
-        <string-array name="studentconcentrationarray">
+
+    <string-array name="studentconcentrationarray">
         <item>Any Student Concentration</item>
         <item>American Studies</item>
         <item>East Asian Studies</item>
@@ -146,10 +146,10 @@
         <item>Technology Studies</item>
         <item>Western European Studies</item>
     </string-array>
-    
-	<string-array name="sgaarray">
-	    <item>Any SGA Position</item>
-    	<item>Administrative Coordinator</item>
+
+    <string-array name="sgaarray">
+        <item>Any SGA Position</item>
+        <item>Administrative Coordinator</item>
         <item>All Campus Events Coordinator</item>
         <item>All Campus Events Vice-Coordinator</item>
         <item>Asst Treasurer</item>
@@ -169,29 +169,32 @@
         <item>VP for Academic Affairs</item>
         <item>VP for Student Affairs</item>
     </string-array>
-    
-	<string-array name="haitusarray">
-	    <item>Any Hiatus Status</item>
-	    <item>Off Campus Study</item>
-	    <item>Engineering</item>
-	    <item>Grinnell In London</item>
-	    <item>Grinnell In Washington</item>
-	</string-array>
-	
-	<string-array name="classyeararray">
-	    <item>Any Class Year</item>
-	    <item>2014</item>
-	    <item>2015</item>
-	    <item>2016</item>
-	    <item>2017</item>
-	    <item>2018</item>
-	</string-array>
-    
+
+    <string-array name="haitusarray">
+        <item>Any Hiatus Status</item>
+        <item>Off Campus Study</item>
+        <item>Engineering</item>
+        <item>Grinnell In London</item>
+        <item>Grinnell In Washington</item>
+    </string-array>
+
+    <string-array name="classyeararray">
+        <item>Any Class Year</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+    </string-array>
+
     <string name="Reset">Reset</string>
     <string name="search">Search</string>
     <string name="Name">Name</string>
     <string name="MajorDepartment">Major/Department</string>
     <string name="POBox">Box Number</string>
     <string name="image">pcard image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
