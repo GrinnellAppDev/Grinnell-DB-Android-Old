@@ -10,21 +10,16 @@
 
 package edu.grinnell.appdev.grinnelldirectory.Fragments;
 
-import android.content.res.Configuration;
+import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +29,7 @@ import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
 import edu.grinnell.appdev.grinnelldirectory.Activities.ProfileDetailActivity;
 import edu.grinnell.appdev.grinnelldirectory.Models.Profile;
+import edu.grinnell.appdev.grinnelldirectory.Other.Utils;
 import edu.grinnell.appdev.grinnelldirectory.R;
 
 public class ProfileDetailFragment extends Fragment {
@@ -44,7 +40,12 @@ public class ProfileDetailFragment extends Fragment {
     private ImageLoader imageLoader;
     ImageView imgview;
     ImageView rect;
-
+    //The factor by which to enlarge our imageview in the zoom animation
+    float scaleFactor = 2.5f;
+    boolean isImageZoomed = false;
+    boolean touchImage = false;
+    float adjustedWidth;
+    float adjustedHeight;
 
 
     public ProfileDetailFragment() {
@@ -89,61 +90,49 @@ public class ProfileDetailFragment extends Fragment {
         imgview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("width", getScreenWidth() +"");
-                Log.v("height", getScreenHeight() +"");
-                //120, 153
-                //
-                float width = getScreenWidth();
-                float height = getScreenHeight();
-                float adjustedWidth;
-                float adjustedHeight;
-                float scaleFactor = 2.5f;
-                Animation animTrans;
-                Animation animScale;
-                if (isOrientationPortrait()) {
-                    adjustedHeight = (float) (height * 1.33);
-                    adjustedWidth = (float)(width/3.6);
-                } else {
-                    scaleFactor = (float) (0.75 * height) / 153;
-                    adjustedWidth = (float) (height * 1.6);
-                    adjustedHeight = (float)(width/1.7);
+                if (!isImageZoomed) {
+                    float width = Utils.getScreenWidth(getActivity());
+                    float height = Utils.getScreenHeight(getActivity());
+                    Screen adjustedScreen = calculateAdjustedViewBounds(new Screen(width, height));
+                    adjustedWidth = adjustedScreen.width;
+                    adjustedHeight = adjustedScreen.height;
 
+                    translateImageAnim(0,0, adjustedWidth, adjustedHeight, imgview);
+                    scaleImageAnim(1f, scaleFactor, imgview);
+
+                    //Animation for "dulling" the screen behind the image
+                    Animation animDarken = new AlphaAnimation(0.0f, 0.8f);
+                    animDarken.setFillAfter(true);
+                    animDarken.setDuration(350);
+
+
+                    rect.setVisibility(View.VISIBLE);
+                    rect.startAnimation(animDarken);
+                    rect.bringToFront();
+                    imgview.bringToFront();
+                    isImageZoomed = true;
                 }
-                animTrans = new TranslateAnimation(0, adjustedWidth, 0, adjustedHeight);
-                animScale = new ScaleAnimation(
-                        1f, scaleFactor, // Start and end values for the X axis scaling
-                        1f, scaleFactor, // Start and end values for the Y axis scaling
-                        Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
-                        Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
-                animScale.setFillAfter(true);
-                animScale.setDuration(300);
-                animTrans.setFillAfter(true);
-                animTrans.setDuration(300);
-                AnimationSet animSet = new AnimationSet(true);
-                animSet.setFillEnabled(true);
-                animSet.addAnimation(animScale);
-                animSet.addAnimation(animTrans);
-                animSet.setFillAfter(true);
-                animSet.setInterpolator(new AccelerateInterpolator());
-                Animation animDarken = new AlphaAnimation(0.0f, 0.8f);
-                animDarken.setFillAfter(true);
-                animDarken.setDuration(300);
 
+            }
+        });
 
-                rect.setVisibility(View.VISIBLE);
-                rect.startAnimation(animDarken);
-                rect.bringToFront();
-                imgview.bringToFront();
-                imgview.startAnimation(animSet);
-//
-//                ZoomPicFragment frag = ZoomPicFragment.newInstance();
-//                getFragmentManager()
-//                        .beginTransaction()
-//                        .setCustomAnimations(R.anim.right_slide_out,
-//                                R.anim.right_slide_in)
-//                        .add(R.id.profile_detail_container, frag, "ZOOM")
-//                        .addToBackStack(null)
-//                        .commit();
+        rect.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == event.ACTION_DOWN) {
+                    if (isImageZoomed) {
+                        //Reverse animation
+                        Animation animLighten = new AlphaAnimation(0.8f, 0.0f);
+                        animLighten.setFillAfter(true);
+                        animLighten.setDuration(350);
+                        v.startAnimation(animLighten);
+                        translateImageAnim(adjustedWidth, adjustedHeight, 0 ,0 , imgview);
+                        scaleImageAnim(scaleFactor, 1f, imgview);
+
+                        isImageZoomed = false;
+                    }
+                }
+                return false;
             }
         });
 
@@ -158,24 +147,58 @@ public class ProfileDetailFragment extends Fragment {
         }
         return rootView;
     }
-    
 
-    public float getScreenWidth() {
-        DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
-        return displayMetrics.widthPixels / displayMetrics.density;
+    /**
+     The following method handles the animation numbers, depending on orientation.
+     The "magic" numbers you see were calculated to provide the most optimal image size for
+     each orientation, depending on screen estate available. As they are based on each screen's
+     width and height, they are guaranteed to provide a uniform experience across different devices.
+     **/
+
+    Screen calculateAdjustedViewBounds (Screen screenVals) {
+
+        float width = Utils.getScreenWidth(getActivity());
+        float height = Utils.getScreenHeight(getActivity());
+
+        //Handle when screen is in landscape mode (we now have more width, less height)
+        if (!Utils.isOrientationPortrait(getActivity())) {
+            scaleFactor = (float) (0.75 * height) / 153;
+            screenVals.width = (float) (height * 2.0);
+            screenVals.height = (float)(width/3.0);
+        }
+
+        return screenVals;
+
     }
 
-    public float getScreenHeight() {
-        DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
-        return displayMetrics.heightPixels / displayMetrics.density;
+    void scaleImageAnim(float from, float to, View target) {
+
+        ObjectAnimator animScaleNewX = ObjectAnimator.ofFloat(target, "scaleX", from, to);
+        ObjectAnimator animScaleNewY = ObjectAnimator.ofFloat(target, "scaleY", from, to);
+        animScaleNewX.setDuration(350);
+        animScaleNewY.setDuration(350);
+        animScaleNewX.start();
+        animScaleNewY.start();
+
     }
 
-    public boolean isOrientationPortrait() {
-       if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-           return true;
-       } else {
-           return false;
-       }
+    void translateImageAnim (float fromWidth, float fromHeight, float toWidth, float toHeight, View target) {
+        ObjectAnimator animTransNewX = ObjectAnimator.ofFloat(target, "translationX", fromWidth, toWidth);
+        ObjectAnimator animTransNewY = ObjectAnimator.ofFloat(target, "translationY", fromHeight, toHeight);
+        animTransNewX.setDuration(350);
+        animTransNewY.setDuration(350);
+        animTransNewX.start();
+        animTransNewY.start();
+    }
+
+    class Screen {
+        float width;
+        float height;
+
+        public Screen (float width, float height) {
+            this.width = width;
+            this.height = height;
+        }
     }
     
 }
