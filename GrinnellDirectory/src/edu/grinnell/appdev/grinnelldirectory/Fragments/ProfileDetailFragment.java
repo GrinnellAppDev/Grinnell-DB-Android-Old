@@ -40,10 +40,10 @@ public class ProfileDetailFragment extends Fragment {
     private ImageLoader imageLoader;
     ImageView imgview;
     ImageView rect;
+    View mWrapper;
     //The factor by which to enlarge our imageview in the zoom animation
     float scaleFactor = 2.5f;
     boolean isImageZoomed = false;
-    boolean touchImage = false;
     float adjustedWidth;
     float adjustedHeight;
 
@@ -63,7 +63,10 @@ public class ProfileDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile_detail, container, false);
-        
+
+        //Layout Wrapper
+        mWrapper = rootView.findViewById(R.id.wrapper);
+
         // Initializes an imageView
         imgview = ((ImageView) rootView.findViewById(R.id.imageDetail));
         rect = ((ImageView) rootView.findViewById(R.id.rect));
@@ -157,15 +160,13 @@ public class ProfileDetailFragment extends Fragment {
 
     Screen calculateAdjustedViewBounds (Screen screenVals) {
 
-        float width = Utils.getScreenWidth(getActivity());
-        float height = Utils.getScreenHeight(getActivity());
+        float width = Utils.getRawScreenWidth(getActivity());
+        float height = Utils.getRawScreenHeight(getActivity());
 
-        //Handle when screen is in landscape mode (we now have more width, less height)
-        if (!Utils.isOrientationPortrait(getActivity())) {
-            scaleFactor = (float) (0.75 * height) / 153;
-            screenVals.width = (float) (height * 2.0);
-            screenVals.height = (float)(width/3.0);
-        }
+        //This Handles when screen is in either landscape or portrait mode
+            scaleFactor = (float) (0.7 * height)/imgview.getHeight();
+            screenVals.width = width/2 - imgview.getWidth()/2;
+            screenVals.height = (float) (height/2 - imgview.getHeight()/1.5);
 
         return screenVals;
 

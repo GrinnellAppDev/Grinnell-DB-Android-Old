@@ -19,6 +19,16 @@ public class Utils {
         return displayMetrics.heightPixels / displayMetrics.density;
     }
 
+    public static float getRawScreenWidth(Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return displayMetrics.widthPixels;
+    }
+
+    public static float getRawScreenHeight(Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return displayMetrics.heightPixels;
+    }
+
     public static boolean isOrientationPortrait(Context context) {
         if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             return true;
