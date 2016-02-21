@@ -9,8 +9,6 @@
 
 package edu.grinnell.appdev.grinnelldirectory.Fragments;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -28,6 +26,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
+
+import java.util.List;
 
 import edu.grinnell.appdev.grinnelldirectory.Models.Profile;
 import edu.grinnell.appdev.grinnelldirectory.R;

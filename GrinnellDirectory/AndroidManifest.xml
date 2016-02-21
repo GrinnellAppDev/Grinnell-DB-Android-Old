@@ -35,6 +35,7 @@
         </activity>
         <activity
             android:name=".Activities.ProfileDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_profile_detail" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

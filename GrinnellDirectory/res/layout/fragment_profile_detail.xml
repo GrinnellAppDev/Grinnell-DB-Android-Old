@@ -4,39 +4,48 @@
     android:layout_height="fill_parent"
     android:background="@color/White" >
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/wrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+        <ImageView
+            android:id="@+id/imageDetail"
+            android:layout_width="120dp"
+            android:layout_height="153dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/ic_launcher" />
 
-            <ImageView
-                android:id="@+id/imageDetail"
-                android:layout_width="220px"
-                android:layout_height="283px"
-                android:contentDescription="@string/image"
-                android:src="@drawable/ic_launcher" />
+        <ImageView
+            android:id="@+id/rect"
+            android:layout_width="match_parent"
+            android:layout_height="650dp"
+            android:background= "@drawable/rect_black"
+            android:visibility="invisible"
+            />
+
 
             <TextView
                 android:id="@+id/textName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="19dp"
                 android:layout_toRightOf="@+id/imageDetail"
+                android:layout_marginTop="60dp"
+                android:layout_alignTop="@id/imageDetail"
                 android:text="@string/Name"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-        </RelativeLayout>
 
         <View
+            android:id="@+id/view1"
+            android:layout_below="@id/imageDetail"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#ff4444" />
 
         <TextView
+            android:layout_below="@id/view1"
             android:id="@+id/textMajorField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,12 +56,15 @@
             android:textStyle="bold|italic" />
 
         <View
+            android:id="@+id/view2"
+            android:layout_below="@id/textMajorField"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#ff4444"
             android:paddingBottom="10dp" />
 
         <TextView
+            android:layout_below="@id/view2"
             android:id="@+id/textMajor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,6 +75,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:layout_below="@id/textMajor"
             android:id="@+id/textcampusPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,11 +85,14 @@
             android:textStyle="bold|italic" />
 
         <View
+            android:layout_below="@id/textcampusPhone"
+            android:id="@+id/view3"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#ff4444" />
 
         <TextView
+            android:layout_below="@id/view3"
             android:id="@+id/textPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,6 +103,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:layout_below="@id/textPhone"
             android:id="@+id/textFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,11 +113,14 @@
             android:textStyle="bold|italic" />
 
         <View
+            android:id="@+id/view4"
+            android:layout_below="@id/textFirstName"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#ff4444" />
 
         <TextView
+            android:layout_below="@id/view4"
             android:id="@+id/textUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,6 +131,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:layout_below="@id/textUsername"
             android:id="@+id/textcampusAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,11 +141,14 @@
             android:textStyle="bold|italic" />
 
         <View
+            android:id="@+id/view5"
+            android:layout_below="@id/textcampusAddress"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#ff4444" />
 
         <TextView
+            android:layout_below="@id/view5"
             android:id="@+id/textAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,6 +159,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:layout_below="@id/textAddress"
             android:id="@+id/textPOField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,11 +169,14 @@
             android:textStyle="bold|italic" />
 
         <View
+            android:layout_below="@id/textPOField"
+            android:id="@+id/view6"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="#ff4444" />
 
         <TextView
+            android:layout_below="@id/view6"
             android:id="@+id/textBoxNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -156,6 +184,6 @@
             android:paddingTop="15dp"
             android:text="@string/POBox"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>
