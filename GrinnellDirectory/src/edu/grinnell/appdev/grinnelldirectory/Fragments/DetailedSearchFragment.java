@@ -1,4 +1,4 @@
-package edu.grinnell.appdev.grinnelldirectory;
+package edu.grinnell.appdev.grinnelldirectory.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import edu.grinnell.appdev.grinnelldirectory.R;
+import edu.grinnell.appdev.grinnelldirectory.Tasks.RequestTask;
+import edu.grinnell.appdev.grinnelldirectory.Activities.SearchFormActivity;
 
 /* A fragment off the Search Form Activity with a detailed search interface */
 public class DetailedSearchFragment extends Fragment {

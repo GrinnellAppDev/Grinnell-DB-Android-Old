@@ -9,9 +9,7 @@
  *      so public data manipulating methods are required.
  * The list data is stored staticly in the Profile class.
  * ***************************************/
-
-package edu.grinnell.appdev.grinnelldirectory;
-
+package edu.grinnell.appdev.grinnelldirectory.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -22,7 +20,10 @@ import com.flurry.android.FlurryAgent;
 
 import java.util.ArrayList;
 
-import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
+import edu.grinnell.appdev.grinnelldirectory.Fragments.ProfileDetailFragment;
+import edu.grinnell.appdev.grinnelldirectory.Fragments.ProfileListFragment;
+import edu.grinnell.appdev.grinnelldirectory.Models.Profile;
+import edu.grinnell.appdev.grinnelldirectory.R;
 
 public class ProfileListActivity extends ActionBarActivity implements
 		ProfileListFragment.Callbacks {

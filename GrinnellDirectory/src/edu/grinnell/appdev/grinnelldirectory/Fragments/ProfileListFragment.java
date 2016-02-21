@@ -7,9 +7,7 @@
  * 	-Includes custom profile adapter, ProfileAdapter, as nested class
  * ********************************************/
 
-package edu.grinnell.appdev.grinnelldirectory;
-
-import java.util.List;
+package edu.grinnell.appdev.grinnelldirectory.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -29,7 +27,10 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
-import edu.grinnell.appdev.grinnelldirectory.dummy.Profile;
+import java.util.List;
+
+import edu.grinnell.appdev.grinnelldirectory.Models.Profile;
+import edu.grinnell.appdev.grinnelldirectory.R;
 
 public class ProfileListFragment extends ListFragment {
 
